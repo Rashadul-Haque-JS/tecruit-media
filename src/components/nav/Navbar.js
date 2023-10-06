@@ -43,8 +43,8 @@ const Navbar = () => {
       }}
     >
       <div className="flex justify-start items-center w-2/4 gap-5">
-        <Link to='/' className="text-3xl px-5 border-r-2 border-gray-700 logo">
-          Face Media
+        <Link to="/" className="text-3xl px-5 border-r-2 border-gray-700 logo">
+          Tecruit
         </Link>
         <div className="flex justify-between items-center gap-1 nav-font sm:hidden md:hidden">
           <Link>Companies</Link>
@@ -61,9 +61,7 @@ const Navbar = () => {
         </Link>
         <button
           className={`hidden text-xl sm:flex md:flex w-8 h-8 rounded-full p-2 shadow-2xl justify-center items-center${
-            openDropDownDrawer
-              ? "bg-gray-400 transform rotate-90"
-              : ""
+            openDropDownDrawer ? "bg-gray-400 transform rotate-90" : ""
           }`}
           style={{ transition: "transform 0.3s ease" }}
           onClick={toggleDrawer}
@@ -71,7 +69,7 @@ const Navbar = () => {
           {openDropDownDrawer ? (
             <FontAwesomeIcon icon={faXmark} />
           ) : (
-            <FontAwesomeIcon icon={faBars} className="text-[#db0045]"/>
+            <FontAwesomeIcon icon={faBars} className="text-[#db0045]" />
           )}
         </button>
       </div>
