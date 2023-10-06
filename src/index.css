@@ -12,6 +12,7 @@ html{
 
 .logo{
     font-family: 'Damion', cursive;
+    color: #db0045;
 }
 
 .nav-font{
@@ -20,13 +21,13 @@ html{
 
 .button {
   display: inline-block;
-  padding: 5px 20px;
+  padding: 8px 36px;
   font-size: 18px;
   border: none;
   background: linear-gradient(90deg, #db0045 25%, #b00078 50%, #db0045 75%);
   background-size: 200% 100%;
   color: white;
-  border-radius: 1px;
+  border-radius: 20px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -48,3 +49,4 @@ html{
   background-position: center;
   background-repeat: no-repeat;
 }
+
