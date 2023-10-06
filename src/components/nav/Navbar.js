@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import NavMenu from "./NavDropDown";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmark,
+  faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 
 const links = [
   {
@@ -53,25 +57,30 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex justify-center items-center gap-4">
-        <Link className="border-r-2 px-4 py-1 sm:hidden  border-gray-700 mt-2">
+        <Link className="border-r-2 px-4 py-1 sm:hidden  border-gray-700 mt-2 font-damion">
           My Job
         </Link>
-        <Link className=" px-2 py-1 sm:hidden rounded border-gray-700 mt-2">
+        <Link className=" px-2 py-1 sm:hidden rounded border-gray-700 mt-2 font-damion">
           Join Us Now
         </Link>
-        <button
-          className={`hidden text-xl sm:flex md:flex w-8 h-8 rounded-full p-2 shadow-2xl justify-center items-center${
-            openDropDownDrawer ? "bg-gray-400 transform rotate-90" : ""
-          }`}
-          style={{ transition: "transform 0.3s ease" }}
-          onClick={toggleDrawer}
-        >
-          {openDropDownDrawer ? (
-            <FontAwesomeIcon icon={faXmark} />
-          ) : (
-            <FontAwesomeIcon icon={faBars} className="text-[#db0045]" />
-          )}
-        </button>
+        <div className=" hidden sm:flex md:block items-center text-xl">
+          <Link className="px-4 flex justify-center items-center border-gray-700 logo">
+            <FontAwesomeIcon icon={faArrowRightFromBracket} />
+          </Link>
+          <button
+            className={`flex md:flex w-8 h-8 rounded-full px-2 shadow-2xl justify-center items-center${
+              openDropDownDrawer ? "bg-gray-400 transform rotate-90" : ""
+            }`}
+            style={{ transition: "transform 0.3s ease" }}
+            onClick={toggleDrawer}
+          >
+            {openDropDownDrawer ? (
+              <FontAwesomeIcon icon={faXmark} />
+            ) : (
+              <FontAwesomeIcon icon={faBars} className="text-[#db0045]" />
+            )}
+          </button>
+        </div>
       </div>
       {openDropDownDrawer && (
         <div
