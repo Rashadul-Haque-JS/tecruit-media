@@ -6,12 +6,13 @@ export const jobList = [
       country: 'finland',
       city: 'helsinki',
       description: 'We are looking for a talented software engineer to join our team...We are looking for a talented software engineer to join our team...We are looking for a talented software engineer to join our team...We are  looking for a talented software engineer to join our team...',
-      level: 'Senior',
-      type: ['onsite', 'remote'],
+      position: 'junior',
+      workTime:'full',
+      type: ['onsite', 'hybrid'],
       published_on: '2023-10-05',
       last_date: '2023-11-05',
-      email_applications: true,
-      email_to_applications: 'jobs@acmeinc.com',
+      email_applications: false,
+      email_to_applications: 'jobs@techcorp.com',
       application_url: 'https://acmeinc.com/careers/software-engineer',
       jobId:11
     },
@@ -22,71 +23,86 @@ export const jobList = [
       country: 'denmark',
       city: 'copenhagen',
       description: 'TechCorp is seeking a data analyst to work on cutting-edge data projects...',
-      level: 'Intermediate',
+      position: 'intermediate',
+      workTime:'full',
       type: ['onsite'],
       published_on: '2023-09-15',
       last_date: '2023-11-10',
       email_applications: true,
       email_to_applications: 'jobs@techcorp.com',
-      application_url: 'https://techcorp.com/careers/data-analyst',
+      application_url: '',
       jobId:12
     },
     {
-      jobTitle: 'Marketing Analysis',
-      category: 'marketing',
+      jobTitle: 'System Administrator',
+      category: 'data/IT',
       company: 'Globex Marketing',
       country: 'sweden',
       city: 'stockholm',
       description: 'Join our marketing team and lead innovative marketing campaigns...',
-      level: 'Manager',
+      position: 'senior',
+      workTime:'part',
       type: ['onsite', 'hybrid'],
       published_on: '2023-09-30',
       last_date: '2023-11-15',
-      email_applications: true,
-      email_to_applications: 'jobs@globexmarketing.com',
+      email_applications: false,
+      email_to_applications: '',
       application_url: 'https://globexmarketing.co.uk/careers/marketing-manager',
       jobId:13
     },
     {
-      jobTitle: 'Marketing Manager',
-      category: 'marketing',
+      jobTitle: 'Backend Developer',
+      category: 'data/IT',
       company: 'Globex Marketing',
       country: 'sweden',
       city: 'gothenburg',
       description: 'Join our marketing team and lead innovative marketing campaigns...',
-      level: 'Manager',
+      position: 'senior',
+      workTime:'part',
       type: ['onsite', 'hybrid'],
       published_on: '2023-10-01',
       last_date: '2023-11-15',
-      email_applications: true,
-      email_to_applications: 'jobs@globexmarketing.com',
+      email_applications: false,
+      email_to_applications: '',
       application_url: 'https://globexmarketing.co.uk/careers/marketing-manager',
       jobId:18
     },
     {
-      jobTitle: 'Financial Analyst',
-      category: 'Finance',
+      jobTitle: 'Fullstack Developer',
+      category: 'data/IT',
       company: 'FinanceX Inc.',
       country: 'norway',
       city: 'oslo',
       description: 'FinanceX is looking for a financial analyst to analyze financial data...',
-      level: 'Junior',
+      position: 'junior',
+      workTime:'full',
       type: ['remote'],
       published_on: '2023-09-20',
       last_date: '2023-11-20',
       email_applications: true,
-      email_to_applications: 'jobs@financex.com',
-      application_url: 'https://financexinc.com/careers/financial-analyst',
+      email_to_applications: 'mrhaque179@gmail.com',
+      application_url: '',
       jobId:14
+    },
+    {
+      jobTitle: 'Frontend Developer',
+      category: 'data/IT',
+      company: 'FinanceX Inc.',
+      country: 'norway',
+      city: 'oslo',
+      description: 'FinanceX is looking for a financial analyst to analyze financial data...',
+      position: 'internship',
+      workTime:'full',
+      type: ['remote'],
+      published_on: '2023-09-20',
+      last_date: '2023-11-20',
+      email_applications: false,
+      email_to_applications: '',
+      application_url: 'https://financexinc.com/careers/financial-analyst',
+      jobId:19
     },
   ];
   
-  export const jobCategories = [
-    { value: "data/IT", label: "Data/IT" },
-    { value: "finance", label: "Finance" },
-    { value: "marketing", label: "Marketing" },
-    // Add more job categories here
-  ];
 
  export const countries = [
     { countryId: 1, value: "sweden", label: "Sweden" },
@@ -103,7 +119,6 @@ export const jobList = [
   ];
   
   
-
   export const jobTypes = [
     {id:'jt1', value: "onsite", label: "Onsite" },
     {id:'jt2', value: "remote", label: "Remote" },
@@ -112,5 +127,17 @@ export const jobList = [
   export const published_date = [
     {id:'pd1', value: "new", label: "Newest" },
     {id:'pd2', value: "old", label: "Oldest" },
+  ];
+  
+  export const position = [
+    {id:'p1', value: "entry", label: "Entry" },
+    {id:'p2', value: "intermediate", label: "Intermediate" },
+    {id:'p3', value: "senior", label: "Senior" },
+    {id:'p4', value: "internship", label: "Internship" },
+  ];
+  export const workTime = [
+    {id:'w1', value: "full", label: "Full" },
+    {id:'w2', value: "part", label: "Part" },
+   
   ];
   

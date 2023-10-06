@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import {
   jobList,
-  jobCategories,
   countries,
   cities,
   jobTypes,
   published_date,
+  position,
+  workTime,
 } from "../data/jobs.js";
 
 const JobSearch = () => {
   const [jobs, setJobs] = useState(jobList);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedPosition, setSelectedPosition] = useState(null);
+  const [selectedWorkTime, setSelectedWorkTime] = useState(null);
   const [selectedType, setSelectedType] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
@@ -31,6 +36,7 @@ const JobSearch = () => {
 
   // Declare filteredJobs state variable
   const [filteredJobs, setFilteredJobs] = useState([]);
+  const [savedJobs, setSavedJobs] = useState([]);
 
   useEffect(() => {
     const filteredJobs = jobList.filter(
@@ -43,11 +49,6 @@ const JobSearch = () => {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentView(null);
-  };
-
-  const handleCategoryChange = (selectedOption) => {
-    setSelectedCategory(selectedOption);
     setCurrentView(null);
   };
 
@@ -76,12 +77,47 @@ const JobSearch = () => {
     setCurrentView(job);
   };
 
+  const handleCPositionChange = (selectedOption) => {
+    setSelectedPosition(selectedOption);
+    setCurrentView(null);
+  };
+  const handleCWTChange = (selectedOption) => {
+    setSelectedWorkTime(selectedOption);
+    setCurrentView(null);
+  };
+
+  const handleSaveJob = (jobId) => {
+    const savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+    if (!savedJobs.includes(jobId)) {
+      localStorage.setItem("savedJobs", JSON.stringify([...savedJobs, jobId]));
+    }
+
+    setSavedJobs([...savedJobs, jobId]);
+  };
+
+  const handleUnSaveJob = (jobId) => {
+    const savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+    const newSavedJobs = savedJobs.filter((job) => job !== jobId);
+    localStorage.setItem("savedJobs", JSON.stringify(newSavedJobs));
+    setSavedJobs(newSavedJobs);
+  };
+
   const clearFilters = () => {
-    setSelectedCategory(null);
     setSelectedType([]);
     setSelectedCountry(null);
     setSelectedCity(null);
+    setSelectedPosition(null);
+    setSelectedWorkTime(null);
     setCurrentView(isMobile ? null : jobs && jobs[0]);
+  };
+
+  const handleViewSaveJobs = () => {
+    const savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+    const newFilteredJobs = jobs?.filter((job) =>
+      savedJobs.includes(job.jobId)
+    );
+    setFilteredJobs(newFilteredJobs);
+    setCurrentView(isMobile ? null : newFilteredJobs && newFilteredJobs[0]);
   };
 
   useEffect(() => {
@@ -105,7 +141,8 @@ const JobSearch = () => {
     const newFilteredJobs = jobs?.filter(
       (job) =>
         job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (!selectedCategory || job.category === selectedCategory.value) &&
+        (!selectedPosition || job.position === selectedPosition.value) &&
+        (!selectedWorkTime || job.workTime === selectedWorkTime.value) &&
         (!selectedType.length ||
           selectedType.every((type) => job.type.includes(type.value))) &&
         (!selectedCountry || job.country === selectedCountry.value) &&
@@ -114,19 +151,32 @@ const JobSearch = () => {
     setFilteredJobs(newFilteredJobs);
   }, [
     searchTerm,
-    selectedCategory,
+    selectedPosition,
     selectedType,
     selectedCountry,
     selectedCity,
+    selectedWorkTime,
     jobs,
   ]);
+
+  useEffect(() => {
+    setSavedJobs(JSON.parse(localStorage.getItem("savedJobs")) || []);
+  }, []);
 
   return (
     <div className="relative bg-black">
       <div className="w-full text-white">
-        <h1 className="text-3xl font-semibold mb-6 text-center py-8">
+        <h1 className="text-3xl font-semibold mb-2 text-center pt-8">
           Find Your Dream Job
         </h1>
+        <div
+          className={`pb-3 text-center cursor-pointer hover:text-blue-400 ${
+            savedJobs && savedJobs.length > 0 ? "text-white" : "text-gray-500"
+          }`}
+          onClick={handleViewSaveJobs}
+        >
+          <FontAwesomeIcon icon={faEye} /> Saved Job - {savedJobs?.length}
+        </div>
       </div>
       <div className="px-10 sm:px-4 bg-white sm:mx-4 mx-10 py-12">
         <div className="flex justify-center items-center pb-8">
@@ -156,22 +206,7 @@ const JobSearch = () => {
             />
           </div>
         </div>
-        <div className="flex justify-center items-center flex-wrap gap-2 mb-4 border-b border-gray-200 pb-6">
-          <Select
-            options={jobCategories}
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            placeholder="Search by category"
-            className="w-fit sm:w-full"
-          />
-          <Select
-            options={jobTypes}
-            isMulti
-            value={selectedType}
-            onChange={handleTypeChange}
-            placeholder="Search by type(s)"
-            className="w-fit sm:w-full"
-          />
+        <div className="flex justify-center items-center flex-wrap sm:gap-4 gap-2 mb-4 border-b border-gray-200 pb-6">
           <Select
             options={countries}
             value={selectedCountry}
@@ -194,6 +229,30 @@ const JobSearch = () => {
             />
           )}
           <Select
+            options={jobTypes}
+            isMulti
+            value={selectedType}
+            onChange={handleTypeChange}
+            placeholder="Search by type(s)"
+            className="w-fit sm:w-full"
+          />
+
+          <Select
+            options={position}
+            value={selectedPosition}
+            onChange={handleCPositionChange}
+            placeholder="Search by position"
+            className="w-fit sm:w-full"
+          />
+          <Select
+            options={workTime}
+            value={selectedWorkTime}
+            onChange={handleCWTChange}
+            placeholder="Search by work time"
+            className="w-fit sm:w-full"
+          />
+
+          <Select
             options={published_date}
             value={selectedDate}
             onChange={handlePublishedDate}
@@ -209,7 +268,7 @@ const JobSearch = () => {
         <div className="flex justify-start gap-4">
           <ul
             className={`${
-              filteredJobs.length === 0 ? "w-full" : "w-fit"
+              filteredJobs.length === 0 ? "w-full" : "w-1/3"
             } sm:w-full min-h-screen`}
           >
             {filteredJobs.length === 0 && (
@@ -217,39 +276,68 @@ const JobSearch = () => {
                 No Job Found
               </p>
             )}
+
             {filteredJobs?.map((job) => (
-              <li
+              <div
                 key={job.jobId}
                 className="border p-4 my-2 rounded-lg cursor-pointer hover:bg-gray-100"
-                onClick={() => handleCurrentView(job)}
                 style={{
                   backgroundColor:
                     currentView?.jobId === job.jobId ? "#e9fce9" : "",
                 }}
               >
-                <h2 className="text-xl font-semibold mb-2">{job.jobTitle}</h2>
-                <p className="text-gray-600 mb-2">
-                  {job.company}, {job.city}, {job.country}
-                </p>
-                <p className="text-gray-500">
-                  <span className="px-1 capitalize">{job.category}</span>■
-                  {job.type?.map((t) => (
-                    <span className="px-1" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                </p>
-                <p className="text-sm text-gray-400 mt-2">
-                  Published on: {job.published_on}
-                  <span className="block">Last date: {job.last_date}</span>
-                </p>
-              </li>
+                <li key={job.jobId}>
+                  <h2 className="text-xl font-semibold mb-2">{job.jobTitle}</h2>
+                  <p className="text-gray-600 mb-2">
+                    {job.company}, {job.city}, {job.country}
+                  </p>
+                  <p className="text-gray-500">
+                    <span className="pr-1">{job.category}</span>■
+                    {job.type?.map((t) => (
+                      <span className="px-1" key={uuidv4()}>
+                        {t}
+                      </span>
+                    ))}
+                  </p>
+                  <p className="text-gray-500">
+                    <span>{job.position}</span> ■
+                    <span className="px-1">{job.workTime} time</span>
+                  </p>
+                  <p className="text-sm text-gray-400 mt-2">
+                    Published on: {job.published_on}
+                    <span className="block">Last date: {job.last_date}</span>
+                  </p>
+                </li>
+                <div className="flex justify-start items-center gap-2 pt-4 text-sm">
+                  <span
+                    className="bg-black cursor-pointer text-white border px-4 py-1 rounded"
+                    onClick={() => handleCurrentView(job)}
+                  >
+                    Details
+                  </span>
+                  {savedJobs.includes(job.jobId) ? (
+                    <button
+                      className="px-4 bg-white py-1 rounded border cursor-pointer"
+                      onClick={() => handleUnSaveJob(job.jobId)}
+                    >
+                      Unsave
+                    </button>
+                  ) : (
+                    <button
+                      className="px-4 bg-white py-1 rounded border cursor-pointer"
+                      onClick={() => handleSaveJob(job.jobId)}
+                    >
+                      Save
+                    </button>
+                  )}
+                </div>
+              </div>
             ))}
           </ul>
 
           {currentView && (
             <div className="py-4 rounded-lg sm:hidden bg-[#e9fce9] w-full my-2 px-16">
-              <h2 className="pb-6 text-xl">About This Job</h2>
+              <h2 className="pb-3 text-xl">About This Job</h2>
               <h2 className="text-xl font-semibold mb-2">
                 {currentView.jobTitle}
               </h2>
@@ -262,7 +350,7 @@ const JobSearch = () => {
                 </span>
                 ■
                 {currentView.type?.map((t) => (
-                  <span className="px-1" key={t}>
+                  <span className="px-1" key={uuidv4()}>
                     {t}
                   </span>
                 ))}
@@ -272,7 +360,40 @@ const JobSearch = () => {
                 <br />
                 Last date: {currentView.last_date}
               </p>
-              <p className="pt-4">Description</p>
+              {/* Display apply ui if application_url provided */}
+              {currentView.application_url && (
+                <p className="text-black  bg-green-200 w-fit px-4 py-2 rounded-md my-4">
+                  <a
+                    href={currentView.application_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Apply Now
+                  </a>
+                </p>
+              )}
+              {/* Display email application option*/}
+              {currentView.email_applications && (
+                <p className=" w-fit py-2 my-1 text-black">
+                  Send application to:{" "}
+                  <a
+                    href={`mailto:${currentView.email_to_applications}`}
+                    className=" text-blue-400"
+                  >
+                    {currentView.email_to_applications}
+                  </a>
+                </p>
+              )}
+              <p
+                className={`${
+                  currentView.application_url ||
+                  currentView.email_to_applications
+                    ? "pt-1"
+                    : "pt-4"
+                }`}
+              >
+                Description:
+              </p>
               <p className="text-gray-500 py-2">{currentView.description}</p>
             </div>
           )}
@@ -295,23 +416,59 @@ const JobSearch = () => {
                 {" "}
                 {currentView.jobTitle}
               </h2>
-              <p className="text-gray-600 mb-2">
+              <p className="text-gray-600 pt-1">
                 {currentView.company}, {currentView.city}, {currentView.country}
+              </p>
+              <p className="text-gray-500 pb-1">
+                <span className="pr-1 capitalize">
+                  {currentView.category} Job
+                </span>
+                ■
+                {currentView.type?.map((t) => (
+                  <span className="px-1" key={uuidv4()}>
+                    {t}
+                  </span>
+                ))}
               </p>
               <p className="text-sm text-gray-400 mt-2">
                 Published on: {currentView.published_on}
                 <br />
                 Last date: {currentView.last_date}
               </p>
-              <p className="text-gray-500">
-                <span className="px-1 capitalize">{currentView.category}</span>■
-                {currentView.type?.map((t) => (
-                  <span className="px-1" key={t}>
-                    {t}
-                  </span>
-                ))}
+              {/* Display apply ui if application_url provided */}
+              {currentView.application_url && (
+                <p className="text-black  bg-green-200 w-fit px-4 py-2 rounded-md my-4">
+                  <a
+                    href={currentView.application_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Apply Now
+                  </a>
+                </p>
+              )}
+              {/* Display email application option*/}
+              {currentView.email_applications && (
+                <p className=" w-fit py-2 my-1 text-black">
+                  Send application to:{" "}
+                  <a
+                    href={`mailto:${currentView.email_to_applications}`}
+                    className=" text-blue-400"
+                  >
+                    {currentView.email_to_applications}
+                  </a>
+                </p>
+              )}
+              <p
+                className={`${
+                  currentView.application_url ||
+                  currentView.email_to_applications
+                    ? "pt-1"
+                    : "pt-4"
+                }`}
+              >
+                Description:
               </p>
-              <p className="pt-4">Description</p>
               <p className="text-gray-500 py-2">{currentView.description}</p>
             </div>
           )}
