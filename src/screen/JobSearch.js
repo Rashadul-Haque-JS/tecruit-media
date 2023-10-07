@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import {
   jobList,
   countries,
@@ -169,13 +169,25 @@ const JobSearch = () => {
         <h1 className="text-3xl font-semibold mb-2 text-center pt-8">
           Find Your Dream Job
         </h1>
-        <div
-          className={`pb-3 text-center cursor-pointer hover:text-blue-400 ${
-            savedJobs && savedJobs.length > 0 ? "text-white" : "text-gray-500"
-          }`}
-          onClick={handleViewSaveJobs}
-        >
-          <FontAwesomeIcon icon={faEye} /> Saved Job - {savedJobs?.length}
+
+        <div className="flex justify-center items-center pb-3 text-center hover:text-blue-400">
+          <a
+            href="#mySavedJobs"
+            onClick={handleViewSaveJobs}
+            className={`pb-3 text-center hover:text-blue-400 pr-2 w-fit cursor-pointer  ${
+              savedJobs?.length > 0
+                ? "text-gray-400"
+                : "text-gray-500"
+            }`}
+            style={{ pointerEvents: savedJobs?.length > 0 ? "auto" : "none" }}
+          >
+            {savedJobs?.length > 0 ? (
+              <FontAwesomeIcon icon={faEye} className="pr-2" />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} className="pr-2" />
+            )}
+            Saved Job-{savedJobs?.length}
+          </a>
         </div>
       </div>
       <div className="px-10 sm:px-4 bg-white sm:mx-4 mx-10 py-12">
@@ -260,7 +272,7 @@ const JobSearch = () => {
           />
           <button
             onClick={clearFilters}
-            className="px-4 py-2 bg-black text-white rounded-lg"
+            className="px-4 py-[6px] bg-[#db0045] hover:bg-pink-700 text-white rounded-lg"
           >
             Clear Filters
           </button>
@@ -269,7 +281,7 @@ const JobSearch = () => {
           <ul
             className={`${
               filteredJobs.length === 0 ? "w-full" : "w-1/3"
-            } sm:w-full min-h-screen`}
+            } sm:w-full min-h-screen max-h-screen overflow-y-auto`}
           >
             {filteredJobs.length === 0 && (
               <p className="text-center w-full font-semibold py-4">
@@ -279,15 +291,16 @@ const JobSearch = () => {
 
             {filteredJobs?.map((job) => (
               <div
+                id="mySavedJobs"
                 key={job.jobId}
-                className="border p-4 my-2 rounded-lg cursor-pointer hover:bg-gray-100"
+                className="border p-4 my-2 rounded-lg"
                 style={{
                   backgroundColor:
-                    currentView?.jobId === job.jobId ? "#e9fce9" : "",
+                    currentView?.jobId === job.jobId ? "#E5E7EB" : "",
                 }}
               >
                 <li key={job.jobId}>
-                  <h2 className="text-xl font-semibold mb-2">{job.jobTitle}</h2>
+                  <h2 className="text-xl font-semibold mb-2 text-[#db0045]">{job.jobTitle}</h2>
                   <p className="text-gray-600 mb-2">
                     {job.company}, {job.city}, {job.country}
                   </p>
@@ -310,21 +323,21 @@ const JobSearch = () => {
                 </li>
                 <div className="flex justify-start items-center gap-2 pt-4 text-sm">
                   <span
-                    className="bg-black cursor-pointer text-white border px-4 py-1 rounded"
+                    className="bg-black hover:bg-gray-700 cursor-pointer text-white border px-4 py-1 rounded"
                     onClick={() => handleCurrentView(job)}
                   >
                     Details
                   </span>
                   {savedJobs.includes(job.jobId) ? (
                     <button
-                      className="px-4 bg-white py-1 rounded border cursor-pointer"
+                      className="px-4 bg-white hover:bg-gray-100 py-1 rounded border cursor-pointer"
                       onClick={() => handleUnSaveJob(job.jobId)}
                     >
                       Unsave
                     </button>
                   ) : (
                     <button
-                      className="px-4 bg-white py-1 rounded border cursor-pointer"
+                      className="px-4 bg-white hover:bg-gray-100 py-1 rounded border cursor-pointer"
                       onClick={() => handleSaveJob(job.jobId)}
                     >
                       Save
@@ -336,9 +349,9 @@ const JobSearch = () => {
           </ul>
 
           {currentView && (
-            <div className="py-4 rounded-lg sm:hidden bg-[#e9fce9] w-full my-2 px-16">
+            <div className="py-4 rounded-lg sm:hidden bg-white border w-full my-2 px-16 max-h-screen overflow-auto">
               <h2 className="pb-3 text-xl">About This Job</h2>
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-xl font-semibold mb-2 text-[#db0045]">
                 {currentView.jobTitle}
               </h2>
               <p className="text-gray-600 pt-1">
@@ -362,7 +375,7 @@ const JobSearch = () => {
               </p>
               {/* Display apply ui if application_url provided */}
               {currentView.application_url && (
-                <p className="text-black  bg-green-200 w-fit px-4 py-2 rounded-md my-4">
+                <p className="text-white  bg-black hover:bg-gray-700 w-fit px-4 py-2 cursor-pointer rounded-md my-4">
                   <a
                     href={currentView.application_url}
                     target="_blank"
@@ -398,7 +411,7 @@ const JobSearch = () => {
             </div>
           )}
           {currentView && (
-            <div className="p-4 hidden sm:block fixed inset-0 border-t bg-[#e9fce9]">
+            <div className="p-4 hidden sm:block fixed inset-0 border-t bg-white border">
               <h2 className="text-2xl pt-2 pb-1 border-b border-gray-200">
                 <span className="logo font-semibold ">Tecruit</span>{" "}
                 <span className="text-xs px-2">Presents</span>
@@ -412,7 +425,7 @@ const JobSearch = () => {
                   X
                 </span>
               </div>
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-xl font-semibold mb-2 text-[#db0045]">
                 {" "}
                 {currentView.jobTitle}
               </h2>
@@ -437,7 +450,7 @@ const JobSearch = () => {
               </p>
               {/* Display apply ui if application_url provided */}
               {currentView.application_url && (
-                <p className="text-black  bg-green-200 w-fit px-4 py-2 rounded-md my-4">
+                <p className="text-white  bg-black hover:bg-gray-700 w-fit px-4 py-2 rounded-md my-4">
                   <a
                     href={currentView.application_url}
                     target="_blank"

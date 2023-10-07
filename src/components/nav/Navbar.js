@@ -65,7 +65,7 @@ const Navbar = () => {
         </Link>
         <div className=" hidden sm:flex md:block items-center text-xl">
           <Link className="px-4 flex justify-center items-center border-gray-700 logo">
-            <FontAwesomeIcon icon={faArrowRightFromBracket} />
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className="md:hidden"/>
           </Link>
           <button
             className={`flex md:flex w-8 h-8 rounded-full px-2 shadow-2xl justify-center items-center${

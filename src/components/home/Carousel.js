@@ -22,7 +22,7 @@ export default function Carousel() {
         />
 
         <div className="flex justify-center items-center absolute right-0 left-0 bottom-4 w-full ">
-          <Link to='/jobs' className="button cursor-pointer z-30">Search Job</Link>
+          <Link to='/jobs' className="button px-12 py-[8px] sm:px-8 sm:py-[6px] cursor-pointer z-30">Search Job</Link>
         </div>
       </div>
 
