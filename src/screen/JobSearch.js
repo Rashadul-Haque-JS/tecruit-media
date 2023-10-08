@@ -175,9 +175,7 @@ const JobSearch = () => {
             href="#mySavedJobs"
             onClick={handleViewSaveJobs}
             className={`pb-3 text-center hover:text-blue-400 pr-2 w-fit cursor-pointer  ${
-              savedJobs?.length > 0
-                ? "text-gray-400"
-                : "text-gray-500"
+              savedJobs?.length > 0 ? "text-gray-400" : "text-gray-500"
             }`}
             style={{ pointerEvents: savedJobs?.length > 0 ? "auto" : "none" }}
           >
@@ -300,9 +298,13 @@ const JobSearch = () => {
                 }}
               >
                 <li key={job.jobId}>
-                  <h2 className="text-xl font-semibold mb-2 text-[#db0045]">{job.jobTitle}</h2>
+                  <h2 className="text-xl font-semibold mb-2 text-[#db0045]">
+                    {job.jobTitle}
+                  </h2>
                   <p className="text-gray-600 mb-2">
-                    {job.company}, {job.city}, {job.country}
+                    <span className="capitalize">{currentView.company}</span>,{" "}
+                    <span className="capitalize">{currentView.city}</span>,{" "}
+                    <span className="capitalize">{currentView.country}</span>
                   </p>
                   <p className="text-gray-500">
                     <span className="pr-1">{job.category}</span>■
@@ -355,7 +357,9 @@ const JobSearch = () => {
                 {currentView.jobTitle}
               </h2>
               <p className="text-gray-600 pt-1">
-                {currentView.company}, {currentView.city}, {currentView.country}
+                <span className="capitalize">{currentView.company}</span>,{" "}
+                <span className="capitalize">{currentView.city}</span>,{" "}
+                <span className="capitalize">{currentView.country}</span>{" "}
               </p>
               <p className="text-gray-500 pb-1">
                 <span className="pr-1 capitalize">
@@ -430,7 +434,9 @@ const JobSearch = () => {
                 {currentView.jobTitle}
               </h2>
               <p className="text-gray-600 pt-1">
-                {currentView.company}, {currentView.city}, {currentView.country}
+                <span className="capitalize">{currentView.company}</span>,{" "}
+                <span className="capitalize">{currentView.city}</span>,{" "}
+                <span className="capitalize">{currentView.country}</span>
               </p>
               <p className="text-gray-500 pb-1">
                 <span className="pr-1 capitalize">

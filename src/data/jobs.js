@@ -112,10 +112,10 @@ export const jobList = [
   ];
   
   export const cities = [
-    { countryId: 1, mainCities: [{ label: "Stockholm", value: 'stockholm' }, { label: "Gothenburg", value: 'gothenburg' }, { label: "Malmö", value: 'malmo' }, { label: "Uppsala", value: 'uppsala' }] },
-    { countryId: 2, mainCities: [{ label: "Copenhagen", value: 'copenhagen' }, { label: "Aarhus", value: 'aarhus' }, { label: "Odense", value: 'odense' }, { label: "Aalborg", value: 'aalborg' }] },
-    { countryId: 3, mainCities: [{ label: "Oslo", value: 'oslo' }, { label: "Bergen", value: 'bergen' }, { label: "Trondheim", value: 'trondheim' }, { label: "Stavanger", value: 'stavanger' }] },
-    { countryId: 4, mainCities: [{ label: "Helsinki", value: 'helsinki' }, { label: "Espoo", value: 'espoo' }, { label: "Tampere", value: 'tampere' }, { label: "Vantaa", value: 'vantaa' }] },
+    { countryId: 1,name:'sweden', mainCities: [{ label: "Stockholm", value: 'stockholm' }, { label: "Gothenburg", value: 'gothenburg' }, { label: "Malmö", value: 'malmo' }, { label: "Uppsala", value: 'uppsala' }] },
+    { countryId: 2,name:'denmark', mainCities: [{ label: "Copenhagen", value: 'copenhagen' }, { label: "Aarhus", value: 'aarhus' }, { label: "Odense", value: 'odense' }, { label: "Aalborg", value: 'aalborg' }] },
+    { countryId: 3,name:'norway', mainCities: [{ label: "Oslo", value: 'oslo' }, { label: "Bergen", value: 'bergen' }, { label: "Trondheim", value: 'trondheim' }, { label: "Stavanger", value: 'stavanger' }] },
+    { countryId: 4,name:'finland', mainCities: [{ label: "Helsinki", value: 'helsinki' }, { label: "Espoo", value: 'espoo' }, { label: "Tampere", value: 'tampere' }, { label: "Vantaa", value: 'vantaa' }] },
   ];
   
   
