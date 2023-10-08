@@ -11,8 +11,8 @@ export const jobList = [
       type: ['onsite', 'hybrid'],
       published_on: '2023-10-05',
       last_date: '2023-11-05',
-      email_applications: false,
-      email_to_applications: 'jobs@techcorp.com',
+      application_options:'onlineForm',
+      email_to_applications: '',
       application_url: 'https://acmeinc.com/careers/software-engineer',
       jobId:11
     },
@@ -28,7 +28,7 @@ export const jobList = [
       type: ['onsite'],
       published_on: '2023-09-15',
       last_date: '2023-11-10',
-      email_applications: true,
+      application_options:'email',
       email_to_applications: 'jobs@techcorp.com',
       application_url: '',
       jobId:12
@@ -45,7 +45,7 @@ export const jobList = [
       type: ['onsite', 'hybrid'],
       published_on: '2023-09-30',
       last_date: '2023-11-15',
-      email_applications: false,
+      applicationOptions:'email',
       email_to_applications: '',
       application_url: 'https://globexmarketing.co.uk/careers/marketing-manager',
       jobId:13
@@ -62,7 +62,7 @@ export const jobList = [
       type: ['onsite', 'hybrid'],
       published_on: '2023-10-01',
       last_date: '2023-11-15',
-      email_applications: false,
+      application_options:'onlineForm',
       email_to_applications: '',
       application_url: 'https://globexmarketing.co.uk/careers/marketing-manager',
       jobId:18
@@ -79,7 +79,7 @@ export const jobList = [
       type: ['remote'],
       published_on: '2023-09-20',
       last_date: '2023-11-20',
-      email_applications: true,
+      application_options:'email',
       email_to_applications: 'mrhaque179@gmail.com',
       application_url: '',
       jobId:14
@@ -96,7 +96,7 @@ export const jobList = [
       type: ['remote'],
       published_on: '2023-09-20',
       last_date: '2023-11-20',
-      email_applications: false,
+      application_options:'onlineForm',
       email_to_applications: '',
       application_url: 'https://financexinc.com/careers/financial-analyst',
       jobId:19
@@ -138,6 +138,12 @@ export const jobList = [
   export const workTime = [
     {id:'w1', value: "full", label: "Full" },
     {id:'w2', value: "part", label: "Part" },
+   
+  ];
+
+  export const applicationOptions = [
+    { id: 'ea1', value: 'onlineForm', label: 'Apply using a form' },
+  { id: 'ea2', value: 'email', label: 'Apply via email' },
    
   ];
   

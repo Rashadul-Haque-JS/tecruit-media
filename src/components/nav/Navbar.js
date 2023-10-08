@@ -51,7 +51,7 @@ const Navbar = () => {
           Tecruit
         </Link>
         <div className="flex justify-between items-center gap-1 nav-font sm:hidden md:hidden">
-          <Link>Companies</Link>
+          <Link to="/post-job">Companies</Link>
           <NavMenu title="Developer" links={links} />
           <NavMenu title="Resources" links={links} />
         </div>
@@ -65,7 +65,10 @@ const Navbar = () => {
         </Link>
         <div className=" hidden sm:flex md:block items-center text-xl">
           <Link className="px-4 flex justify-center items-center border-gray-700 logo">
-            <FontAwesomeIcon icon={faArrowRightFromBracket} className="md:hidden"/>
+            <FontAwesomeIcon
+              icon={faArrowRightFromBracket}
+              className="md:hidden"
+            />
           </Link>
           <button
             className={`flex md:flex w-8 h-8 rounded-full px-2 shadow-2xl justify-center items-center${
@@ -90,7 +93,7 @@ const Navbar = () => {
             transition: "transform 0.3s ease",
           }}
         >
-          <Link className="sm:text-center">Companies</Link>
+          <Link to="/post-job" className="sm:text-center">Companies</Link>
           <NavMenu title="Developer" links={links} />
           <NavMenu title="Resources" links={links} />
         </div>
