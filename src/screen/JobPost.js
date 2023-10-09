@@ -11,7 +11,9 @@ import {
   cities,
   applicationOptions,
 } from "../data/jobs";
-import { selectStyles,getCurrentDate } from "../utils/helper";
+import { selectStyles, getCurrentDate } from "../utils/helper";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateJob = () => {
   const [formData, setFormData] = useState({
@@ -24,13 +26,15 @@ const CreateJob = () => {
     workTime: "",
     type: [],
     published_on: getCurrentDate(),
-    last_date: "2023-12-18",
+    last_date: null,
     application_options: "onlineForm",
     email_to_applications: "",
     application_url: "",
   });
 
+  const [message, setMessage] = useState("");
   const [jobTypeInfo, setJobTypeInfo] = useState("");
+  const [selectedDate, setSelectedDate] = useState();
 
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
@@ -66,13 +70,23 @@ const CreateJob = () => {
     }));
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    const formattedDate = date?.toISOString().split("T")[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      last_date: formattedDate,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await postNewJob(formData);
-      console.log(res);
+      setMessage(res.data.message);
     } catch (err) {
       console.log(err);
+      setMessage(err.response.data.message);
     }
   };
 
@@ -92,10 +106,26 @@ const CreateJob = () => {
     }
   }, [formData.type, jobTypeInfo]);
 
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+  }, [message]);
+
   return (
     <div className="px-8 sm:px-0">
       <h1 className="text-2xl font-semibold mb-2 text-center py-8">
-        Post A Job
+        Post A Job{" "}
+        {message && (
+          <span
+            className="block text-sm font-normal py-2 text-green-600"
+            style={{ display: "block", transition: "transform 3s ease-out" }}
+          >
+            {message}
+          </span>
+        )}
       </h1>
       <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-4">
         <div className="w-1/3 sm:w-full md:w-full flex-shrink-0 my-4">
@@ -111,9 +141,9 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="jobTitle"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Job Title
+                Job Title{requiredSpan()}
               </label>
               <input
                 type="text"
@@ -122,15 +152,16 @@ const CreateJob = () => {
                 value={formData.jobTitle}
                 onChange={handleInputChange}
                 required
+                placeholder="Insert job title"
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="position"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Position
+                Position{requiredSpan()}
               </label>
               <Select
                 options={position}
@@ -141,14 +172,15 @@ const CreateJob = () => {
                 placeholder="Select a position"
                 className="w-full"
                 styles={selectStyles}
+                required
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="workTime"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Work's Time
+                Contract Type{requiredSpan()}
               </label>
               <Select
                 options={workTime}
@@ -159,14 +191,15 @@ const CreateJob = () => {
                 placeholder="Select work time"
                 className="w-full"
                 styles={selectStyles}
+                required
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="type"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Location Type
+                Location Type{requiredSpan()}
               </label>
               {jobTypeInfo && (
                 <span
@@ -192,9 +225,9 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="country"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Country
+                Country{requiredSpan()}
               </label>
               <Select
                 options={countries}
@@ -205,14 +238,15 @@ const CreateJob = () => {
                 placeholder="Select job's country"
                 className="w-full"
                 styles={selectStyles}
+                required
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="city"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                City
+                City{requiredSpan()}
               </label>
               <Select
                 options={cities
@@ -233,14 +267,15 @@ const CreateJob = () => {
                 className="w-full"
                 isDisabled={formData.country === ""}
                 styles={selectStyles}
+                required
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="applicationOptions"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Application Options
+                Application Options{requiredSpan()}
               </label>
               <Select
                 options={applicationOptions}
@@ -253,6 +288,7 @@ const CreateJob = () => {
                 placeholder="Select application option"
                 className="w-full"
                 styles={selectStyles}
+                required
               />
             </div>
 
@@ -260,9 +296,9 @@ const CreateJob = () => {
               <div className="mb-4">
                 <label
                   htmlFor="email_to_applications"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-gray-500 text-sm font-bold mb-2 px-3"
                 >
-                  Email To Applications
+                  Email To Applications{requiredSpan()}
                 </label>
                 <input
                   type="email"
@@ -279,9 +315,9 @@ const CreateJob = () => {
               <div className="mb-4">
                 <label
                   htmlFor="application_url"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-gray-500 text-sm font-bold mb-2 px-3"
                 >
-                  Application Link
+                  Application Link{requiredSpan()}
                 </label>
                 <input
                   type="url"
@@ -299,9 +335,9 @@ const CreateJob = () => {
             <div className="my-6">
               <label
                 htmlFor="description"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
               >
-                Description
+                Description{requiredSpan()}
               </label>
               <Editor
                 apiKey="YOUR_API_KEY"
@@ -322,16 +358,34 @@ const CreateJob = () => {
                     "removeformat | image | help",
                 }}
                 onEditorChange={handleEditorChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="last_date"
+                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+              >
+                Applications Deadline{requiredSpan()}
+              </label>
+              <DatePicker
+                selected={selectedDate - 1}
+                onChange={handleDateChange}
+                dateFormat="yyyy-MM-dd"
+                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholderText="Select date"
+                required
               />
             </div>
 
             <button
               type="submit"
-              className="bg-blue-500 text-white hover:bg-blue-600 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              className="bg-black text-white hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
             >
               Publish Job
             </button>
           </form>
+          <p className="py-4 text-xs text-yellow-500">All the fields marked with (*) are required</p>
         </div>
       </div>
     </div>
@@ -339,3 +393,7 @@ const CreateJob = () => {
 };
 
 export default CreateJob;
+
+const requiredSpan = () => {
+  return <span className="pl-1 text-gray-400 text-md">*</span>;
+};

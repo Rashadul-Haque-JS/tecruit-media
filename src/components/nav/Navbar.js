@@ -7,29 +7,7 @@ import {
   faXmark,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-
-const links = [
-  {
-    id: 1,
-    path: "/home",
-    icon: (
-      <i className="fa fa-home" aria-hidden="true">
-        🏡
-      </i>
-    ),
-    text: "Get Started",
-  },
-  {
-    id: 2,
-    path: "/about",
-    icon: (
-      <i className="fa fa-info" aria-hidden="true">
-        ℹ️
-      </i>
-    ),
-    text: "Be Hired",
-  },
-];
+import { linksOne,linksTwo } from "../../data/jobs";
 
 const Navbar = () => {
   const [openDropDownDrawer, setDropDownDrawer] = useState(false);
@@ -52,8 +30,8 @@ const Navbar = () => {
         </Link>
         <div className="flex justify-between items-center gap-1 nav-font sm:hidden md:hidden">
           <Link to="/post-job">Companies</Link>
-          <NavMenu title="Developer" links={links} />
-          <NavMenu title="Resources" links={links} />
+          <NavMenu title="Applicants" links={linksOne} />
+          <NavMenu title="Resources" links={linksTwo} />
         </div>
       </div>
       <div className="flex justify-center items-center gap-4">
@@ -94,8 +72,8 @@ const Navbar = () => {
           }}
         >
           <Link to="/post-job" className="sm:text-center">Companies</Link>
-          <NavMenu title="Developer" links={links} />
-          <NavMenu title="Resources" links={links} />
+          <NavMenu title="Applicants" links={linksOne} />
+          <NavMenu title="Resources" links={linksTwo} />
         </div>
       )}
     </div>

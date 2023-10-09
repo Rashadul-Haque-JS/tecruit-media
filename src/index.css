@@ -20,6 +20,8 @@ html{
   border-radius: 3px; /* Rounded corners for the thumb */
 }
 
+
+
 .logo{
     font-family: 'Damion', cursive;
     color: #db0045;
@@ -28,6 +30,14 @@ html{
 .nav-font{
     font-family: 'Noto Sans NKo Unjoined', sans-serif;
 }
+
+.bg-card{
+  background-image: url('/public/it-logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 .button {
   display: inline-block;

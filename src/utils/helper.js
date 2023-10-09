@@ -7,7 +7,7 @@ export const selectStyles = {
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#000",
+      color: "gray",
     }),
     option: (provided, state) => ({
       ...provided,

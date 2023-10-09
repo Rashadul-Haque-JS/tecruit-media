@@ -6,7 +6,7 @@ export const jobList = [
       country: 'finland',
       city: 'helsinki',
       description: 'We are looking for a talented software engineer to join our team...We are looking for a talented software engineer to join our team...We are looking for a talented software engineer to join our team...We are  looking for a talented software engineer to join our team...',
-      position: 'junior',
+      position: 'entry',
       workTime:'full',
       type: ['onsite', 'hybrid'],
       published_on: '2023-10-05',
@@ -14,7 +14,7 @@ export const jobList = [
       application_options:'onlineForm',
       email_to_applications: '',
       application_url: 'https://acmeinc.com/careers/software-engineer',
-      jobId:11
+      _id:11
     },
     {
       jobTitle: 'Data Analyst',
@@ -31,7 +31,7 @@ export const jobList = [
       application_options:'email',
       email_to_applications: 'jobs@techcorp.com',
       application_url: '',
-      jobId:12
+      _id:12
     },
     {
       jobTitle: 'System Administrator',
@@ -48,7 +48,7 @@ export const jobList = [
       applicationOptions:'email',
       email_to_applications: '',
       application_url: 'https://globexmarketing.co.uk/careers/marketing-manager',
-      jobId:13
+      _id:13
     },
     {
       jobTitle: 'Backend Developer',
@@ -65,7 +65,7 @@ export const jobList = [
       application_options:'onlineForm',
       email_to_applications: '',
       application_url: 'https://globexmarketing.co.uk/careers/marketing-manager',
-      jobId:18
+      _id:18
     },
     {
       jobTitle: 'Fullstack Developer',
@@ -74,7 +74,7 @@ export const jobList = [
       country: 'norway',
       city: 'oslo',
       description: 'FinanceX is looking for a financial analyst to analyze financial data...',
-      position: 'junior',
+      position: 'entry',
       workTime:'full',
       type: ['remote'],
       published_on: '2023-09-20',
@@ -82,7 +82,7 @@ export const jobList = [
       application_options:'email',
       email_to_applications: 'mrhaque179@gmail.com',
       application_url: '',
-      jobId:14
+      _id:14
     },
     {
       jobTitle: 'Frontend Developer',
@@ -99,7 +99,7 @@ export const jobList = [
       application_options:'onlineForm',
       email_to_applications: '',
       application_url: 'https://financexinc.com/careers/financial-analyst',
-      jobId:19
+      _id:19
     },
   ];
   
@@ -147,3 +147,48 @@ export const jobList = [
    
   ];
   
+ export const linksOne = [
+    {
+      id: 1,
+      path: "/jobs",
+      icon: (
+        <i className="fa fa-home" aria-hidden="true">
+          🏡
+        </i>
+      ),
+      text: "Jobs List",
+    },
+    {
+      id: 2,
+      path: "/about",
+      icon: (
+        <i className="fa fa-info" aria-hidden="true">
+          ℹ️
+        </i>
+      ),
+      text: "Be Hired",
+    },
+  ];
+
+ export const linksTwo = [
+    {
+      id: 1,
+      path: "/courses",
+      icon: (
+        <i className="fa fa-home" aria-hidden="true">
+          🏡
+        </i>
+      ),
+      text: "Courses",
+    },
+    {
+      id: 2,
+      path: "/it-companies",
+      icon: (
+        <i className="fa fa-info" aria-hidden="true">
+          ℹ️
+        </i>
+      ),
+      text: "IT Companies",
+    },
+  ];

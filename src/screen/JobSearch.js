@@ -12,12 +12,13 @@ import {
   published_date,
   position,
   workTime,
+  jobList
 } from "../data/jobs.js";
 import { getAllJob } from "../api/api.js";
 import PreLoader from "../components/PreLoader.js";
 
 const JobSearch = () => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(jobList);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [selectedWorkTime, setSelectedWorkTime] = useState(null);
@@ -50,19 +51,23 @@ const JobSearch = () => {
     setFilteredJobs(filteredJobs);
   }, []);
 
+  //This Function need to be adjust after using real API
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const res = await getAllJob();
-        setJobs(res.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-        setLoading(false);
-      }
-    };
+    // const fetchJobs = async () => { //THIS WILL BE ACTIVE AFTER USING REAL API
+    //   try {
+    //     const res = await getAllJob();
+    //     setJobs(res.data);
+    //     setLoading(false);
+    //     setCurrentView(isMobile ? null : res.data[0]);
+    //   } catch (error) {
+    //     console.error("Error fetching jobs:", error);
+    //     setLoading(false);
+    //   }
+    // };
 
-    fetchJobs();
+    //fetchJobs();
+    setLoading(jobs.length > 0?false:true); //THIS WILL BE REMOVED AFTER USING REAL API
+    setCurrentView(isMobile ? null : jobs[0]);//THIS WILL BE REMOVED AFTER USING REAL API
   }, []);
 
   const handleSearch = (e) => {
@@ -126,7 +131,7 @@ const JobSearch = () => {
     setSelectedCity(null);
     setSelectedPosition(null);
     setSelectedWorkTime(null);
-    setCurrentView(isMobile ? null : jobs && jobs[0]);
+    setCurrentView(isMobile ? null : jobs[0]);
   };
 
   const handleViewSaveJobs = () => {
@@ -209,7 +214,7 @@ const JobSearch = () => {
             <div className="grid place-items-center h-full w-12 text-gray-300 mt-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
+                className="h-10 w-10"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -223,7 +228,7 @@ const JobSearch = () => {
               </svg>
             </div>
             <input
-              className="h-full w-full outline-none text-sm text-gray-700 pr-2 shadow-inner px-4 rounded-full border"
+              className="h-full w-full outline-none text-sm text-gray-700 pr-2 shadow-inner px-4 rounded-full border brder-[#D1D5DB]"
               type="text"
               id="search"
               placeholder="Search by job title ..."
@@ -248,14 +253,14 @@ const JobSearch = () => {
                 <g id="SVGRepo_iconCarrier">
                   <path
                     d="M9 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM6.17 5a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-7.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 0 1 0-2h1.17zM15 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2.83 0a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 1 1 0-2h7.17zM9 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2.83 0a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-7.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 1 1 0-2h1.17z"
-                    fill="#e5e7eb"
+                    fill="#D1D5DB"
                   ></path>
                 </g>
               </svg>
             )}
             {isFilter && (
               <svg
-                className="w-10 h-8 cursor-pointer"
+                className="w-8 h-8 cursor-pointer"
                 onClick={() => setIsFilter(!isFilter)}
                 viewBox="0 0 24 24"
                 fill="none"
@@ -271,7 +276,7 @@ const JobSearch = () => {
                   {" "}
                   <path
                     d="M15 15L21 21M21 15L15 21M10 21V14.6627C10 14.4182 10 14.2959 9.97237 14.1808C9.94787 14.0787 9.90747 13.9812 9.85264 13.8917C9.7908 13.7908 9.70432 13.7043 9.53137 13.5314L3.46863 7.46863C3.29568 7.29568 3.2092 7.2092 3.14736 7.10828C3.09253 7.01881 3.05213 6.92127 3.02763 6.81923C3 6.70414 3 6.58185 3 6.33726V4.6C3 4.03995 3 3.75992 3.10899 3.54601C3.20487 3.35785 3.35785 3.20487 3.54601 3.10899C3.75992 3 4.03995 3 4.6 3H19.4C19.9601 3 20.2401 3 20.454 3.10899C20.6422 3.20487 20.7951 3.35785 20.891 3.54601C21 3.75992 21 4.03995 21 4.6V6.33726C21 6.58185 21 6.70414 20.9724 6.81923C20.9479 6.92127 20.9075 7.01881 20.8526 7.10828C20.7908 7.2092 20.7043 7.29568 20.5314 7.46863L17 11"
-                    stroke="#e5e7eb"
+                    stroke="#D1D5DB"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -500,12 +505,12 @@ const JobSearch = () => {
             </div>
           )}
           {currentView && (
-            <div className="p-4 hidden sm:block fixed inset-0 border-t bg-white border">
+            <div className="p-4 hidden sm:block fixed inset-0 border-t bg-white border overflow-y-auto">
               <h2 className="text-2xl pt-2 pb-1 border-b border-gray-200">
                 <span className="logo font-semibold ">Tecruit</span>{" "}
                 <span className="text-xs px-2">Presents</span>
               </h2>
-              <div className="flex justify-between items-center text-xl my-6">
+              <div className="flex justify-between items-center text-xl my-6 ">
                 <h2>About This Job</h2>
                 <span
                   className="px-2 font-damion"
