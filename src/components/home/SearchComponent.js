@@ -43,15 +43,15 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-wrap z-40 bg-white w-4/5 px-4 py-6 md:py-2 rounded-md sm:w-full">
+    <div className="flex justify-center items-center flex-wrap z-40 bg-white w-5/6 px-4 py-6 md:py-2 rounded-md sm:w-full shadow-shade">
       <input
         type="text"
         name="query"
-        placeholder="Search for jobs..."
+        placeholder="Job Title,Skills, or Keywords"
         value={queryData.query}
         onChange={handleInputChange}
         required
-        className={`border-b ${info?'border-red-400':'border-gray-300'} outline-none  mx-2 px-4 py-2 w-96 sm:w-full rounded`}
+        className={`border-b ${info?'border-red-400':'border-gray-300'} outline-none  mx-2 px-1 py-2 w-96 sm:w-full rounded`}
         autoFocus 
       />
 
@@ -92,8 +92,8 @@ const SearchComponent = () => {
           control: (provided, state) => ({
             ...provided,
             border: "none",
-            borderBottom: "1px solid #ccc", // Gray border
-            outline: "none", // Remove outline
+            borderBottom: "1px solid #ccc", 
+            outline: "none", 
           }),
         }}
       />

@@ -14,6 +14,9 @@ module.exports = {
       lg: { min: "1024px", max: "1279px" },
       xl: { min: "1280px" },
     },
+    boxShadow: {
+      'shade': '0px 10px 15px -3px rgba(0, 0, 0, 0.1)',
+    },
     plugins: [],
   },
 };

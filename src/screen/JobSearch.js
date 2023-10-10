@@ -15,7 +15,7 @@ import {
   workTime,
   jobList,
 } from "../data/jobs.js";
-import { getAllJob } from "../api/api.js";
+//import { getAllJob } from "../api/api.js";
 import PreLoader from "../components/PreLoader.js";
 
 const JobSearch = () => {
@@ -209,8 +209,7 @@ const JobSearch = () => {
     const queryParam = searchParams.get("query");
     const countryParam = searchParams.get("country");
     const cityParam = searchParams.get("city");
-    console.log(queryParam, countryParam, cityParam);
-
+    
     if (queryParam) {
       setSearchTerm(queryParam);
     }

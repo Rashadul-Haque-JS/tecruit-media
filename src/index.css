@@ -63,6 +63,10 @@ html{
   animation: wave 5s linear infinite;
 }
 
+.text-htpink{
+  color: #db0045;
+}
+
 @keyframes wave {
   0% {
     background-position: 200% 0;

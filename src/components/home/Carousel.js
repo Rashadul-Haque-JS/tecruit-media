@@ -13,7 +13,7 @@ export default function Carousel() {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
   return (
-    <div className="relative h-[512px] md:h-[384px] sm:h-96 w-full mx-4 sm:mx-0">
+    <div className="relative h-[480px] md:h-[384px] sm:h-96 w-5/6 sm:w-full mx-4 sm:mx-0">
       <div className="w-full h-full relative">
         <img
           src={slides[curr].src}
@@ -42,7 +42,7 @@ export default function Carousel() {
         </button>
       </div>
 
-      <div className="absolute top-4 right-0 left-0">
+      <div className="absolute bottom-[32px] right-0 left-0">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div
