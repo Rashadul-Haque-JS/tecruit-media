@@ -32,16 +32,6 @@ html{
 }
 
 
-
-/* Apply the animation to the element with the background image */
-.bg-card {
-  background-image: url('/public/it-logo.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  
-}
-
 .bg-card:hover{
   filter: grayscale(100%);
   transition: 0.5s;

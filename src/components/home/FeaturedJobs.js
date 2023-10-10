@@ -5,14 +5,14 @@ const FeaturedJobs = () => {
   const [featuredJobs, setFeaturedJobs] = useState(featuredJob);
 
   return (
-    <section className="py-12 flex justify-center items-center bg-gray-200">
-      <div className="container mx-auto sm:px-4 w-4/5 sm:w-full mt-20 sm:mt-32">
+    <section className="py-12 flex justify-center items-center bg-white">
+      <div className="container mx-auto sm:px-4 w-5/6 sm:w-full mt-20 sm:mt-32">
         <h2 className="text-2xl font-semibold mb-6">Featured Job Listings</h2>
         <div className="grid grid-cols-3 sm:grid-cols-1 gap-6">
           {featuredJobs?.map((job) => (
             <div
               key={job.id}
-              className="bg-card shadow-lg rounded-lg p-4 relative h-60"
+              className="bg-card bg-gray-800 shadow-lg rounded-lg p-4 relative h-60"
             >
               <div className="font-semibold mb-2 text-blue-600">
                 <p className="mb-2">{job.companyName}</p>
