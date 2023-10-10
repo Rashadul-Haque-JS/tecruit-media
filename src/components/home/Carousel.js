@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import slides from "../../data/heroImages.json";
 import { Link } from "react-router-dom";
+import SearchComponent from "./SearchComponent";
 
 export default function Carousel() {
   const [curr, setCurr] = useState(0);
@@ -12,7 +13,7 @@ export default function Carousel() {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
   return (
-    <div className="relative lg:h-72 xl:h-96">
+    <div className="relative h-[512px] md:h-[384px] sm:h-96 w-full mx-4 sm:mx-0">
       <div className="w-full h-full relative">
         <img
           src={slides[curr].src}
@@ -21,8 +22,8 @@ export default function Carousel() {
           onClick={next}
         />
 
-        <div className="flex justify-center items-center absolute right-0 left-0 bottom-4 w-full ">
-          <Link to='/jobs' className="button px-12 py-[8px] sm:px-8 sm:py-[6px] cursor-pointer z-30">Search Job</Link>
+        <div className="flex justify-center items-center absolute right-0 left-0 sm:bottom-[-160px] bottom-[-100px] w-full ">
+          <SearchComponent />
         </div>
       </div>
 

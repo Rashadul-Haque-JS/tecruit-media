@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { selectStyles, formatDate } from "../utils/helper.js";
 import JobDescription from "../components/JobDescConvert.js";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   countries,
   cities,
@@ -12,7 +13,7 @@ import {
   published_date,
   position,
   workTime,
-  jobList
+  jobList,
 } from "../data/jobs.js";
 import { getAllJob } from "../api/api.js";
 import PreLoader from "../components/PreLoader.js";
@@ -42,6 +43,8 @@ const JobSearch = () => {
   const [savedJobs, setSavedJobs] = useState([]);
   const [isFilter, setIsFilter] = useState(false);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const filteredJobs = jobs?.filter(
@@ -51,24 +54,31 @@ const JobSearch = () => {
     setFilteredJobs(filteredJobs);
   }, []);
 
-  //This Function need to be adjust after using real API
   useEffect(() => {
-    // const fetchJobs = async () => { //THIS WILL BE ACTIVE AFTER USING REAL API
-    //   try {
-    //     const res = await getAllJob();
-    //     setJobs(res.data);
-    //     setLoading(false);
-    //     setCurrentView(isMobile ? null : res.data[0]);
-    //   } catch (error) {
-    //     console.error("Error fetching jobs:", error);
-    //     setLoading(false);
-    //   }
-    // };
+    setLoading(jobs.length > 0 ? false : true);
+    if (jobs.length > 0) {
+      setCurrentView(isMobile ? null : filteredJobs.length > 0 ? filteredJobs[0] : jobs[0]);;
+    }
+  }, [filteredJobs]);
 
-    //fetchJobs();
-    setLoading(jobs.length > 0?false:true); //THIS WILL BE REMOVED AFTER USING REAL API
-    setCurrentView(isMobile ? null : jobs[0]);//THIS WILL BE REMOVED AFTER USING REAL API
-  }, []);
+  // This Function need to be adjust after using real API
+  // useEffect(() => {
+  //    const fetchJobs = async () => { //THIS WILL BE ACTIVE AFTER USING REAL API
+  //      try {
+  //        const res = await getAllJob();
+  //        setJobs(res.data);
+  //        setLoading(false);
+  //        setCurrentView(isMobile ? null : res.data[0]);
+  //      } catch (error) {
+  //        console.error("Error fetching jobs:", error);
+  //        setLoading(false);
+  //   /  }
+  //    };
+
+  //   fetchJobs();
+  //   setLoading(jobs.length > 0 ? false : true); //THIS WILL BE REMOVED AFTER USING REAL API
+  //   setCurrentView(isMobile ? null : jobs[0]); //THIS WILL BE REMOVED AFTER USING REAL API
+  // }, []);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -132,6 +142,16 @@ const JobSearch = () => {
     setSelectedPosition(null);
     setSelectedWorkTime(null);
     setCurrentView(isMobile ? null : jobs[0]);
+    setSearchTerm("");
+    navigate('/jobs')
+  };
+
+  const updateParamsFilter = () => {
+    setSelectedType([]);
+    setSelectedCountry(null);
+    setSelectedCity(null);
+    setSelectedPosition(null);
+    setSelectedWorkTime(null);
   };
 
   const handleViewSaveJobs = () => {
@@ -177,11 +197,34 @@ const JobSearch = () => {
     selectedCity,
     selectedWorkTime,
     jobs,
+    location.search,
   ]);
 
   useEffect(() => {
     setSavedJobs(JSON.parse(localStorage.getItem("savedJobs")) || []);
   }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const queryParam = searchParams.get("query");
+    const countryParam = searchParams.get("country");
+    const cityParam = searchParams.get("city");
+    console.log(queryParam, countryParam, cityParam);
+
+    if (queryParam) {
+      setSearchTerm(queryParam);
+    }
+
+    if (countryParam) {
+      setSelectedCountry(countryParam);
+    }
+
+    if (cityParam) {
+      setSelectedCity(cityParam);
+    }
+    updateParamsFilter();
+    
+  }, [location.search]);
 
   return (
     <div className="relative bg-black">

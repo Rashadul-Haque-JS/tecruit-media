@@ -131,7 +131,7 @@ export const jobList = [
   
   export const position = [
     {id:'p1', value: "entry", label: "Entry" },
-    {id:'p2', value: "intermediate", label: "Intermediate" },
+    {id:'p2', value: "intermediate", label: "Mid" },
     {id:'p3', value: "senior", label: "Senior" },
     {id:'p4', value: "internship", label: "Internship" },
   ];

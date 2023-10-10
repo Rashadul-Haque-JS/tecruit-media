@@ -31,11 +31,21 @@ html{
     font-family: 'Noto Sans NKo Unjoined', sans-serif;
 }
 
-.bg-card{
+
+
+/* Apply the animation to the element with the background image */
+.bg-card {
   background-image: url('/public/it-logo.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  
+}
+
+.bg-card:hover{
+  filter: grayscale(100%);
+  transition: 0.5s;
+  transform: translate(0px, -10px);
 }
 
 
