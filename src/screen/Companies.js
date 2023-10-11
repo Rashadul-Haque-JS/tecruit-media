@@ -4,7 +4,11 @@ import companiesList from "../data/companies";
 import CompanyCard from "../components/companies/CompanyCard";
 import { selectStyles } from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowsRotate,
+  faMagnifyingGlass,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 
 const CompanyList = () => {
   const [companies, setCompanies] = useState(companiesList);
@@ -48,8 +52,8 @@ const CompanyList = () => {
 
   const clearFilters = () => {
     setSelectedCountry(null);
-      setSearchQuery("");
-      setPageSize(10);
+    setSearchQuery("");
+    setPageSize(10);
   };
 
   useEffect(() => {
@@ -61,14 +65,14 @@ const CompanyList = () => {
   }, [isRotated]);
 
   return (
-    <div className="px-8 sm:px-0">
-      <div className="flex flex-col py-6 border-b border-gray-200">
-        <h1 className="text-2xl font-semibold mb-2 text-center py-4">
+    <div className="sm:px-0">
+      <div className="flex flex-col pb-6 border-b border-gray-200">
+        <h1 className="text-3xl font-semibold mb-2 text-center py-8 text-white bg-[#279b39]">
           IT-Companies List
         </h1>
         <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-4 pt-6 sm:pt-4 pb-2">
           <input
-            className="w-1/3 sm:w-2/3 outline-none text-sm text-gray-700 pr-2 shadow-inner p-3  rounded-full border"
+            className="w-1/3 sm:w-5/6 outline-none text-sm text-gray-700 pr-2 shadow-inner p-3 rounded-full border"
             type="text"
             id="search"
             placeholder="Search by company name ..."
@@ -101,7 +105,7 @@ const CompanyList = () => {
               icon={faArrowsRotate}
               onClick={() => {
                 if (!selectedCountry && !searchQuery && pageSize === 10) {
-                  return; 
+                  return;
                 }
                 setIsRotated(!isRotated);
                 clearFilters();
@@ -114,7 +118,8 @@ const CompanyList = () => {
                   : "text-gray-600"
               }`}
               style={{
-                transform: isRotated ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 1s ease"
+                transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 1s ease",
               }}
             />
           </div>
@@ -122,7 +127,7 @@ const CompanyList = () => {
       </div>
 
       {paginatedCompanies.length === 0 && (
-        <h2 className="w-full text-gray-500 text-center py-12">
+        <h2 className="w-full text-gray-500 text-center py-12 px-8">
           No Companies Found For{" "}
           <span className="block py-2 text-sm font-semibold uppercase">
             {selectedCountry ? selectedCountry.label : "All Countries"}
@@ -130,7 +135,7 @@ const CompanyList = () => {
         </h2>
       )}
       {paginatedCompanies.length > 0 && (
-        <>
+        <div className="px-8">
           <div className="grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 gap-4 py-12 sm:py-8 px-8 max-h-screen overflow-y-auto">
             {paginatedCompanies.map((company) => (
               <CompanyCard key={company.name} company={company} />
@@ -158,7 +163,7 @@ const CompanyList = () => {
               Next Page
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -26,11 +26,11 @@ const NavMenu = ({ title, links }) => {
       </div>
 
       {isDrawerOpen && (
-        <div className="absolute bottom-[-100px] right-0 w-[200px] bg-gray-900 rounded-md z-40">
+        <div className="absolute bottom-[-100px] right-0 w-[200px] text-[#279b37] bg-gray-100 rounded-md z-40">
           <div className="h-full px-4 py-3 rounded-md">
             {links?.map((link) => (
               <Link key={link.id} to={link.path}>
-                <div className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded">
+                <div className="flex items-center gap-2 p-2 hover:bg-[#279b37] hover:text-white rounded">
                   <p>{link.icon}</p>
                   <p>{link.text}</p>
                 </div>

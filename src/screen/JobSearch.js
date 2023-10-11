@@ -226,8 +226,8 @@ const JobSearch = () => {
   }, [location.search]);
 
   return (
-    <div className="relative bg-black">
-      <div className="w-full text-white">
+    <div className="relative">
+      <div className="w-full text-white bg-[#279b37]">
         <h1 className="text-3xl font-semibold mb-2 text-center pt-8">
           Find Your Dream Job
         </h1>
@@ -394,7 +394,7 @@ const JobSearch = () => {
               />
               <button
                 onClick={clearFilters}
-                className="px-4 py-[6px] bg-[#db0045] hover:bg-pink-700 text-white rounded-lg"
+                className="px-4 py-[6px] bg-[#279b37] hover:bg-pink-700 text-white rounded-lg"
               >
                 Clear Filters
               </button>
@@ -426,7 +426,7 @@ const JobSearch = () => {
                   }}
                 >
                   <li key={job._id}>
-                    <h2 className="text-xl font-semibold mb-2 text-[#db0045]">
+                    <h2 className="text-xl font-semibold mb-2 text-[#279b37]">
                       {job.jobTitle}
                     </h2>
                     <p className="text-gray-600 mb-2">
@@ -484,7 +484,7 @@ const JobSearch = () => {
           {currentView && (
             <div className="py-4 rounded-lg sm:hidden bg-white border w-full my-2 px-16 max-h-screen overflow-auto">
               <h2 className="pb-3 text-xl">About This Job</h2>
-              <h2 className="text-xl font-semibold mb-2 text-[#db0045]">
+              <h2 className="text-xl font-semibold mb-2 text-[#279b37]">
                 {currentView.jobTitle}
               </h2>
               <p className="text-gray-600 pt-1">
@@ -561,7 +561,7 @@ const JobSearch = () => {
                   X
                 </span>
               </div>
-              <h2 className="text-xl font-semibold mb-2 text-[#db0045]">
+              <h2 className="text-xl font-semibold mb-2 text-[#279b37]">
                 {" "}
                 {currentView.jobTitle}
               </h2>

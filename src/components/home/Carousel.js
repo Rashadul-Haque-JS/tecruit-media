@@ -13,7 +13,7 @@ export default function Carousel() {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
   return (
-    <div className="relative h-[75vh] w-full md:h-[432px] sm:h-96">
+    <div className="relative h-[80vh] w-full md:h-[432px] sm:h-96">
       <div className="w-full h-full relative">
         <img
           src={slides[curr].src}

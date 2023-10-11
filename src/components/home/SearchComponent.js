@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { countries, cities, jobList } from "../../data/jobs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMagnifyingGlass
+} from "@fortawesome/free-solid-svg-icons";
 
 const SearchComponent = () => {
   const [queryData, setQueryData] = useState({
@@ -54,9 +58,9 @@ const SearchComponent = () => {
           value={queryData.query}
           onChange={handleInputChange}
           required
-          className={`border-b ${
-            info ? "border-red-400" : "border-gray-300"
-          } outline-none px-1 py-2 w-96 sm:w-full rounded`}
+          className={`border-b-2 ${
+            info ? "border-red-400" : "border-[#279b37]"
+          } outline-none pl-2 py-2 w-96 sm:w-full rounded md:w-1/2`}
           autoFocus
         />
 
@@ -68,13 +72,14 @@ const SearchComponent = () => {
             handleSelectChange(selectedOption, "country")
           }
           placeholder="Country"
-          className="w-1/4 sm:w-full py-4"
+          className="w-1/4 sm:w-full py-4 md:w-1/2"
           styles={{
             control: (provided, state) => ({
               ...provided,
               border: "none",
-              borderBottom: "1px solid #ccc", // Gray border
+              borderBottom: "2px solid #279b37", 
               outline: "none", // Remove outline
+              padding: "2px 0px",
             }),
           }}
         />
@@ -94,13 +99,14 @@ const SearchComponent = () => {
             handleSelectChange(selectedOption, "city")
           }
           placeholder="City"
-          className="w-1/4 sm:w-full md:w-1/2 ml-1"
+          className="w-1/4 sm:w-full md:w-1/2"
           styles={{
             control: (provided, state) => ({
               ...provided,
               border: "none",
-              borderBottom: "1px solid #ccc",
+              borderBottom: "2px solid #279b37",
               outline: "none",
+              padding: "2px 0px",
             }),
           }}
         />
@@ -108,9 +114,9 @@ const SearchComponent = () => {
         {/* Search Button */}
         <button
           onClick={handleSearch}
-          className="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 sm:w-full sm:rounded-md"
+          className="bg-[#279b37] text-white px-3 py-2 rounded-r-md md:rounded-l-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border-b-2 border-[#279b37]"
         >
-          Search
+         <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
         </button>
 
         {/* Background Overlay */}

@@ -1,15 +1,31 @@
 import React from "react";
 import Carousel from "../components/home/Carousel";
 import FeaturedJobs from "../components/home/FeaturedJobs";
-import SearchComponent from "../components/home/SearchComponent";
+import SmartCard from "../components/home/SmartCard";
+import smartCardData from "../data/smartCard";
 
 const Home = () => {
   return (
-    <div className="bg-black min-h-screen">
-      <div className="pt-10 sm:w-full sm:px-2 h-full flex justify-center items-center bg-cover bg-center relative w-full pb-10">
+    <div className="min-h-screen">
+      <div className="pb-10 sm:w-full sm:px-2 h-full flex justify-center items-center bg-cover bg-center relative w-full ">
         <Carousel />
       </div>
       <FeaturedJobs />
+      <div className=" bg-gray-100 w-full pt-10 pb-20">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Why Us?</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-1 gap-6 sm:gap-16 mx-20 sm:mx-4 md:mx-4 sm:px-4 py-12">
+          {smartCardData.map((card) => (
+            <SmartCard
+              key={card.id}
+              title={card.title}
+              description={card.description}
+              link={card.link}
+              buttonText={card.buttonText}
+              buttonTextColor={"#279b37"}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

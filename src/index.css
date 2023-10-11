@@ -57,6 +57,12 @@ html{
   color: #db0045;
 }
 
+.card,
+.card-header {
+  background-color: #fff;
+  border: none;
+}
+
 @keyframes wave {
   0% {
     background-position: 200% 0;
