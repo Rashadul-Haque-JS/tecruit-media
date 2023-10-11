@@ -35,14 +35,14 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex justify-center items-center gap-4">
-        <Link className="border-r-2 px-4 py-1 sm:hidden rounded  border-gray-300 mt-2">
-          My Job
+        <Link to="/auth" className="border-r-2 px-4 py-1 sm:hidden rounded  border-gray-300 mt-2">
+          Login
         </Link>
         <Link className=" px-2 py-1 sm:hidden rounded border-gray-700 mt-2">
           Join Us
         </Link>
         <div className=" hidden sm:flex md:block items-center text-xl">
-          <Link className="px-4 flex justify-center items-center border-gray-300">
+          <Link to="/auth" className="px-4 flex justify-center items-center border-gray-300">
             <FontAwesomeIcon
               icon={faArrowRightFromBracket}
               className="md:hidden border border-gray-300 px-2 py-1"

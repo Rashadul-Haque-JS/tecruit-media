@@ -10,10 +10,10 @@ const CompanyCard = ({ company }) => {
 
   return (
     <div
-      className="bg-white rounded-lg shadow-lg overflow-hidden"
+      className="bg-white rounded-lg shadow-lg overflow-hidden shadow-shade"
       style={cardStyle}
     >
-      <div className="bg-gradient-to-b from-transparent to-black h-40 flex justify-center items-center text-[#db0045] text-[2rem] font-bold">
+      <div className="bg-gradient-to-b from-transparent to-[#279b37] h-40 flex justify-center items-center text-[#db0045] text-[2rem] font-bold">
         {name}
       </div>
       <div className="p-6 flex justify-between items-center">

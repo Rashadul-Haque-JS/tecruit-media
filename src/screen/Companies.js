@@ -65,7 +65,7 @@ const CompanyList = () => {
   }, [isRotated]);
 
   return (
-    <div className="sm:px-0">
+    <div className="sm:px-0 pb-10 min-h-screen">
       <div className="flex flex-col pb-6 border-b border-gray-200">
         <h1 className="text-3xl font-semibold mb-2 text-center py-8 text-white bg-[#279b39]">
           IT-Companies List
@@ -135,7 +135,7 @@ const CompanyList = () => {
         </h2>
       )}
       {paginatedCompanies.length > 0 && (
-        <div className="px-8">
+        <div className="px-8 sm:px-2">
           <div className="grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 gap-4 py-12 sm:py-8 px-8 max-h-screen overflow-y-auto">
             {paginatedCompanies.map((company) => (
               <CompanyCard key={company.name} company={company} />
@@ -143,9 +143,9 @@ const CompanyList = () => {
           </div>
 
           {/* Pagination */}
-          <div className="flex justify-center my-4 text-blue-400">
+          <div className="flex justify-center my-4 text-[#279b37]">
             <button
-              className="mr-2 px-4 py-2 border rounded hover:bg-gray-200"
+              className="mr-2 sm:px-2 px-4 py-2 border rounded hover:bg-gray-200"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
@@ -156,7 +156,7 @@ const CompanyList = () => {
               {Math.ceil(filteredCompanies.length / pageSize)}
             </span>
             <button
-              className="px-4 py-2 border rounded hover:bg-gray-200"
+              className="sm:px-2 px-4 py-2 border rounded hover:bg-gray-200"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={endIndex >= filteredCompanies.length}
             >

@@ -12,7 +12,7 @@ const FeaturedJobs = () => {
           {featuredJobs?.map((job) => (
             <div
               key={job.id}
-              className="bg-card bg-[#083859] shadow-lg rounded-lg p-4 relative h-60 "
+              className="bg-card bg-gray-800 shadow-lg rounded-lg p-4 relative h-60 "
             >
               <div className="font-semibold mb-2 text-white">
                 <p className="mb-2">{job.companyName}</p>

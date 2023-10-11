@@ -237,7 +237,7 @@ const JobSearch = () => {
             href="#mySavedJobs"
             onClick={handleViewSaveJobs}
             className={`pb-3 text-center hover:text-blue-400 pr-2 w-fit cursor-pointer  ${
-              savedJobs?.length > 0 ? "text-gray-400" : "text-gray-500"
+              savedJobs?.length > 0 ? "text-gray-800" : "text-gray-600"
             }`}
             style={{ pointerEvents: savedJobs?.length > 0 ? "auto" : "none" }}
           >
