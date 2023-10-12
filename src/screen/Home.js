@@ -9,7 +9,7 @@ import LearningsCard from "../components/home/Learnings";
 const Home = () => {
   return (
     <div className="min-h-screen">
-      <div className="pb-10 sm:w-full sm:px-2 h-full flex justify-center items-center bg-cover bg-center relative w-full ">
+      <div className="pb-10 sm:w-full sm:px-0 h-full flex justify-center items-center bg-cover bg-center relative w-full ">
         <Carousel />
       </div>
       <FeaturedJobs />
