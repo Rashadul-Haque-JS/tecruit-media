@@ -13,7 +13,7 @@ export default function Carousel() {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
   return (
-    <div className="relative h-[80vh] w-full md:h-[432px] sm:h-96">
+    <div className="relative h-[100vh] w-full md:h-[80vh] sm:h-[100vh]">
       <div className="w-full h-full relative">
         <img
           src={slides[curr].src}
@@ -21,8 +21,7 @@ export default function Carousel() {
           className="w-full h-full cursor-pointer object-cover"
           onClick={next}
         />
-
-        <div className="flex justify-center items-center absolute right-0 left-0 sm:bottom-[-160px] bottom-[-100px] w-full ">
+        <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full ">
           <SearchComponent />
         </div>
       </div>
@@ -42,7 +41,7 @@ export default function Carousel() {
         </button>
       </div>
 
-      <div className="absolute bottom-[32px] right-0 left-0">
+      <div className="absolute bottom-[224px] right-0 left-0">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div

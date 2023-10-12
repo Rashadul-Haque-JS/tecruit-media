@@ -5,9 +5,9 @@ const FeaturedJobs = () => {
   const [featuredJobs, setFeaturedJobs] = useState(featuredJob);
 
   return (
-    <div className="p-12 sm:px-0 flex justify-center items-center bg-white">
-      <div className="sm:px-4 w-full mt-20 sm:mt-32 sm:mx-0 md:mx-0 mx-10">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Featured Job Listings</h2>
+    <div className="p-2 sm:px-0 flex justify-center items-center bg-white">
+      <div className="sm:px-4 w-full mt-8 sm:mt-8 sm:mx-0 md:mx-0 mx-10">
+        <h2 className="text-2xl font-semibold mb-10 text-center">Featured Job Listings</h2>
         <div className="grid grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-6 sm:h-96 md:h-[400px] overflow-y-auto">
           {featuredJobs?.map((job) => (
             <div

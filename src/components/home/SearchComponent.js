@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { countries, cities, jobList } from "../../data/jobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass
-} from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const SearchComponent = () => {
   const [queryData, setQueryData] = useState({
@@ -47,9 +45,7 @@ const SearchComponent = () => {
   };
 
   return (
-    // Here is option to try later like 1st div w-5/6 and 2nd div w-full
-    <div className="flex flex-col justify-center items-center w-full px-4 py-6 md:py-2 rounded-lg shadow-shade relative">
-      {/* Input field */}
+    <div className="flex flex-col justify-center items-center w-full px-4 pt-6 pb-16 sm:pb-4 md:py-2 rounded-lg shadow-shade relative home-search-bg z-10">
       <div className="flex justify-center items-center flex-wrap z-40 w-5/6 sm:w-full">
         <input
           type="text"
@@ -58,13 +54,11 @@ const SearchComponent = () => {
           value={queryData.query}
           onChange={handleInputChange}
           required
-          className={`border-b-2 ${
+          className={`border ${
             info ? "border-red-400" : "border-[#279b37]"
-          } outline-none pl-2 py-2 w-96 sm:w-full rounded md:w-1/2`}
+          } outline-none pl-2 py-3 w-96 sm:w-full rounded md:w-1/2`}
           autoFocus
         />
-
-        {/* Country Select */}
         <Select
           options={countries}
           value={countries.find((c) => c.value === queryData.country)}
@@ -77,14 +71,12 @@ const SearchComponent = () => {
             control: (provided, state) => ({
               ...provided,
               border: "none",
-              borderBottom: "2px solid #279b37", 
+              border: "1px solid #279b37",
               outline: "none", // Remove outline
-              padding: "2px 0px",
+              padding: "6px 0px",
             }),
           }}
         />
-
-        {/* City Select */}
         <Select
           options={
             cities
@@ -104,29 +96,24 @@ const SearchComponent = () => {
             control: (provided, state) => ({
               ...provided,
               border: "none",
-              borderBottom: "2px solid #279b37",
-              outline: "none",
-              padding: "2px 0px",
+              border: "1px solid #279b37",
+              outline: "none", // Remove outline
+              padding: "6px 0px",
             }),
           }}
         />
-
-        {/* Search Button */}
         <button
           onClick={handleSearch}
-          className="bg-[#279b37] text-white px-3 py-2 rounded-r-md md:rounded-l-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border-b-2 border-[#279b37]"
+          className="bg-[#279b37] text-white px-3 py-3 rounded-r-md md:rounded-l-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border border-[#279b37]"
         >
-         <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
+          <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
         </button>
-
-        {/* Background Overlay */}
-        <div className="absolute inset-0 backdrop-blur-md bg-white opacity-100 -z-10 rounded-lg"></div>
       </div>
-
-      {/* Job Count */}
-      <p className="text-sm py-2 w-fit z-40">
-        <span className="text-blue-500">{jobList?.length}</span> jobs available
-        right now
+      <p className="text-sm text-green-500 sm:pt-2 md:pt-2 pb-2 pt-0 w-fit z-40">
+        <span className="font-bold text-md">
+          {jobList?.length}
+        </span>{" "}
+        jobs available right now
       </p>
     </div>
   );
