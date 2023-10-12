@@ -131,7 +131,7 @@ const CreateJob = () => {
         <div className="w-1/3 sm:w-full md:w-full flex-shrink-0 my-4">
           <img
             src={skyDreamImg}
-            alt="Job Image"
+            alt="Jobs"
             className="object-cover w-full h-full sm:h-auto md:auto rounded-md"
           />
         </div>

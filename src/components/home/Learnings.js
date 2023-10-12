@@ -6,7 +6,7 @@ const LearningsCard = () => {
       <div className="w-4/5 sm:w-full rounded-l-none overflow-hidden">
         <img
           src="/hero_one.jpg"
-          alt="card-image"
+          alt="learnings_card"
           className="h-full w-full object-cover"
         />
       </div>
@@ -21,7 +21,7 @@ const LearningsCard = () => {
           selling licenses. Yet its own business model disruption is only part
           of the story
         </p>
-        <a href="#" className="inline-block">
+        <a href="www.example.com" className="inline-block">
           <button className="flex items-center gap-2 border border-tecruitPrimary px-3 py-2">
             Learn More
             <svg

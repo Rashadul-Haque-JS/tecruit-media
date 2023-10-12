@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select"; // Import the react-select component
-import companiesList from "../data/companies";
+import companies from "../data/companies";
 import CompanyCard from "../components/companies/CompanyCard";
 import { selectStyles } from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const CompanyList = () => {
-  const [companies, setCompanies] = useState(companiesList);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
