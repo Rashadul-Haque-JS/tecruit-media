@@ -11,7 +11,7 @@ const Card = ({
   link,
 }) => {
   // Define default background and text colors
-  const defaultBgColor = "white";
+  const defaultBgColor = "tecruitSecondary";
   const defaultTextColor = "gray-700";
   const defaultButtonTextColor = "#FFFFFF";
   

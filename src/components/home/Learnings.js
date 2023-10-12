@@ -11,7 +11,7 @@ const LearningsCard = () => {
         />
       </div>
       <div className="p-4">
-        <div className="mb-4 uppercase text-gray text-sm text-[#279b37]">startups</div>
+        <div className="mb-4 uppercase text-gray text-sm text-tecruitPrimary">startups</div>
         <h4 className="text-blue-gray text-xl font-semibold mb-2">
           Lyft launching cross-platform service this week
         </h4>
@@ -22,7 +22,7 @@ const LearningsCard = () => {
           of the story
         </p>
         <a href="#" className="inline-block">
-          <button className="flex items-center gap-2 border border-[#279b37] px-3 py-2">
+          <button className="flex items-center gap-2 border border-tecruitPrimary px-3 py-2">
             Learn More
             <svg
               xmlns="http://www.w3.org/2000/svg"

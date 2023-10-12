@@ -67,12 +67,12 @@ const CompanyList = () => {
   return (
     <div className="sm:px-0 pb-10 min-h-screen">
       <div className="flex flex-col pb-6 border-b border-gray-200">
-        <h1 className="text-3xl font-semibold mb-2 text-center py-8 text-white bg-[#279b39]">
+        <h1 className="text-3xl font-semibold mb-2 text-center py-8 text-tecruitSecondary bg-tecruitPrimary">
           IT-Companies List
         </h1>
         <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-4 pt-6 sm:pt-4 pb-2">
           <input
-            className="w-1/3 sm:w-5/6 outline-none text-sm text-gray-700 pr-2 shadow-inner p-3 rounded-full border"
+            className="w-1/3 sm:w-5/6 outline-none text-sm text-gray-700 pr-2 shadow-inner p-3 rounded-full border border-tecruitPrimary apps-input"
             type="text"
             id="search"
             placeholder="Search by company name ..."
@@ -143,7 +143,7 @@ const CompanyList = () => {
           </div>
 
           {/* Pagination */}
-          <div className="flex justify-center my-4 text-[#279b37]">
+          <div className="flex justify-center my-4 text-tecruitPrimary">
             <button
               className="mr-2 sm:px-2 px-4 py-2 border rounded hover:bg-gray-200"
               onClick={() => handlePageChange(currentPage - 1)}

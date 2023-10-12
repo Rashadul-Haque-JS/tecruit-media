@@ -57,7 +57,7 @@ const JobSearch = () => {
   useEffect(() => {
     setLoading(jobs.length > 0 ? false : true);
     if (jobs.length > 0) {
-      setCurrentView(isMobile ? null : filteredJobs.length > 0 ? filteredJobs[0] : jobs[0]);;
+      setCurrentView(isMobile ? null : filteredJobs.length > 0 ? filteredJobs[0] : null);;
     }
   }, [filteredJobs]);
 
@@ -227,7 +227,7 @@ const JobSearch = () => {
 
   return (
     <div className="relative">
-      <div className="w-full text-white bg-[#279b37]">
+      <div className="w-full text-tecruitSecondary bg-tecruitPrimary">
         <h1 className="text-3xl font-semibold mb-2 text-center pt-8">
           Find Your Dream Job
         </h1>
@@ -237,7 +237,7 @@ const JobSearch = () => {
             href="#mySavedJobs"
             onClick={handleViewSaveJobs}
             className={`pb-3 text-center hover:text-blue-400 pr-2 w-fit cursor-pointer  ${
-              savedJobs?.length > 0 ? "text-gray-800" : "text-gray-600"
+              savedJobs?.length > 0 ? "text-tecruitSpecial" : "text-gray-600"
             }`}
             style={{ pointerEvents: savedJobs?.length > 0 ? "auto" : "none" }}
           >
@@ -250,7 +250,7 @@ const JobSearch = () => {
           </a>
         </div>
       </div>
-      <div className="px-10 sm:px-4 bg-white sm:mx-4 mx-10 py-12">
+      <div className="px-10 sm:px-4 bg-tecruitSecondary sm:mx-4 mx-10 py-12">
         <div className="flex justify-center items-center pb-8">
           <div className="relative flex items-center sm:w-full w-2/3 h-12 rounded-lg overflow-hidden">
             <div className="grid place-items-center h-full w-12 text-gray-300 mt-1">
@@ -259,18 +259,19 @@ const JobSearch = () => {
                 className="h-10 w-10"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#279b37"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  
                 />
               </svg>
             </div>
             <input
-              className="h-full w-full outline-none text-sm text-gray-700 pr-2 shadow-inner px-4 rounded-full border brder-[#D1D5DB]"
+              className="h-full w-full outline-none text-sm text-gray-700 pr-2 shadow-inner px-4 sm:px-6 rounded-full border border-tecruitPrimary apps-input"
               type="text"
               id="search"
               placeholder="Search by job title ..."
@@ -295,7 +296,7 @@ const JobSearch = () => {
                 <g id="SVGRepo_iconCarrier">
                   <path
                     d="M9 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM6.17 5a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-7.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 0 1 0-2h1.17zM15 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2.83 0a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 1 1 0-2h7.17zM9 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2.83 0a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-7.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 1 1 0-2h1.17z"
-                    fill="#D1D5DB"
+                    fill="#279b37"
                   ></path>
                 </g>
               </svg>
@@ -318,7 +319,7 @@ const JobSearch = () => {
                   {" "}
                   <path
                     d="M15 15L21 21M21 15L15 21M10 21V14.6627C10 14.4182 10 14.2959 9.97237 14.1808C9.94787 14.0787 9.90747 13.9812 9.85264 13.8917C9.7908 13.7908 9.70432 13.7043 9.53137 13.5314L3.46863 7.46863C3.29568 7.29568 3.2092 7.2092 3.14736 7.10828C3.09253 7.01881 3.05213 6.92127 3.02763 6.81923C3 6.70414 3 6.58185 3 6.33726V4.6C3 4.03995 3 3.75992 3.10899 3.54601C3.20487 3.35785 3.35785 3.20487 3.54601 3.10899C3.75992 3 4.03995 3 4.6 3H19.4C19.9601 3 20.2401 3 20.454 3.10899C20.6422 3.20487 20.7951 3.35785 20.891 3.54601C21 3.75992 21 4.03995 21 4.6V6.33726C21 6.58185 21 6.70414 20.9724 6.81923C20.9479 6.92127 20.9075 7.01881 20.8526 7.10828C20.7908 7.2092 20.7043 7.29568 20.5314 7.46863L17 11"
-                    stroke="#D1D5DB"
+                    stroke="#279b37"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -394,7 +395,7 @@ const JobSearch = () => {
               />
               <button
                 onClick={clearFilters}
-                className="px-4 py-[6px] bg-[#279b37] hover:bg-pink-700 text-white rounded-lg"
+                className="px-4 py-[6px] bg-tecruitPrimary hover:bg-green-600 text-tecruitSecondary rounded-lg"
               >
                 Clear Filters
               </button>
@@ -426,7 +427,7 @@ const JobSearch = () => {
                   }}
                 >
                   <li key={job._id}>
-                    <h2 className="text-xl font-semibold mb-2 text-[#279b37]">
+                    <h2 className="text-xl font-semibold mb-2 text-tecruitPrimary">
                       {job.jobTitle}
                     </h2>
                     <p className="text-gray-600 mb-2">
@@ -455,21 +456,21 @@ const JobSearch = () => {
                   </li>
                   <div className="flex justify-start items-center gap-2 pt-4 text-sm">
                     <span
-                      className="bg-black hover:bg-gray-700 cursor-pointer text-white border px-4 py-1 rounded"
+                      className="bg-tecruitSpecial hover:bg-gray-700 cursor-pointer text-tecruitSecondary border px-4 py-1 rounded"
                       onClick={() => handleCurrentView(job)}
                     >
                       Details
                     </span>
                     {savedJobs.includes(job._id) ? (
                       <button
-                        className="px-4 bg-white hover:bg-gray-100 py-1 rounded border cursor-pointer"
+                        className="px-4 bg-tecruitSecondary hover:bg-gray-100 py-1 rounded border cursor-pointer"
                         onClick={() => handleUnSaveJob(job._id)}
                       >
                         Unsave
                       </button>
                     ) : (
                       <button
-                        className="px-4 bg-white hover:bg-gray-100 py-1 rounded border cursor-pointer"
+                        className="px-4 bg-tecruitSecondary hover:bg-gray-100 py-1 rounded border cursor-pointer"
                         onClick={() => handleSaveJob(job._id)}
                       >
                         Save
@@ -482,9 +483,9 @@ const JobSearch = () => {
           )}
 
           {currentView && (
-            <div className="py-4 rounded-lg sm:hidden bg-white border w-full my-2 px-16 max-h-screen overflow-auto">
+            <div className="py-4 rounded-lg sm:hidden bg-tecruitSecondary border w-full my-2 px-16 max-h-screen overflow-auto">
               <h2 className="pb-3 text-xl">About This Job</h2>
-              <h2 className="text-xl font-semibold mb-2 text-[#279b37]">
+              <h2 className="text-xl font-semibold mb-2 text-tecruitPrimary">
                 {currentView.jobTitle}
               </h2>
               <p className="text-gray-600 pt-1">
@@ -511,7 +512,7 @@ const JobSearch = () => {
               </p>
               {/* Display apply ui if application_url provided */}
               {currentView.application_url && (
-                <p className="text-white  bg-black hover:bg-gray-700 w-fit px-4 py-2 cursor-pointer rounded-md my-4">
+                <p className="text-tecruitSecondary  bg-tecruitSpecial hover:bg-gray-700 w-fit px-4 py-2 cursor-pointer rounded-md my-4">
                   <a
                     href={currentView.application_url}
                     target="_blank"
@@ -547,7 +548,7 @@ const JobSearch = () => {
             </div>
           )}
           {currentView && (
-            <div className="p-4 hidden sm:block fixed inset-0 border-t bg-white border overflow-y-auto">
+            <div className="p-4 hidden sm:block fixed inset-0 border-t bg-tecruitSecondary border overflow-y-auto">
               <h2 className="text-2xl pt-2 pb-1 border-b border-gray-200">
                 <span className="logo font-semibold ">Tecruit</span>{" "}
                 <span className="text-xs px-2">Presents</span>
@@ -561,7 +562,7 @@ const JobSearch = () => {
                   X
                 </span>
               </div>
-              <h2 className="text-xl font-semibold mb-2 text-[#279b37]">
+              <h2 className="text-xl font-semibold mb-2 text-tecruitPrimary">
                 {" "}
                 {currentView.jobTitle}
               </h2>
@@ -589,7 +590,7 @@ const JobSearch = () => {
               </p>
               {/* Display apply ui if application_url provided */}
               {currentView.application_url && (
-                <p className="text-white  bg-black hover:bg-gray-700 w-fit px-4 py-2 rounded-md my-4">
+                <p className="text-tecruitSecondary  bg-tecruitSpecial hover:bg-gray-700 w-fit px-4 py-2 rounded-md my-4">
                   <a
                     href={currentView.application_url}
                     target="_blank"

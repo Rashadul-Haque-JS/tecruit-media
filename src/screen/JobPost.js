@@ -135,7 +135,7 @@ const CreateJob = () => {
             className="object-cover w-full h-full sm:h-auto md:auto rounded-md"
           />
         </div>
-        <div className="w-2/3 sm:w-full md:w-full my-4 p-12 sm:p-6 bg-white rounded-lg shadow-lg">
+        <div className="w-2/3 sm:w-full md:w-full my-4 p-12 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg">
           <h1 className="text-2xl font-semibold mb-4">Create Job Posting</h1>
           <form onSubmit={handleSubmit} className="py-6">
             <div className="mb-4">
@@ -380,7 +380,7 @@ const CreateJob = () => {
 
             <button
               type="submit"
-              className="bg-black text-white hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              className="bg-black text-tecruitSecondary hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
             >
               Publish Job
             </button>

@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="relative flex justify-between items-center gap-2 py-4 px-6 text-[#279b37] bg-[#fff] z-50"
+      className="relative flex justify-between items-center gap-2 py-4 px-6 text-tecruitPrimary bg-[#fff] z-50"
       style={{
         borderBottom: "none",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",

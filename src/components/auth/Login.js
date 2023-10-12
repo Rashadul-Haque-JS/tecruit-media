@@ -29,7 +29,7 @@ const LoginCard = ({setSignup}) => {
   return (
     <div className="w-96 sm:w-full sm:mx-4 shadow-shade mt-6 px-8 py-6">
       <form onSubmit={handleSubmit}>
-        <div className="bg-[#279b37] mb-4 grid h-28 place-items-center text-white rounded shadow-shade">
+        <div className="bg-tecruitPrimary mb-4 grid h-28 place-items-center text-tecruitSecondary rounded shadow-shade">
           <h3 className="text-3xl">Sign In</h3>
         </div>
         <div className="flex flex-col gap-4">
@@ -71,7 +71,7 @@ const LoginCard = ({setSignup}) => {
           </div>
         </div>
         <div className="pt-0">
-          <button  className="w-full py-3 text-white bg-gradient-to-r from-green-500 to-green-700 rounded-lg focus:outline-none">
+          <button  className="w-full py-3 text-tecruitSecondary bg-gradient-to-r from-green-500 to-green-700 rounded-lg focus:outline-none">
             Sign In
           </button>
           <div className="mt-6 flex justify-center text-gray-700 text-base">

@@ -30,13 +30,13 @@ export default function Carousel() {
       <div className="absolute inset-0 flex items-center justify-between p-4">
         <button
           onClick={prev}
-          className="p-1 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-white"
+          className="p-1 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={next}
-          className="p-1 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-white"
+          className="p-1 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
         >
           <ChevronRight size={20} />
         </button>
@@ -48,7 +48,7 @@ export default function Carousel() {
             <div
               key={i}
               className={`
-                transition-all w-2 h-2 bg-white rounded-full
+                transition-all w-2 h-2 bg-tecruitSecondary rounded-full
                 ${curr === i ? "p-1" : "bg-opacity-50"}
               `}
             />

@@ -28,7 +28,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="bg-white w-full py-4 ">
+      <div className="bg-tecruitSecondary w-full py-4 ">
         <h2 className="text-2xl font-semibold mt-4 mb-2 text-center">Learnings Path</h2>
         <div className=" mx-20 sm:mx-4 md:mx-4 sm:px-4 py-10">
           <LearningsCard />

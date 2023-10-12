@@ -44,7 +44,7 @@ html{
   border: none;
   background: linear-gradient(90deg, #db0045 25%, #b00078 50%, #db0045 75%);
   background-size: 200% 100%;
-  color: white;
+  color: #ffffff;
   border-radius: 20px;
   text-align: center;
   text-decoration: none;
@@ -81,7 +81,7 @@ html{
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.front-input::placeholder,
+.apps-input::placeholder,
 .front-select {
   color: #279b37; 
 }

@@ -1,16 +1,18 @@
+
 export const selectStyles = {
   control: (provided, state) => ({
     ...provided,
-    borderColor: state.isFocused ? "#e8e9eb" : "#d2ddec",
-    boxShadow: "none",
+    border: "none",
+    border: "1px solid #279b37",
+    outline: "none",
   }),
-  placeholder: (provided) => ({
+  placeholder: (provided, state) => ({
     ...provided,
-    color: "gray",
+    color: "#279b37",
   }),
   option: (provided, state) => ({
     ...provided,
-    background: state.isSelected ? "#000" : "transparent",
+    background: state.isSelected ? "#279b37" : "transparent",
     color: state.isSelected ? "#fff" : "#000",
     "&:hover": {
       background: "#e8e9eb",
@@ -18,8 +20,7 @@ export const selectStyles = {
     },
   }),
 };
-
-export const homeSeacrchSelectStyles = {
+export const selectStylesHome = {
   control: (provided, state) => ({
     ...provided,
     border: "none",

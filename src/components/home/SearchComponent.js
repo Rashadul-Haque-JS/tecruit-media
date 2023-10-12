@@ -4,7 +4,7 @@ import Select from "react-select";
 import { countries, cities, jobList } from "../../data/jobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { homeSeacrchSelectStyles } from "../../utils/helper";
+import { selectStylesHome } from "../../utils/helper";
 
 const SearchComponent = () => {
   const [queryData, setQueryData] = useState({
@@ -60,8 +60,8 @@ const SearchComponent = () => {
           onChange={handleInputChange}
           required
           className={`border ${
-            info ? "border-red-400" : "border-[#279b37]"
-          } outline-none pl-2 py-3 w-96 sm:w-full rounded md:w-1/2 front-input`}
+            info ? "border-red-400" : "border-tecruitPrimary"
+          } outline-none pl-2 py-3 w-96 sm:w-full rounded md:w-1/2 apps-input`}
           autoFocus
         />
         <Select
@@ -72,7 +72,7 @@ const SearchComponent = () => {
           }
           placeholder="Country"
           className="w-1/4 sm:w-full py-4 md:w-1/2"
-          styles={homeSeacrchSelectStyles}
+          styles={selectStylesHome}
         />
         <Select
           options={
@@ -89,11 +89,11 @@ const SearchComponent = () => {
           }
           placeholder="City"
           className="w-1/4 sm:w-full md:w-1/2"
-          styles={homeSeacrchSelectStyles}
+          styles={selectStylesHome}
         />
         <button
           onClick={handleSearch}
-          className="bg-[#279b37] text-white px-3 py-3 rounded-r-md md:rounded-l-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border border-[#279b37]"
+          className="bg-tecruitPrimary text-tecruitSecondary px-3 py-3 rounded-r-md md:rounded-l-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border border-tecruitPrimary"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
         </button>
