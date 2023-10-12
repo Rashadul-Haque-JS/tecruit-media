@@ -44,14 +44,7 @@ const JobSearch = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const filteredJobs = jobs?.filter(
-      (job) => job.last_date > new Date().toISOString()?.slice(0, 10)
-    );
-    setJobs(filteredJobs);
-    setFilteredJobs(filteredJobs);
-  }, []);
-
+ 
   useEffect(() => {
     setLoading(jobs.length > 0 ? false : true);
     if (jobs.length > 0) {
@@ -61,25 +54,6 @@ const JobSearch = () => {
     }
   }, [jobs.length, isMobile, filteredJobs]);
   
-
-  // This Function need to be adjust after using real API
-  // useEffect(() => {
-  //    const fetchJobs = async () => { //THIS WILL BE ACTIVE AFTER USING REAL API
-  //      try {
-  //        const res = await getAllJob();
-  //        setJobs(res.data);
-  //        setLoading(false);
-  //        setCurrentView(isMobile ? null : res.data[0]);
-  //      } catch (error) {
-  //        console.error("Error fetching jobs:", error);
-  //        setLoading(false);
-  //   /  }
-  //    };
-
-  //   fetchJobs();
-  //   setLoading(jobs.length > 0 ? false : true); //THIS WILL BE REMOVED AFTER USING REAL API
-  //   setCurrentView(isMobile ? null : jobs[0]); //THIS WILL BE REMOVED AFTER USING REAL API
-  // }, []);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
