@@ -59,7 +59,8 @@ const JobSearch = () => {
         isMobile ? null : filteredJobs.length > 0 ? filteredJobs[0] : null
       );
     }
-  }, [filteredJobs]);
+  }, [jobs.length, isMobile, filteredJobs]);
+  
 
   // This Function need to be adjust after using real API
   // useEffect(() => {
@@ -226,7 +227,7 @@ const JobSearch = () => {
 
   useEffect(() => {
     setIsMobile(window.innerWidth <= 767 ? true : false);
-  }, [window.innerWidth]);
+  }, []);
 
   return (
     <div className="relative">

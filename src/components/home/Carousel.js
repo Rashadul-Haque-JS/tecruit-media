@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import slides from "../../data/heroImages.json";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import SearchComponent from "./SearchComponent";
 
 export default function Carousel() {
