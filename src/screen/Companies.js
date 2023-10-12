@@ -6,8 +6,6 @@ import { selectStyles } from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowsRotate,
-  faMagnifyingGlass,
-  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
 const CompanyList = () => {

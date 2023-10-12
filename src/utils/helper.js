@@ -2,7 +2,6 @@
 export const selectStyles = {
   control: (provided, state) => ({
     ...provided,
-    border: "none",
     border: "1px solid #279b37",
     outline: "none",
   }),
@@ -23,7 +22,6 @@ export const selectStyles = {
 export const selectStylesHome = {
   control: (provided, state) => ({
     ...provided,
-    border: "none",
     border: "1px solid #279b37",
     outline: "none",
     padding: "6px 0px",

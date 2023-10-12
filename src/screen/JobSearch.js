@@ -31,9 +31,7 @@ const JobSearch = () => {
     value: "new",
   });
 
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth <= 767 ? true : false
-  );
+  const [isMobile, setIsMobile] = useState(false);
 
   const [currentView, setCurrentView] = useState(
     isMobile ? null : jobs && jobs[0]
@@ -57,7 +55,9 @@ const JobSearch = () => {
   useEffect(() => {
     setLoading(jobs.length > 0 ? false : true);
     if (jobs.length > 0) {
-      setCurrentView(isMobile ? null : filteredJobs.length > 0 ? filteredJobs[0] : null);;
+      setCurrentView(
+        isMobile ? null : filteredJobs.length > 0 ? filteredJobs[0] : null
+      );
     }
   }, [filteredJobs]);
 
@@ -143,7 +143,7 @@ const JobSearch = () => {
     setSelectedWorkTime(null);
     setCurrentView(isMobile ? null : jobs[0]);
     setSearchTerm("");
-    navigate('/jobs')
+    navigate("/jobs");
   };
 
   const updateParamsFilter = () => {
@@ -209,7 +209,7 @@ const JobSearch = () => {
     const queryParam = searchParams.get("query");
     const countryParam = searchParams.get("country");
     const cityParam = searchParams.get("city");
-    
+
     if (queryParam) {
       setSearchTerm(queryParam);
     }
@@ -222,8 +222,11 @@ const JobSearch = () => {
       setSelectedCity(cityParam);
     }
     updateParamsFilter();
-    
   }, [location.search]);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 767 ? true : false);
+  }, [window.innerWidth]);
 
   return (
     <div className="relative">
@@ -266,7 +269,6 @@ const JobSearch = () => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  
                 />
               </svg>
             </div>
