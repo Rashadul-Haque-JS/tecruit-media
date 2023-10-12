@@ -14,10 +14,9 @@ html{
   background: transparent; 
 }
 
-/* Style the scrollbar thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background: #ccc; /* Color of the thumb */
-  border-radius: 3px; /* Rounded corners for the thumb */
+  background: #ccc; 
+  border-radius: 3px; 
 }
 
 
@@ -72,10 +71,17 @@ html{
   }
 }
 
+/* Home search div */
+
 .home-search-bg {
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.front-input::placeholder,
+.front-select {
+  color: #279b37; 
 }

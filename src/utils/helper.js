@@ -1,39 +1,58 @@
-
 export const selectStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      borderColor: state.isFocused ? "#e8e9eb" : "#d2ddec",
-      boxShadow: "none",
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      color: "gray",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      background: state.isSelected ? "#000" : "transparent", // Background color when selected
-      color: state.isSelected ? "#fff" : "#000", // Text color when selected
-      "&:hover": {
-        background: "#e8e9eb", 
-        cursor:'pointer'// Background color on hover
-      },
-    }),
-  };
-  
+  control: (provided, state) => ({
+    ...provided,
+    borderColor: state.isFocused ? "#e8e9eb" : "#d2ddec",
+    boxShadow: "none",
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: "gray",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    background: state.isSelected ? "#000" : "transparent",
+    color: state.isSelected ? "#fff" : "#000",
+    "&:hover": {
+      background: "#e8e9eb",
+      cursor: "pointer",
+    },
+  }),
+};
 
-  export const getCurrentDate=() =>{
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Adding 1 to month since it's zero-indexed
-    const day = String(today.getDate()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}`;
-  }
-  
-  export const formatDate=(isoDateString)=>{
-    const date = new Date(isoDateString);
-    const formattedDate = date.toISOString().split('T')[0];
-    return formattedDate;
-  }
-  
-  
+export const homeSeacrchSelectStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    border: "none",
+    border: "1px solid #279b37",
+    outline: "none",
+    padding: "6px 0px",
+  }),
+  placeholder: (provided, state) => ({
+    ...provided,
+    color: "#279b37",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    background: state.isSelected ? "#279b37" : "transparent",
+    color: state.isSelected ? "#fff" : "#000",
+    "&:hover": {
+      background: "#e8e9eb",
+      cursor: "pointer",
+    },
+  }),
+};
+
+export const getCurrentDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Adding 1 to month since it's zero-indexed
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
+
+export const formatDate = (isoDateString) => {
+  const date = new Date(isoDateString);
+  const formattedDate = date.toISOString().split("T")[0];
+  return formattedDate;
+};

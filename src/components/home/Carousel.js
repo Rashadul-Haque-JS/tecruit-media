@@ -42,7 +42,7 @@ export default function Carousel() {
         </button>
       </div>
 
-      <div className="absolute bottom-[224px] right-0 left-0">
+      <div className="absolute bottom-[220px] right-0 left-0">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div

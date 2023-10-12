@@ -4,6 +4,7 @@ import Select from "react-select";
 import { countries, cities, jobList } from "../../data/jobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { homeSeacrchSelectStyles } from "../../utils/helper";
 
 const SearchComponent = () => {
   const [queryData, setQueryData] = useState({
@@ -45,7 +46,11 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full px-4 pt-6 pb-16 sm:pb-4 md:py-2 rounded-lg shadow-shade relative home-search-bg z-10">
+    <div className="flex flex-col justify-center items-center w-full px-4 sm:pt-3 pt-6 pb-20 sm:pb-4 md:py-2 shadow-shade relative home-search-bg z-10">
+      <p className="text-sm text-green-500 sm:pt-2 md:pt-2 pb-0 sm:pb-3 pt-0 w-fit z-40">
+        <span className="font-bold text-md">{jobList?.length}</span> jobs
+        available right now
+      </p>
       <div className="flex justify-center items-center flex-wrap z-40 w-5/6 sm:w-full">
         <input
           type="text"
@@ -56,7 +61,7 @@ const SearchComponent = () => {
           required
           className={`border ${
             info ? "border-red-400" : "border-[#279b37]"
-          } outline-none pl-2 py-3 w-96 sm:w-full rounded md:w-1/2`}
+          } outline-none pl-2 py-3 w-96 sm:w-full rounded md:w-1/2 front-input`}
           autoFocus
         />
         <Select
@@ -67,15 +72,7 @@ const SearchComponent = () => {
           }
           placeholder="Country"
           className="w-1/4 sm:w-full py-4 md:w-1/2"
-          styles={{
-            control: (provided, state) => ({
-              ...provided,
-              border: "none",
-              border: "1px solid #279b37",
-              outline: "none", // Remove outline
-              padding: "6px 0px",
-            }),
-          }}
+          styles={homeSeacrchSelectStyles}
         />
         <Select
           options={
@@ -92,15 +89,7 @@ const SearchComponent = () => {
           }
           placeholder="City"
           className="w-1/4 sm:w-full md:w-1/2"
-          styles={{
-            control: (provided, state) => ({
-              ...provided,
-              border: "none",
-              border: "1px solid #279b37",
-              outline: "none", // Remove outline
-              padding: "6px 0px",
-            }),
-          }}
+          styles={homeSeacrchSelectStyles}
         />
         <button
           onClick={handleSearch}
@@ -109,12 +98,6 @@ const SearchComponent = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
         </button>
       </div>
-      <p className="text-sm text-green-500 sm:pt-2 md:pt-2 pb-2 pt-0 w-fit z-40">
-        <span className="font-bold text-md">
-          {jobList?.length}
-        </span>{" "}
-        jobs available right now
-      </p>
     </div>
   );
 };
