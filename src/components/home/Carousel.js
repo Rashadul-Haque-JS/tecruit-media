@@ -15,6 +15,7 @@ export default function Carousel() {
   return (
     <div className="relative h-[100vh] w-full md:h-[80vh] sm:h-[100vh]">
       <div className="w-full h-full relative">
+      {/* <div className="absolute inset-0 bg-black opacity-20"></div> */}
         <img
           src={slides[curr].src}
           alt={slides[curr].alt}
