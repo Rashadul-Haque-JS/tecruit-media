@@ -19,15 +19,15 @@ const Navbar = () => {
 
   return (
     <div
-      className="relative flex justify-between items-center gap-2 py-2 px-6 text-tecruitPrimary bg-[#fff] z-50"
+      className="relative flex justify-between items-center gap-2 py-1 sm:py-2 md:py-2 px-6 sm:pl-0 md:pr-4 md:pl-0 sm:pr-4 text-tecruitPrimary bg-[#fff] z-50"
       style={{
         borderBottom: "none",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
       }}
     >
       <div className="flex justify-start items-center w-2/4 gap-5">
-        <Link to="/" className="text-3xl px-5 border-r-2 border-gray-300 logo">
-          <img src={tecruitLogo} alt="Tecruit logo" className="w-fit h-10"/>
+        <Link to="/" className="text-3xl px-2 border-r-2 border-gray-300 logo">
+          <img src={tecruitLogo} alt="Tecruit logo" className="w-fit h-8"/>
         </Link>
         <div className="flex justify-between items-center gap-1  sm:hidden md:hidden">
           <Link to="/post-job">Companies</Link>
