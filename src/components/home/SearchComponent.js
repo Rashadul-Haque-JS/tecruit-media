@@ -51,7 +51,7 @@ const SearchComponent = () => {
         <span className="font-bold text-md">{jobList?.length}</span> jobs
         available right now
       </p>
-      <div className="flex justify-center items-center flex-wrap z-40 w-5/6 sm:w-full">
+      <div className="flex justify-center items-center flex-wrap z-40 w-5/6 sm:w-full lg:gap-0 xl:gap-1">
         <input
           type="text"
           name="query"
@@ -93,7 +93,7 @@ const SearchComponent = () => {
         />
         <button
           onClick={handleSearch}
-          className="bg-tecruitPrimary text-tecruitSecondary px-3 py-3 rounded-r-md md:rounded-l-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border border-tecruitPrimary"
+          className="bg-tecruitPrimary text-tecruitSecondary px-3 py-3 rounded-r-md md:rounded-l-md xl:rounded-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border border-tecruitPrimary"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
         </button>
