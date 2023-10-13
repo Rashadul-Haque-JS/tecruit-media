@@ -117,7 +117,7 @@ const CreateJob = () => {
   return (
     <div>
       <h1 className="text-3xl font-semibold mb-2 text-center py-8 bg-tecruitPrimary text-tecruitSecondary">
-        Post A Job{" "}
+        Job Post{" "}
         {message && (
           <span
             className="block text-sm font-normal py-2 text-green-600"
@@ -127,7 +127,7 @@ const CreateJob = () => {
           </span>
         )}
       </h1>
-      <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-8">
+      <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-8 sm:px-2">
         <div className="w-1/3 sm:w-full md:w-full flex-shrink-0 my-4">
           <img
             src={skyDreamImg}

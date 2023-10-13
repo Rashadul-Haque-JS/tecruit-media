@@ -48,7 +48,7 @@ const Navbar = () => {
           <Link to="/auth" className="px-4 flex justify-center items-center border-gray-300">
             <FontAwesomeIcon
               icon={faArrowRightFromBracket}
-              className="md:hidden border border-gray-300 px-2 py-1"
+              className="md:hidden border border-tecruitPrimary rounded px-2 py-1"
             />
           </Link>
           <button
@@ -59,9 +59,9 @@ const Navbar = () => {
             onClick={toggleDrawer}
           >
             {openDropDownDrawer ? (
-              <FontAwesomeIcon icon={faXmark} className="border border-gray-300 px-2 py-1 " />
+              <FontAwesomeIcon icon={faXmark} className="border border-tecruitPrimary rounded px-[.4rem] py-2 md:border-none " />
             ) : (
-              <FontAwesomeIcon icon={faBars} className="border border-gray-300 px-2 py-1 " />
+              <FontAwesomeIcon icon={faBars} className="border border-tecruitPrimary rounded px-2 py-1 md:border-none" />
             )}
           </button>
         </div>
