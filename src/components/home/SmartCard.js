@@ -25,7 +25,7 @@ const Card = ({
 
   return (
     <div
-      className="flex flex-col rounded-xl bg-clip-border shadow-md h-64 md:h-72 relative md:pb-8 "
+      className="flex flex-col rounded-xl bg-clip-border shadow-md h-64 md:h-80 relative md:pb-8 "
       style={customStyles}
     >
       <div className="py-6 px-4 flex flex-col h-full">

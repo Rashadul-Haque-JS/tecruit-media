@@ -228,7 +228,7 @@ const JobSearch = () => {
           </a>
         </div>
       </div>
-      <div className="px-10 sm:px-4 bg-tecruitSecondary sm:mx-4 mx-10 py-12">
+      <div className="px-10 sm:px-4 bg-tecruitSecondary sm:mx-4 md:mx-4 mx-10 py-12">
         <div className="flex justify-center items-center pb-8">
           <div className="relative flex items-center sm:w-full w-2/3 h-12 rounded-lg overflow-hidden">
             <div className="grid place-items-center h-full w-12 text-gray-300 mt-1">
@@ -385,7 +385,7 @@ const JobSearch = () => {
             <ul
               className={`${
                 filteredJobs.length === 0 ? "w-full" : "w-1/3"
-              } sm:w-full md:w-3/5 min-h-screen max-h-screen overflow-y-scroll`}
+              } sm:w-full md:w-4/5 min-h-screen max-h-screen overflow-y-scroll`}
             >
               {filteredJobs.length === 0 && (
                 <p className="text-center w-full font-semibold py-4">
@@ -460,7 +460,7 @@ const JobSearch = () => {
           )}
 
           {currentView && (
-            <div className="py-4 rounded-lg sm:hidden bg-tecruitSecondary border w-full my-2 px-16 max-h-screen overflow-auto">
+            <div className="py-4 rounded-lg sm:hidden bg-tecruitSecondary border w-full my-2 px-16 md:px-8 max-h-screen overflow-auto">
               <h2 className="pb-3 text-xl">About This Job</h2>
               <h2 className="text-xl font-semibold mb-2 text-tecruitPrimary">
                 {currentView.jobTitle}
