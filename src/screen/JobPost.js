@@ -115,8 +115,8 @@ const CreateJob = () => {
   }, [message]);
 
   return (
-    <div className="px-8 sm:px-0">
-      <h1 className="text-2xl font-semibold mb-2 text-center py-8">
+    <div>
+      <h1 className="text-3xl font-semibold mb-2 text-center py-8 bg-tecruitPrimary text-tecruitSecondary">
         Post A Job{" "}
         {message && (
           <span
@@ -127,7 +127,7 @@ const CreateJob = () => {
           </span>
         )}
       </h1>
-      <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-4">
+      <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-8">
         <div className="w-1/3 sm:w-full md:w-full flex-shrink-0 my-4">
           <img
             src={skyDreamImg}
@@ -136,12 +136,12 @@ const CreateJob = () => {
           />
         </div>
         <div className="w-2/3 sm:w-full md:w-full my-4 p-12 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg">
-          <h1 className="text-2xl font-semibold mb-4">Create Job Posting</h1>
+          <h1 className="text-2xl text-tecruitSpecial font-semibold mb-4">Create Job Posting</h1>
           <form onSubmit={handleSubmit} className="py-6">
             <div className="mb-4">
               <label
                 htmlFor="jobTitle"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Job Title{requiredSpan()}
               </label>
@@ -153,13 +153,13 @@ const CreateJob = () => {
                 onChange={handleInputChange}
                 required
                 placeholder="Insert job title"
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="apps-input appearance-none border border-tecruitPrimary rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="position"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Position{requiredSpan()}
               </label>
@@ -178,7 +178,7 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="workTime"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Contract Type{requiredSpan()}
               </label>
@@ -197,7 +197,7 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="type"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Location Type{requiredSpan()}
               </label>
@@ -225,7 +225,7 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="country"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Country{requiredSpan()}
               </label>
@@ -244,7 +244,7 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="city"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 City{requiredSpan()}
               </label>
@@ -273,7 +273,7 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="applicationOptions"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Application Options{requiredSpan()}
               </label>
@@ -296,7 +296,7 @@ const CreateJob = () => {
               <div className="mb-4">
                 <label
                   htmlFor="email_to_applications"
-                  className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                  className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
                 >
                   Email To Applications{requiredSpan()}
                 </label>
@@ -307,7 +307,7 @@ const CreateJob = () => {
                   value={formData.email_to_applications}
                   onChange={handleInputChange}
                   required
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="apps-input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Insert email address"
                 />
               </div>
@@ -315,7 +315,7 @@ const CreateJob = () => {
               <div className="mb-4">
                 <label
                   htmlFor="application_url"
-                  className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                  className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
                 >
                   Application Link{requiredSpan()}
                 </label>
@@ -326,7 +326,7 @@ const CreateJob = () => {
                   value={formData.application_url}
                   onChange={handleInputChange}
                   required
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="apps-input appearance-none border border-tecruitPrimary rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Insert application link"
                 />
               </div>
@@ -335,7 +335,7 @@ const CreateJob = () => {
             <div className="my-6">
               <label
                 htmlFor="description"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Description{requiredSpan()}
               </label>
@@ -364,7 +364,7 @@ const CreateJob = () => {
             <div className="mb-4">
               <label
                 htmlFor="last_date"
-                className="block text-gray-500 text-sm font-bold mb-2 px-3"
+                className="block text-tecruitPrimary text-sm font-bold mb-2 px-3"
               >
                 Applications Deadline{requiredSpan()}
               </label>
@@ -372,20 +372,28 @@ const CreateJob = () => {
                 selected={selectedDate - 1}
                 onChange={handleDateChange}
                 dateFormat="yyyy-MM-dd"
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#279b37]"
                 placeholderText="Select date"
                 required
+                customInput={
+                  <input
+                    style={{ color: "#279b37" }} 
+                    className="apps-input appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                }
               />
             </div>
 
             <button
               type="submit"
-              className="bg-black text-tecruitSecondary hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              className="bg-tecruitPrimary text-tecruitSecondary hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
             >
               Publish Job
             </button>
           </form>
-          <p className="py-4 text-xs text-yellow-500">All the fields marked with (*) are required</p>
+          <p className="py-4 text-xs text-tecruitSpecial">
+            All the fields marked with (*) are required
+          </p>
         </div>
       </div>
     </div>
@@ -395,5 +403,5 @@ const CreateJob = () => {
 export default CreateJob;
 
 const requiredSpan = () => {
-  return <span className="pl-1 text-gray-400 text-md">*</span>;
+  return <span className="pl-1 text-tecruitPrimary text-md">*</span>;
 };

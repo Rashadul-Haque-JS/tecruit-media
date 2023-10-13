@@ -87,3 +87,6 @@ html{
   background-position: center;
 
 }
+.tox-tinymce {
+  border: 1px solid #279b37 !important;
+}
