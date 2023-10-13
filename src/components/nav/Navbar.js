@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavMenu from "./NavDropDown";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,12 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { linksOne,linksTwo } from "../../data/jobs";
 import tecruitLogo  from "../../assets/media/tecruit-logo-2.png";
+import {useSelector, useDispatch } from "react-redux";
+import { toggleStateDrawer} from "../../store/features/commonState";
 
 const Navbar = () => {
-  const [openDropDownDrawer, setDropDownDrawer] = useState(false);
-
+  const openDropDownDrawer = useSelector((state) => state.common.isDrawerOpen);
+  const dispatch = useDispatch();
   const toggleDrawer = () => {
-    setDropDownDrawer(!openDropDownDrawer);
+    dispatch(toggleStateDrawer());
   };
 
   return (
@@ -73,7 +75,7 @@ const Navbar = () => {
             transition: "transform 0.3s ease",
           }}
         >
-          <Link to="/post-job" className="sm:text-center ">Companies</Link>
+          <Link to="/post-job" className="sm:text-center " onClick={toggleDrawer}>Companies</Link>
           <NavMenu title="Applicants" links={linksOne} />
           <NavMenu title="Resources" links={linksTwo} />
         </div>
