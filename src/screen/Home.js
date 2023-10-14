@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "../components/home/Carousel";
 import FeaturedJobs from "../components/home/FeaturedJobs";
 import SmartCard from "../components/home/SmartCard";
-import smartCardData from "../data/smartCard";
+import smartCardData from "../data/mock/smartCard";
 import LearningsCard from "../components/home/Learnings";
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { countries, cities, jobList } from "../../data/jobs";
+import { countries, cities, jobList } from "../../data/mock/jobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { selectStylesHome } from "../../utils/helper";

@@ -1,25 +1,51 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Tecruit Jobs Media",
+  "description": "Tecruit discover the best jobs in various IT sectors in the Nordic countries. Tecruit is a job board for the IT industry.",
+  "name": "Tecruit",
+  
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/favicons/16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "/favicons/32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "/favicons/180x180.png", 
+      "sizes": "180x180",            
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "theme_color": "#279b37",
+  "background_color": "#279b37",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait"
 }
+
+
