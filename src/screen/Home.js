@@ -4,7 +4,8 @@ import FeaturedJobs from "../components/home/FeaturedJobs";
 import SmartCard from "../components/home/SmartCard";
 import smartCardData from "../data/mock/smartCard";
 import LearningsCard from "../components/home/Learnings";
-
+import mockTechArticles from "../data/mock/articles";
+import TechArticleCard from "../components/home/TechArticleCard";
 
 const Home = () => {
   return (
@@ -24,16 +25,30 @@ const Home = () => {
               link={card.link}
               buttonText={card.buttonText}
               buttonTextColor={"#279b37"}
+              icon={card.icon}
+              flipIcon={card.flipIcon}
             />
           ))}
         </div>
       </div>
       <div className="bg-tecruitSecondary w-full py-4 ">
-        <h2 className="text-2xl font-semibold mt-4 mb-2 text-center">Learnings Path</h2>
+        <h2 className="text-2xl font-semibold mt-4 mb-2 text-center">
+          Learnings Path
+        </h2>
         <div className=" mx-20 sm:mx-4 md:mx-4 sm:px-4 py-10">
           <LearningsCard />
         </div>
+      </div>
+      <div className=" mx-20 sm:mx-0 md:mx-4 sm:px-0 py-10 flex flex-col justify-center items-center">
+        <h2 className="text-2xl font-semibold mt-4 mb-2 text-center text-tecruitSecondary bg-tecruitSpecial py-6 w-full">
+          Tech Articles
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-1 gap-3 w-full">
+          {mockTechArticles.map((article, index) => (
+            <TechArticleCard key={article.id} article={article} />
+          ))}
         </div>
+      </div>
     </div>
   );
 };

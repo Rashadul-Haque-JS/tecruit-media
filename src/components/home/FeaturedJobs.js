@@ -18,7 +18,7 @@ const FeaturedJobs = () => {
                 <p className="mb-2">{job.companyName}</p>
                 <p className="mb-2">{job.city}</p>
               </div>
-              <h3 className="text-3xl font-bold absolute inset-0 flex justify-center items-center text-htpink">
+              <h3 className="text-3xl font-bold absolute inset-0 flex justify-center items-center text-tecruitRedish">
                 {job.title}
               </h3>
 

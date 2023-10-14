@@ -160,13 +160,23 @@ export const jobList = [
     },
     {
       id: 2,
-      path: "/about",
+      path: "/cv-templates",
       icon: (
         <i className="fa fa-info" aria-hidden="true">
           ℹ️
         </i>
       ),
-      text: "Be Hired",
+      text: "Create ATS CV",
+    },
+    {
+      id: 2,
+      path: "/cv-scanner",
+      icon: (
+        <i className="fa fa-info" aria-hidden="true">
+          ℹ️
+        </i>
+      ),
+      text: "Optimise CV",
     },
   ];
 

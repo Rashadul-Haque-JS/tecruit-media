@@ -1,11 +1,12 @@
 import React from "react";
+import { learning } from "../../assets";
 
 const LearningsCard = () => {
   return (
     <div className="w-full flex justify-center items-center sm:flex-col gap-6">
       <div className="w-4/5 sm:w-full rounded-l-none overflow-hidden">
         <img
-          src="/hero_one.jpg"
+          src={learning}
           alt="learnings_card"
           className="h-full w-full object-cover"
         />

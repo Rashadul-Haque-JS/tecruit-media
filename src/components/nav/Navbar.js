@@ -8,7 +8,7 @@ import {
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { linksOne,linksTwo } from "../../data/mock/jobs";
-import tecruitLogo  from "../../assets/media/tecruit-logo-2.png";
+import tecruitLogo  from "../../assets/media/tecruit-logo.png";
 import {useSelector, useDispatch } from "react-redux";
 import { toggleStateDrawer} from "../../store/features/commonState";
 
@@ -28,7 +28,7 @@ const Navbar = () => {
       }}
     >
       <div className="flex justify-start items-center w-2/4 gap-5">
-        <Link to="/" className="text-3xl px-2 border-r-2 border-gray-300 logo">
+        <Link to="/" className="text-3xl px-2 border-r-2 border-gray-300">
           <img src={tecruitLogo} alt="Tecruit logo" className="w-fit h-8"/>
         </Link>
         <div className="flex justify-between items-center gap-1  sm:hidden md:hidden">
@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex justify-center items-center gap-4 ">
-        <Link to="/auth" className="border-r-2 px-4 py-2 sm:hidden border-gray-300 ">
+        <Link to="/auth" className="border-r-2 px-4 py-1 sm:hidden border-gray-300 ">
           Login
         </Link>
         <Link className=" px-2 py-1 sm:hidden rounded border-gray-700 ">

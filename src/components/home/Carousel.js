@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import slides from "../../data/static/heroImages";
 import SearchComponent from "./SearchComponent";
+import CarouselSpecial from "./CarouselSpecial";
 
 export default function Carousel() {
   const [curr, setCurr] = useState(0);
@@ -29,6 +30,7 @@ export default function Carousel() {
             }}
           />
         ))}
+        <CarouselSpecial />
         <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full">
           <SearchComponent />
         </div>

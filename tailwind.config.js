@@ -20,6 +20,7 @@ module.exports = {
         tecruitPrimary: "#279b37",
         tecruitSecondary: "#ffffff",
         tecruitSpecial: "#1F2937",
+        tecruitRedish: "#D61E27",
       },
     },
   },
