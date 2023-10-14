@@ -81,7 +81,7 @@ html{
 }
 
 .auth-bg{
-  background-image: url('/public/denmark.jpg');
+  background-image: url('./assets/media/denmark.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

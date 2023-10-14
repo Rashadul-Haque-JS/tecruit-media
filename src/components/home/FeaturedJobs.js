@@ -1,5 +1,5 @@
 import React from "react";
-import featuredJob from "../../data/featuredJobs";
+import featuredJob from "../../data/mock/featuredJobs";
 
 const FeaturedJobs = () => {
   

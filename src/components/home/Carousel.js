@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
-import slides from "../../data/heroImages.json";
+import slides from "../../data/static/heroImages";
 import SearchComponent from "./SearchComponent";
 
 export default function Carousel() {
@@ -25,7 +25,7 @@ export default function Carousel() {
             className="w-full h-full cursor-pointer object-cover absolute top-0 left-0 transition-transform duration-300 ease-in-out"
             style={{
               transform: `translateX(${100 * (index - curr)}%)`,
-              filter: "brightness(0.9)",
+              filter: "brightness(0.99)",
             }}
           />
         ))}
@@ -41,7 +41,7 @@ export default function Carousel() {
           disabled={curr === 0}
           style={{ transition: "transform 0.3s ease",cursor: curr === 0 ? "not-allowed" : "pointer" }}
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={20} className="text-tecruitPrimary" />
         </button>
         <button
           onClick={next}
@@ -49,7 +49,7 @@ export default function Carousel() {
           disabled={curr === slides.length - 1}
           style={{ transition: "transform 0.3s ease",cursor: curr === slides.length - 1? "not-allowed" : "pointer"}}
         >
-          <ChevronRight size={20} />
+          <ChevronRight size={20} className="text-tecruitPrimary" />
         </button>
       </div>
 

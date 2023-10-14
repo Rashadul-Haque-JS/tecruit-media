@@ -14,7 +14,7 @@ import {
   position,
   workTime,
   jobList,
-} from "../data/jobs.js";
+} from "../data/mock/jobs.js";
 //import { getAllJob } from "../api/api.js";
 import PreLoader from "../components/PreLoader.js";
 

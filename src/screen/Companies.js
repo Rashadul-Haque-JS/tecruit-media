@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select"; // Import the react-select component
-import companies from "../data/companies";
+import companies from "../data/mock/companies";
 import CompanyCard from "../components/companies/CompanyCard";
 import { selectStyles } from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -113,7 +113,7 @@ const CompanyList = () => {
                 !selectedCountry && !searchQuery && pageSize === 10
                   ? "text-gray-400"
                   : "text-gray-600"
-              }`}
+              } w-6 h-8`}
               style={{
                 transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 1s ease",

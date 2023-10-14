@@ -10,7 +10,7 @@ import {
   countries,
   cities,
   applicationOptions,
-} from "../data/jobs";
+} from "../data/mock/jobs";
 import { selectStyles, getCurrentDate } from "../utils/helper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

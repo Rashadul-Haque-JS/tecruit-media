@@ -7,7 +7,7 @@ import {
   faXmark,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { linksOne,linksTwo } from "../../data/jobs";
+import { linksOne,linksTwo } from "../../data/mock/jobs";
 import tecruitLogo  from "../../assets/media/tecruit-logo-2.png";
 import {useSelector, useDispatch } from "react-redux";
 import { toggleStateDrawer} from "../../store/features/commonState";
