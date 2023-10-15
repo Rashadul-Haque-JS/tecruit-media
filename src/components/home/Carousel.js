@@ -1,21 +1,28 @@
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight } from "react-feather";
 import slides from "../../data/static/heroImages";
 import SearchComponent from "./SearchComponent";
 import CarouselSpecial from "./CarouselSpecial";
 import SubCategoryStats from "./SubCategoryStats.js";
 import subCategoryData from "../../data/mock/subCategory";
+import { useDispatch } from "react-redux";
+import { addLocation } from "../../store/features/commonState";
 
 const Carousel = () => {
   const [curr, setCurr] = useState(0);
+  const dispatch = useDispatch();
 
   const prev = () => {
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
+    const alt = slides[curr === 0 ? slides.length - 1 : curr - 1].alt;
+    dispatch(addLocation(alt));
   };
-
+  
   const next = () => {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
+    const alt = slides[curr === slides.length - 1 ? 0 : curr + 1].alt;
+    dispatch(addLocation(alt));
   };
+  
 
   return (
     <div className="relative w-full sm:h-[100vh] lg:h-[100vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
@@ -48,7 +55,11 @@ const Carousel = () => {
             cursor: curr === 0 ? "not-allowed" : "pointer",
           }}
         >
-          <ChevronLeft size={20} className="text-tecruitPrimary" />
+          {/* <ChevronLeft size={20} className="text-tecruitPrimary" /> */}
+          <span>
+            {curr !== 0 && slides[curr - 1].alt.slice(0, 2).toLowerCase()}
+            {curr === 0 && ""}
+          </span>
         </button>
         <button
           onClick={next}
@@ -59,7 +70,11 @@ const Carousel = () => {
             cursor: curr === slides.length - 1 ? "not-allowed" : "pointer",
           }}
         >
-          <ChevronRight size={20} className="text-tecruitPrimary" />
+          {/* <ChevronRight size={20} className="text-tecruitPrimary" /> */}
+          <span>
+            {curr !== slides.length-1 && slides[curr + 1].alt.slice(0, 2).toLowerCase()}
+            {curr === slides.length-1 && ""}
+          </span>
         </button>
       </div>
 
@@ -76,7 +91,10 @@ const Carousel = () => {
           ))}
         </div>
       </div>
-      <SubCategoryStats categories={subCategoryData} />
+      <SubCategoryStats
+        categories={subCategoryData}
+        country={slides[curr].alt}
+      />
     </div>
   );
 };

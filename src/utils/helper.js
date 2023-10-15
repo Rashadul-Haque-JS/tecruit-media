@@ -55,3 +55,19 @@ export const formatDate = (isoDateString) => {
   const formattedDate = date.toISOString().split("T")[0];
   return formattedDate;
 };
+
+export const getNordicColor = (country) => {
+  switch (country) {
+    case 'Sweden':
+      return '#0055A4'; // Sweden color
+    case 'Denmark':
+      return '#C60C30'; // Denmark color
+    case 'Norway':
+      return '#EF4135'; // Norway color
+    case 'Finland':
+      return '#003580'; // Finland color
+    default:
+      return '#279b37'; // Tecruit color
+};
+
+}
