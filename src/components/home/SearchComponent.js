@@ -93,7 +93,7 @@ const SearchComponent = () => {
         />
         <button
           onClick={handleSearch}
-          className="bg-tecruitPrimary text-tecruitSecondary px-3 py-3 rounded-r-md md:rounded-l-md xl:rounded-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2  border border-tecruitPrimary"
+          className="bg-tecruitPrimary text-tecruitSecondary px-3 py-3 rounded-r-md md:rounded-l-md xl:rounded-md hover:bg-green-600 sm:w-full sm:rounded-md sm:mt-4 md:w-1/2 lg:rounded-md  border border-tecruitPrimary"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
         </button>

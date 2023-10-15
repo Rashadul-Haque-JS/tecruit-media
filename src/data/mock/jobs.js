@@ -169,7 +169,7 @@ export const jobList = [
       text: "Create ATS CV",
     },
     {
-      id: 2,
+      id: 3,
       path: "/cv-scanner",
       icon: (
         <i className="fa fa-info" aria-hidden="true">

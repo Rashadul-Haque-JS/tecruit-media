@@ -206,7 +206,7 @@ const JobSearch = () => {
   return (
     <div className="relative">
       <div className="w-full text-tecruitSecondary bg-tecruitPrimary">
-        <h1 className="text-3xl font-semibold mb-2 text-center pt-8">
+        <h1 className="text-3xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center pt-8">
           Find Your Dream Job
         </h1>
 
@@ -387,7 +387,7 @@ const JobSearch = () => {
             <ul
               className={`${
                 filteredJobs.length === 0 ? "w-full" : "w-1/3"
-              } sm:w-full md:w-4/5 min-h-screen max-h-screen overflow-y-scroll`}
+              } sm:w-full md:w-4/5 lg:w-4/5 min-h-screen max-h-screen overflow-y-scroll`}
             >
               {filteredJobs.length === 0 && (
                 <p className="text-center w-full font-semibold py-4">
@@ -462,7 +462,7 @@ const JobSearch = () => {
           )}
 
           {currentView && (
-            <div className="py-4 rounded-lg sm:hidden bg-tecruitSecondary border w-full my-2 px-16 md:px-8 max-h-screen overflow-auto">
+            <div className="py-4 rounded-lg sm:hidden bg-tecruitSecondary border w-full my-2 px-16 md:px-8 lg:px-8 max-h-screen overflow-auto">
               <h2 className="pb-3 text-xl">About This Job</h2>
               <h2 className="text-xl font-semibold mb-2 text-tecruitPrimary">
                 {currentView.jobTitle}

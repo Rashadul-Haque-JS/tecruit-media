@@ -3,8 +3,10 @@ import { ChevronLeft, ChevronRight } from "react-feather";
 import slides from "../../data/static/heroImages";
 import SearchComponent from "./SearchComponent";
 import CarouselSpecial from "./CarouselSpecial";
+import SubCategoryStats from "./SubCategoryStats.js";
+import subCategoryData from "../../data/mock/subCategory";
 
-export default function Carousel() {
+const Carousel = () => {
   const [curr, setCurr] = useState(0);
 
   const prev = () => {
@@ -16,7 +18,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative h-[100vh] w-full md:h-[80vh] sm:h-[100vh]">
+    <div className="relative w-full sm:h-[100vh] lg:h-[100vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
       <div className="w-full h-full relative overflow-x-hidden">
         {slides.map((slide, index) => (
           <img
@@ -39,17 +41,23 @@ export default function Carousel() {
       <div className="absolute inset-0 flex items-center justify-between p-4">
         <button
           onClick={prev}
-          className="p-1 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
+          className="p-1 3xl:p-2 4xl:p-3 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
           disabled={curr === 0}
-          style={{ transition: "transform 0.3s ease",cursor: curr === 0 ? "not-allowed" : "pointer" }}
+          style={{
+            transition: "transform 0.3s ease",
+            cursor: curr === 0 ? "not-allowed" : "pointer",
+          }}
         >
           <ChevronLeft size={20} className="text-tecruitPrimary" />
         </button>
         <button
           onClick={next}
-          className="p-1 rounded-full shadow bg-gray-900 text-gray-300 hover-bg-tecruitSecondary"
+          className="p-1 3xl:p-2 4xl:p-3  rounded-full shadow bg-gray-900 text-gray-300 hover-bg-tecruitSecondary"
           disabled={curr === slides.length - 1}
-          style={{ transition: "transform 0.3s ease",cursor: curr === slides.length - 1? "not-allowed" : "pointer"}}
+          style={{
+            transition: "transform 0.3s ease",
+            cursor: curr === slides.length - 1 ? "not-allowed" : "pointer",
+          }}
         >
           <ChevronRight size={20} className="text-tecruitPrimary" />
         </button>
@@ -68,6 +76,9 @@ export default function Carousel() {
           ))}
         </div>
       </div>
+      <SubCategoryStats categories={subCategoryData} />
     </div>
   );
-}
+};
+
+export default Carousel;

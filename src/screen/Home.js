@@ -6,6 +6,7 @@ import smartCardData from "../data/mock/smartCard";
 import LearningsCard from "../components/home/Learnings";
 import mockTechArticles from "../data/mock/articles";
 import TechArticleCard from "../components/home/TechArticleCard";
+import SubHeadline from "../components/home/SubHeader";
 
 const Home = () => {
   return (
@@ -13,9 +14,21 @@ const Home = () => {
       <div className="pb-10 sm:w-full sm:px-0 h-full flex justify-center items-center bg-cover bg-center relative w-full ">
         <Carousel />
       </div>
-      <FeaturedJobs />
+      <div className="p-2 sm:px-0 flex justify-center items-center bg-tecruitSecondary">
+        <div className="sm:px-4 w-full mt-8 sm:mt-8 sm:mx-0 md:mx-0 mx-10">
+          <SubHeadline
+            title="Featured Jobs"
+            color="#000"
+            bgColor="tecruitSecondary"/>
+          <FeaturedJobs />
+        </div>
+      </div>
       <div className=" bg-gray-100 w-full pt-10 pb-20">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Why Us?</h2>
+        <SubHeadline
+          title="Smart Solutions"
+          color="#000"
+          bgColor="tecruitSecondary"
+        />
         <div className="grid grid-cols-3 sm:grid-cols-1 gap-6 sm:gap-16 mx-20 sm:mx-4 md:mx-4 sm:px-4 py-12">
           {smartCardData.map((card) => (
             <SmartCard
@@ -32,17 +45,21 @@ const Home = () => {
         </div>
       </div>
       <div className="bg-tecruitSecondary w-full py-4 ">
-        <h2 className="text-2xl font-semibold mt-4 mb-2 text-center">
-          Learnings Path
-        </h2>
-        <div className=" mx-20 sm:mx-4 md:mx-4 sm:px-4 py-10">
+        <SubHeadline
+          title="Learnings Path"
+          color="#000"
+          bgColor="tecruitSecondary"
+        />
+        <div className=" mx-20 sm:mx-4 md:mx-4 sm:px-4 pb-10">
           <LearningsCard />
         </div>
       </div>
       <div className=" mx-20 sm:mx-0 md:mx-4 sm:px-0 py-10 flex flex-col justify-center items-center">
-        <h2 className="text-2xl font-semibold mt-4 mb-2 text-center text-tecruitSecondary bg-tecruitSpecial py-6 w-full">
-          Tech Articles
-        </h2>
+        <SubHeadline
+          title="Tech Articles"
+          color="tecruitSecondary"
+          bgColor="tecruitSpecial"
+        />
         <div className="grid grid-cols-2 sm:grid-cols-1 gap-3 w-full">
           {mockTechArticles.map((article, index) => (
             <TechArticleCard key={article.id} article={article} />

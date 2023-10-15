@@ -19,7 +19,7 @@ const smartCardData = [
     buttonText: "Discover More",
     link: "http://tecruit-beach.com",
     icon: faBolt,
-    flipIcon: "",
+    flipIcon: false,
   },
   {
     id: "sm3",
@@ -29,7 +29,7 @@ const smartCardData = [
     buttonText: "Claim Offer",
     link: "http://it-beach.com",
     icon: faTags,
-    flipIcon: "",
+    flipIcon: false,
   },
 ];
 
