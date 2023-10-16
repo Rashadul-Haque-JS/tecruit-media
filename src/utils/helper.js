@@ -59,15 +59,14 @@ export const formatDate = (isoDateString) => {
 export const getNordicColor = (country) => {
   switch (country) {
     case 'Sweden':
-      return '#0055A4'; // Sweden color
+      return { bgc: '#005293', txt: '#fecb00' };
     case 'Denmark':
-      return '#C60C30'; // Denmark color
+      return { bgc: '#C60C30', txt: '#fff' }; 
     case 'Norway':
-      return '#EF4135'; // Norway color
+      return { bgc: '#EF4135', txt: '#003087' };
     case 'Finland':
-      return '#003580'; // Finland color
+      return { bgc: '#002F6C', txt: '#fff' };
     default:
-      return '#279b37'; // Tecruit color
+      return { bgc: '#279b37', txt: '#fff' };
+  }
 };
-
-}

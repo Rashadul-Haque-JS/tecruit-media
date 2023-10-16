@@ -6,6 +6,8 @@ import SubCategoryStats from "./SubCategoryStats.js";
 import subCategoryData from "../../data/mock/subCategory";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/features/commonState";
+import { ChevronRight, ChevronLeft } from "react-feather";
+import ApplyNowArrow from "./CallToAction";
 
 const Carousel = () => {
   const [curr, setCurr] = useState(0);
@@ -16,16 +18,15 @@ const Carousel = () => {
     const alt = slides[curr === 0 ? slides.length - 1 : curr - 1].alt;
     dispatch(addLocation(alt));
   };
-  
+
   const next = () => {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
     const alt = slides[curr === slides.length - 1 ? 0 : curr + 1].alt;
     dispatch(addLocation(alt));
   };
-  
 
   return (
-    <div className="relative w-full sm:h-[100vh] lg:h-[100vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
+    <div className="relative w-full sm:h-[120vh] lg:h-[90vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
       <div className="w-full h-full relative overflow-x-hidden">
         {slides.map((slide, index) => (
           <img
@@ -40,45 +41,52 @@ const Carousel = () => {
           />
         ))}
         <CarouselSpecial />
-        <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full">
-          <SearchComponent />
+        <div className="absolute inset-0 sm:w-full left-0 right-0 sm:bottom-[20%] flex items-center justify-between px-2 z-50">
+          <button
+            onClick={prev}
+            className="pr-1 rounded shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
+            disabled={curr === 0}
+            style={{
+              transition: "transform 0.3s ease",
+              cursor: curr === 0 ? "not-allowed" : "pointer",
+            }}
+          >
+            <ChevronLeft
+              size={20}
+              className="text-tecruitPrimary inline-block"
+            />
+            <span>
+              {curr !== 0 && (
+                <span className="p-0 inline-block">
+                  {slides[curr - 1].alt.slice(0, 2).toLowerCase()}
+                </span>
+              )}
+            </span>
+          </button>
+          <button
+            onClick={next}
+            className="pl-1 rounded shadow bg-gray-900 text-gray-300 hover-bg-tecruitSecondary"
+            disabled={curr === slides.length - 1}
+            style={{
+              transition: "transform 0.3s ease",
+              cursor: curr === slides.length - 1 ? "not-allowed" : "pointer",
+            }}
+          >
+            <span>
+              {curr !== slides.length - 1 && (
+                <span className="p-0 inline-block">
+                  {slides[curr + 1].alt.slice(0, 2).toLowerCase()}
+                </span>
+              )}
+              <ChevronRight
+                size={20}
+                className="text-tecruitPrimary inline-block"
+              />
+            </span>
+          </button>
         </div>
       </div>
-
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button
-          onClick={prev}
-          className="p-1 3xl:p-2 4xl:p-3 rounded-full shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
-          disabled={curr === 0}
-          style={{
-            transition: "transform 0.3s ease",
-            cursor: curr === 0 ? "not-allowed" : "pointer",
-          }}
-        >
-          {/* <ChevronLeft size={20} className="text-tecruitPrimary" /> */}
-          <span>
-            {curr !== 0 && slides[curr - 1].alt.slice(0, 2).toLowerCase()}
-            {curr === 0 && ""}
-          </span>
-        </button>
-        <button
-          onClick={next}
-          className="p-1 3xl:p-2 4xl:p-3  rounded-full shadow bg-gray-900 text-gray-300 hover-bg-tecruitSecondary"
-          disabled={curr === slides.length - 1}
-          style={{
-            transition: "transform 0.3s ease",
-            cursor: curr === slides.length - 1 ? "not-allowed" : "pointer",
-          }}
-        >
-          {/* <ChevronRight size={20} className="text-tecruitPrimary" /> */}
-          <span>
-            {curr !== slides.length-1 && slides[curr + 1].alt.slice(0, 2).toLowerCase()}
-            {curr === slides.length-1 && ""}
-          </span>
-        </button>
-      </div>
-
-      <div className="absolute bottom-[220px] md:bottom-[192px] sm:bottom-[328px] right-0 left-0">
+      <div className="absolute bottom-[220px] md:bottom-[192px] sm:bottom-[310px] right-0 left-0">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div
@@ -95,6 +103,10 @@ const Carousel = () => {
         categories={subCategoryData}
         country={slides[curr].alt}
       />
+      <ApplyNowArrow />
+      <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full z-50">
+        <SearchComponent />
+      </div>
     </div>
   );
 };

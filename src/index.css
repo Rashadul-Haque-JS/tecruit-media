@@ -96,5 +96,11 @@ html{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999; 
+ 
+}
+
+@media screen and (max-width: 767px) {
+  .category-stats-slider {
+    transform: translate(-50%, -120%);
+  }
 }

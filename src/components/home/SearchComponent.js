@@ -46,12 +46,12 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full px-4 sm:pt-3 pt-6 pb-20 sm:pb-4 md:py-2 shadow-shade relative home-search-bg z-10">
-      <p className="text-sm text-green-500 sm:pt-2 md:pt-2 pb-0 sm:pb-3 pt-0 w-fit z-40">
+    <div className="flex flex-col justify-center items-center w-full px-4 pt-6 pb-20 sm:pt-1 sm:pb-4 md:py-2 shadow-shade relative home-search-bg">
+      <p className="text-sm text-green-500 sm:pb-2 md:pt-2 pb-0 pt-0 w-fit">
         <span className="font-bold text-md text-gray-300">{jobList?.length}</span> jobs
         available right now
       </p>
-      <div className="flex justify-center items-center flex-wrap z-40 w-5/6 sm:w-full lg:gap-0 xl:gap-1">
+      <div className="flex justify-center items-center flex-wrap w-5/6 sm:w-full lg:gap-0 xl:gap-1">
         <input
           type="text"
           name="query"

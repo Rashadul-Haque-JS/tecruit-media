@@ -8,7 +8,7 @@ const CarouselSpecial = () => {
           <div className="w-1/2 sm:w-full">
             <div className="py-6 lg:py-12 text-tecruitSecondary">
               <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl 4xl:text-6xl font-bold leading-tigh">
-                Find the best <span className="text-tecruitRedish">IT</span>{" "}
+                Find the best <span className="text-tecruitPrimary">IT</span>{" "}
                 jobs &amp; <span className="block">internships</span>{" "}
               </h2>
               <p className="text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl 4xl:text-5xl mt-2 leading-5">
@@ -17,7 +17,7 @@ const CarouselSpecial = () => {
                   available in the most innovative companies around
                 </span>{" "}
                 <span className="block sm:inline md:inline">
-                  the <span className="text-tecruitRedish">Nordic </span>
+                  the <span className="text-tecruitPrimary">Nordic </span>
                   countries.
                 </span>
               </p>
