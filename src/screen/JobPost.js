@@ -116,7 +116,7 @@ const CreateJob = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold mb-2 text-center py-8 bg-tecruitPrimary text-tecruitSecondary">
+      <h1 className="text-3xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center py-8 bg-tecruitPrimary text-tecruitSecondary">
         Job Post{" "}
         {message && (
           <span
@@ -128,14 +128,14 @@ const CreateJob = () => {
         )}
       </h1>
       <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-8 sm:px-2">
-        <div className="w-1/3 sm:w-full md:w-full flex-shrink-0 my-4">
+        <div className="w-1/2 sm:w-full md:w-full flex-shrink-0 my-4">
           <img
             src={skyDreamImg}
             alt="Jobs"
             className="object-cover w-full h-full sm:h-auto md:auto rounded-md"
           />
         </div>
-        <div className="w-2/3 sm:w-full md:w-full my-4 p-12 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg">
+        <div className="w-1/2 sm:w-full md:w-full my-4 p-12 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg">
           <h1 className="text-2xl text-tecruitSpecial font-semibold mb-4">Create Job Posting</h1>
           <form onSubmit={handleSubmit} className="py-6">
             <div className="mb-4">

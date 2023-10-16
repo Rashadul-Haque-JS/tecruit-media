@@ -1,29 +1,31 @@
 
-import { denmark, sweden,norway,finland } from "../../assets";
+import { denmark, sweden,norway,finland,heroImg  } from "../../assets";
 const heroImages = [
   {
-    src: `${denmark}`,
-    alt: "Slide 1",
-    label: "First slide label",
-    content: "Some representative placeholder content for the first slide."
+    src: `${heroImg}`,
+    alt: "Nordic",
+    
   },
   {
     src: `${sweden}`,
-    alt: "Slide 2",
-    label: "Second slide label",
-    content: "Some representative placeholder content for the second slide."
+    alt: "Sweden",
+    
   },
   {
+    src: `${denmark}`,
+    alt: "Denmark",
+    
+  },
+  
+  {
     src: `${norway}`,
-    alt: "Slide 3",
-    label: "Third slide label",
-    content: "Some representative placeholder content for the third slide."
+    alt: "Norway",
+   
   },
   {
     src: `${finland}`,
-    alt: "Slide 4",
-    label: "Third slide label",
-    content: "Some representative placeholder content for the third slide."
+    alt: "Finland",
+   
   }
 ];
 

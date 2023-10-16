@@ -1,21 +1,22 @@
 import React from "react";
+import { learning } from "../../assets";
 
 const LearningsCard = () => {
   return (
     <div className="w-full flex justify-center items-center sm:flex-col gap-6">
       <div className="w-4/5 sm:w-full rounded-l-none overflow-hidden">
         <img
-          src="/hero_one.jpg"
+          src={learning}
           alt="learnings_card"
           className="h-full w-full object-cover"
         />
       </div>
       <div className="p-4">
-        <div className="mb-4 uppercase text-gray text-sm text-tecruitPrimary">startups</div>
-        <h4 className="text-blue-gray text-xl font-semibold mb-2">
+        <div className="mb-4 uppercase text-gray text-sm 2xl:text-md 3xl:text-md 4xl:text-md text-tecruitPrimary">startups</div>
+        <h4 className="text-blue-gray text-xl 2xl:text-3xl 3xl:text-3xl 4xl:text-3xl font-semibold mb-2">
           Lyft launching cross-platform service this week
         </h4>
-        <p className="text-gray text-sm font-normal mb-8">
+        <p className="text-gray text-sm 2xl:text-md 3xl:text-md 4xl:text-md font-normal mb-8">
           Like so many organizations these days, Autodesk is a company in
           transition. It was until recently a traditional boxed software company
           selling licenses. Yet its own business model disruption is only part

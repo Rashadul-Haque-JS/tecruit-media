@@ -55,3 +55,18 @@ export const formatDate = (isoDateString) => {
   const formattedDate = date.toISOString().split("T")[0];
   return formattedDate;
 };
+
+export const getNordicColor = (country) => {
+  switch (country) {
+    case 'Sweden':
+      return { bgc: '#005293', txt: '#fecb00' };
+    case 'Denmark':
+      return { bgc: '#C60C30', txt: '#fff' }; 
+    case 'Norway':
+      return { bgc: '#BA0C2F', txt: '#003087' };
+    case 'Finland':
+      return { bgc: '#002F6C', txt: '#fff' };
+    default:
+      return { bgc: '#006eb6', txt: '#e2f0ff' };
+  }
+};
