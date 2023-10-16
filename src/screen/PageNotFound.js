@@ -9,7 +9,7 @@ const NotFoundPage = () => {
           Oops! The page you are looking for not built yet.
         </p>
         <p className="mt-4 text-md text-tecruitRedish">
-          Please check the URL or navigate back to the home page.
+          Option to go back the home page.
         </p>
         <button
           className="mt-8 px-4 py-2 bg-tecruitSpecial hover:bg-gray-700 text-white rounded-lg focus:outline-none"
