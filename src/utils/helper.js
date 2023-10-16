@@ -63,10 +63,10 @@ export const getNordicColor = (country) => {
     case 'Denmark':
       return { bgc: '#C60C30', txt: '#fff' }; 
     case 'Norway':
-      return { bgc: '#EF4135', txt: '#003087' };
+      return { bgc: '#BA0C2F', txt: '#003087' };
     case 'Finland':
       return { bgc: '#002F6C', txt: '#fff' };
     default:
-      return { bgc: '#279b37', txt: '#fff' };
+      return { bgc: '#006eb6', txt: '#e2f0ff' };
   }
 };

@@ -41,10 +41,10 @@ const Carousel = () => {
           />
         ))}
         <CarouselSpecial />
-        <div className="absolute inset-0 sm:w-full left-0 right-0 sm:bottom-[20%] flex items-center justify-between px-2 z-50">
+        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-2 z-50">
           <button
             onClick={prev}
-            className="pr-1 rounded shadow bg-gray-900 text-gray-300 hover:bg-tecruitSecondary"
+            className="pr-1 rounded shadow bg-gray-900 text-gray-300"
             disabled={curr === 0}
             style={{
               transition: "transform 0.3s ease",
@@ -65,7 +65,7 @@ const Carousel = () => {
           </button>
           <button
             onClick={next}
-            className="pl-1 rounded shadow bg-gray-900 text-gray-300 hover-bg-tecruitSecondary"
+            className="pl-1 rounded shadow bg-gray-900 text-gray-300"
             disabled={curr === slides.length - 1}
             style={{
               transition: "transform 0.3s ease",

@@ -5,6 +5,7 @@ import JobSearch from './screen/JobSearch';
 import PostJob from './screen/JobPost';
 import CompanyList from './screen/Companies';
 import AuthView from './screen/Auth';
+import NotFoundPage from "./screen/PageNotFound";
 function Router() {
   return (
     <div>
@@ -14,6 +15,7 @@ function Router() {
         <Route path="/jobs" element={<JobSearch />} />
         <Route path="/post-job" element={<PostJob />} />
         <Route path="/it-companies" element={<CompanyList />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

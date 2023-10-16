@@ -38,23 +38,18 @@ html{
 }
 
 
-.button {
+.cta-button {
   display: inline-block;
-  
-  border: none;
-  background: linear-gradient(90deg, #db0045 25%, #b00078 50%, #db0045 75%);
-  background-size: 200% 100%;
+  background: linear-gradient(90deg, #279b37 25%, #037f09 50%, #279b37 75%);
   color: #ffffff;
-  border-radius: 20px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  padding: 12px 40px;
+  background-size: 200% 100%;
   animation: wave 5s linear infinite;
 }
 
-.text-htpink{
-  color: #db0045;
-}
 
 @keyframes wave {
   0% {
@@ -64,6 +59,12 @@ html{
     background-position: -200% 0;
   }
 }
+
+.text-htpink{
+  color: #db0045;
+}
+
+
 
 /* Home search div */
 
