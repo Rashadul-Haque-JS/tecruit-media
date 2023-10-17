@@ -206,7 +206,7 @@ const JobSearch = () => {
   return (
     <div className="relative">
       <div className="w-full text-tecruitSecondary bg-tecruitPrimary">
-        <h1 className="text-3xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center pt-8">
+        <h1 className="text-2xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center pt-8">
           Find Your Dream Job
         </h1>
 

@@ -4,8 +4,13 @@ import commonReducer from './features/commonState';
 
 const store = configureStore({
   reducer: {
-    common: commonReducer, // Add other reducers here if needed
+    common: commonReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;
+

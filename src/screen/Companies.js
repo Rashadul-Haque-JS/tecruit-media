@@ -64,7 +64,7 @@ const CompanyList = () => {
   return (
     <div className="sm:px-0 pb-10 min-h-screen">
       <div className="flex flex-col pb-6 border-b border-gray-200">
-        <h1 className="text-3xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center py-8 text-tecruitSecondary bg-tecruitPrimary">
+        <h1 className="text-2xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center py-8 text-tecruitSecondary bg-tecruitPrimary">
           IT-Companies List
         </h1>
         <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-4 pt-6 sm:pt-4 pb-2">

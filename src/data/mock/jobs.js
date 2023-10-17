@@ -178,6 +178,16 @@ export const jobList = [
       ),
       text: "Optimise CV",
     },
+    {
+      id: 4,
+      path: "/jobs-match",
+      icon: (
+        <i className="fa fa-info" aria-hidden="true">
+          ℹ️
+        </i>
+      ),
+      text: "Match Jobs",
+    },
   ];
 
  export const linksTwo = [

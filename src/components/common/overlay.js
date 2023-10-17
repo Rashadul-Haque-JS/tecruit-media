@@ -5,7 +5,7 @@ const OverleyComponent = ({open}) => {
   return (
     <>
       {open && isSmallScreen && (
-        <div className="absolute inset-0 z-30 bg-tecruitSpecial opacity-60 overflow-hidden "></div>
+        <div className="absolute inset-0 z-20 bg-tecruitSpecial opacity-60 overflow-hidden "></div>
       )}
     </>
   );

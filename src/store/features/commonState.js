@@ -1,10 +1,9 @@
-
 import { createSlice } from '@reduxjs/toolkit';
-
 
 const initialState = {
   location: 'Nordic',
   isDrawerOpen: false,
+  
 };
 
 const commonSlice = createSlice({
@@ -20,7 +19,7 @@ const commonSlice = createSlice({
   },
 });
 
-export const {addLocation, toggleStateDrawer } = commonSlice.actions;
-
+export const { addLocation, addPdfFile, toggleStateDrawer } = commonSlice.actions;
 
 export default commonSlice.reducer;
+
