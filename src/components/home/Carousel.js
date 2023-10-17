@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/features/commonState";
 import { ChevronRight, ChevronLeft } from "react-feather";
 import ApplyNowArrow from "./CallToAction";
+import FileUploadPdf from "../common/FileUploaderPdf";
 
 const Carousel = () => {
   const [curr, setCurr] = useState(0);
@@ -41,7 +42,7 @@ const Carousel = () => {
           />
         ))}
         <CarouselSpecial />
-        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-2 z-50">
+        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-2 z-10">
           <button
             onClick={prev}
             className="pr-1 rounded shadow bg-gray-900 text-gray-300"
@@ -103,8 +104,9 @@ const Carousel = () => {
         categories={subCategoryData}
         country={slides[curr].alt}
       />
-      <ApplyNowArrow />
-      <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full z-50">
+      <FileUploadPdf screen="sm" children={<ApplyNowArrow customstyles={null}/>}/>
+        
+      <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full z-10">
         <SearchComponent />
       </div>
     </div>
