@@ -20,7 +20,7 @@ const CategoryStatsSlider = ({ categories, country }) => {
 
   return (
     <div
-      className={`flex sm:flex-col justify-start items-center gap-6 sm:gap-4 category-stats-slider rounded-l-full rounded-r-lg px-2 py-4 sm:px-0 md:w-[640px] lg:w-[640px] sm:w-full h-52 w-[50vw] shadow-shade sm:shadow-0 z-0 text-tecruitSecondary`}
+      className={`flex sm:flex-col justify-start items-center gap-6 sm:gap-8 category-stats-slider rounded-l-full rounded-r-lg px-2 py-4 sm:px-0 md:w-[640px] lg:w-[640px] sm:w-full h-52 w-[50vw] shadow-shade sm:shadow-0 z-0 text-tecruitSecondary`}
     >
       <div
         className={`w-60 h-60 sm:w-32 sm:h-32 sm:py-2 rounded-full flex justify-center items-center text-6xl sm:text-3xl border-2 bg-tecruitPrimary`}

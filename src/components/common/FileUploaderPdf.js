@@ -59,7 +59,7 @@ const FileUploadAndPdf = ({ children, screen }) => {
 
   const visibilities = () => {
     if (screen === 'sm') {
-      return 'hidden sm:flex justify-center items-center absolute left-0 right-0 bottom-[362px] z-20';
+      return 'hidden sm:flex justify-center items-center absolute left-0 right-0 bottom-[348px] z-20';
     } else {
       return 'flex sm:hidden';
     }
