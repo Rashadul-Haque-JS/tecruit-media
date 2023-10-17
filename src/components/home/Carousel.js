@@ -47,8 +47,8 @@ const Carousel = () => {
   }, []);
 
   const customstylesSmall = {
-    diplay: "inline-block",
-    padding: ".8rem 1.5rem",
+    padding: ".8rem 2rem",
+    borderRadius: "30px"
   };
 
 

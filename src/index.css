@@ -39,13 +39,11 @@ html{
 
 
 .cta-button {
-  display: inline-block;
   background: linear-gradient(90deg, #279b37 25%, #037f09 50%, #279b37 75%);
   color: #ffffff;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  padding: 10px 32px;
   background-size: 200% 100%;
   animation: wave 5s linear infinite;
 }
