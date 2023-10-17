@@ -111,12 +111,12 @@ const CompanyList = () => {
                 isRotated ? "rotate-180" : ""
               } ${
                 !selectedCountry && !searchQuery && pageSize === 10
-                  ? "text-gray-400"
-                  : "text-gray-600"
+                  ? "text-tecruitPrimary"
+                  : "text-tecruitSpecial"
               } w-6 h-8`}
               style={{
                 transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 1s ease",
+                transition: "transform 1s ease", fontWeight: "lighter",
               }}
             />
           </div>

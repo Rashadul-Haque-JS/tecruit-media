@@ -30,28 +30,27 @@ const Carousel = () => {
 
   useEffect(() => {
     let newSize, newStrokeWidth;
-  
+
     if (window.innerWidth < 767) {
       newSize = 60;
       newStrokeWidth = 0.5;
     } else if (window.innerWidth < 1023) {
       newSize = 30;
-      newStrokeWidth = 2;
+      newStrokeWidth = 3;
     } else {
       newSize = 80;
       newStrokeWidth = 0.5;
     }
-  
+
     setIconSize(newSize);
     setStrokeWidth(newStrokeWidth);
   }, []);
 
   const customstylesSmall = {
     padding: ".8rem 2rem",
-    borderRadius: "30px"
+    borderRadius: "30px",
+    color: "#fff",
   };
-
-
 
   return (
     <div className="relative w-full sm:h-[120vh] lg:h-[90vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
@@ -69,10 +68,10 @@ const Carousel = () => {
           />
         ))}
         <CarouselSpecial />
-        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-0 z-10">
+        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-0 sm:z-10">
           <button
             onClick={prev}
-            className="px-0 bg-none text-tecruitPrimary sm:text-base text-lg"
+            className="px-0 bg-none text-tecruitPrimary sm:text-base text-xl"
             disabled={curr === 0}
             style={{
               transition: "transform 0.3s ease",
@@ -94,7 +93,7 @@ const Carousel = () => {
           </button>
           <button
             onClick={next}
-            className="px-0 bg-none text-tecruitPrimary sm:text-base text-lg"
+            className="px-0 bg-none text-tecruitPrimary sm:text-base text-xl"
             disabled={curr === slides.length - 1}
             style={{
               transition: "transform 0.3s ease",
