@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slides from "../../data/static/heroImages";
 import SearchComponent from "./SearchComponent";
 import CarouselSpecial from "./CarouselSpecial";
@@ -12,6 +12,8 @@ import FileUploadPdf from "../common/FileUploaderPdf";
 
 const Carousel = () => {
   const [curr, setCurr] = useState(0);
+  const [iconSize, setIconSize] = useState(60);
+  const [strokeWidth, setStrokeWidth] = useState(0.5);
   const dispatch = useDispatch();
 
   const prev = () => {
@@ -26,10 +28,30 @@ const Carousel = () => {
     dispatch(addLocation(alt));
   };
 
+  useEffect(() => {
+    let newSize, newStrokeWidth;
+  
+    if (window.innerWidth < 767) {
+      newSize = 60;
+      newStrokeWidth = 0.5;
+    } else if (window.innerWidth < 1023) {
+      newSize = 30;
+      newStrokeWidth = 2;
+    } else {
+      newSize = 80;
+      newStrokeWidth = 0.5;
+    }
+  
+    setIconSize(newSize);
+    setStrokeWidth(newStrokeWidth);
+  }, []);
+
   const customstylesSmall = {
     diplay: "inline-block",
     padding: ".8rem 1.5rem",
   };
+
+
 
   return (
     <div className="relative w-full sm:h-[120vh] lg:h-[90vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
@@ -58,8 +80,8 @@ const Carousel = () => {
             }}
           >
             <ChevronLeft
-              size={window.innerWidth > 768 ? 80 : 60}
-              strokeWidth={0.5}
+              size={iconSize}
+              strokeWidth={strokeWidth}
               className="text-tecruitPrimary inline-block "
             />
             <span>
@@ -86,8 +108,8 @@ const Carousel = () => {
                 </span>
               )}
               <ChevronRight
-                size={window.innerWidth > 768 ? 80 : 60}
-                strokeWidth={0.5}
+                size={iconSize}
+                strokeWidth={strokeWidth}
                 className="text-tecruitPrimary inline-block"
               />
             </span>
