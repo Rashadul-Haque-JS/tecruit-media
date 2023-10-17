@@ -6,7 +6,7 @@ const ApplyNowArrow = ({customstyles}) => {
   
   return (
    
-      <div  className={`w-fit cta-button text-lg uppercase tracking-tight rounded-3xl z-10 ${customstyles}`}>
+      <div  className={`w-fit cta-button text-md tracking-tighter rounded-3xl z-10 ${customstyles}`}>
        <FontAwesomeIcon icon={faArrowUpFromBracket}/> CV Match-Jobs
       </div>
     

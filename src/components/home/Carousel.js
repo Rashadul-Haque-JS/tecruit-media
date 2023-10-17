@@ -26,6 +26,11 @@ const Carousel = () => {
     dispatch(addLocation(alt));
   };
 
+  const customstylesSmall = {
+    diplay: "inline-block",
+    padding: ".8rem 1.5rem",
+  };
+
   return (
     <div className="relative w-full sm:h-[120vh] lg:h-[90vh] xl:h-[100vh] md:h-[80vh] h-[70vh]">
       <div className="w-full h-full relative overflow-x-hidden">
@@ -42,10 +47,10 @@ const Carousel = () => {
           />
         ))}
         <CarouselSpecial />
-        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-2 z-10">
+        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-0 z-10">
           <button
             onClick={prev}
-            className="pr-1 rounded shadow bg-gray-900 text-gray-300"
+            className="px-0 bg-none text-tecruitPrimary sm:text-base text-lg"
             disabled={curr === 0}
             style={{
               transition: "transform 0.3s ease",
@@ -53,8 +58,9 @@ const Carousel = () => {
             }}
           >
             <ChevronLeft
-              size={20}
-              className="text-tecruitPrimary inline-block"
+              size={window.innerWidth > 768 ? 80 : 60}
+              strokeWidth={0.5}
+              className="text-tecruitPrimary inline-block "
             />
             <span>
               {curr !== 0 && (
@@ -66,7 +72,7 @@ const Carousel = () => {
           </button>
           <button
             onClick={next}
-            className="pl-1 rounded shadow bg-gray-900 text-gray-300"
+            className="px-0 bg-none text-tecruitPrimary sm:text-base text-lg"
             disabled={curr === slides.length - 1}
             style={{
               transition: "transform 0.3s ease",
@@ -80,7 +86,8 @@ const Carousel = () => {
                 </span>
               )}
               <ChevronRight
-                size={20}
+                size={window.innerWidth > 768 ? 80 : 60}
+                strokeWidth={0.5}
                 className="text-tecruitPrimary inline-block"
               />
             </span>
@@ -104,8 +111,11 @@ const Carousel = () => {
         categories={subCategoryData}
         country={slides[curr].alt}
       />
-      <FileUploadPdf screen="sm" children={<ApplyNowArrow customstyles={null}/>}/>
-        
+      <FileUploadPdf
+        screen="sm"
+        children={<ApplyNowArrow customstyles={customstylesSmall} />}
+      />
+
       <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full z-10">
         <SearchComponent />
       </div>
