@@ -25,26 +25,26 @@ const CategoryStatsSlider = ({ categories, country }) => {
     flexDirection: "column",
     background: "#1F2937",
     color: "#279b37",
-
   };
-
 
   return (
     <div
       className={`flex sm:flex-col justify-start items-center gap-6 sm:gap-8 category-stats-slider rounded-l-full rounded-r-lg px-2 py-4 sm:px-0 md:w-[84vw] lg:w-[75vw] sm:w-full h-52 w-[60vw] shadow-shade sm:shadow-0 z-0 text-tecruitSecondary`}
     >
       <div
-        className={`w-60 h-60 md:w-48 md:h-48 sm:w-32 sm:h-32 sm:py-2 rounded-full flex justify-center items-center text-6xl sm:text-3xl border-2 bg-tecruitPrimary sm:bg-tecruitSpecial `}
+        className={`w-60 h-60 md:w-48 md:h-48 sm:w-32 sm:h-32 sm:py-2 sm:rounded-sm rounded-full flex justify-center items-center text-6xl sm:text-3xl border-2 border-tecruitSecondary sm:border-none bg-tecruitPrimary text-tecruitSecondary sm:bg-tecruitSpecial sm:text-tecruitPrimary`}
       >
-        {currentCategory.totalJobs}
+        {currentCategory?.totalJobs}
       </div>
       <div
         className={`flex-grow sm:w-[94vw] h-full md:h-[80%] flex sm:justify-center justify-evenly items-center py-2 sm:py-4 bg-tecruitSecondary rounded-sm`}
         style={{ color: txt }}
       >
         <div className="flex flex-col justify-center items-center w-1/2">
-          <h1 className="text-4xl sm:text-2xl truncate text-center text-black min-w-full" style={{fontWeight:100}}>
-            {currentCategory.title}
+          <h1
+            className="text-4xl sm:text-2xl truncate text-center text-black min-w-full font-extralight"
+          >
+            {currentCategory?.title}
           </h1>
           <p className="block mt-2 mb-1 text-sm text-tecruitPrimary">Jobs In</p>
           {country === "Norway" && (
@@ -66,7 +66,10 @@ const CategoryStatsSlider = ({ categories, country }) => {
             </p>
           )}
         </div>
-        <FileUploadAndPdf screen="others" children={<ApplyNowArrow  customstyles={customstyles}/>} />
+        <FileUploadAndPdf
+          screen="others"
+          children={<ApplyNowArrow customstyles={customstyles} />}
+        />
       </div>
     </div>
   );

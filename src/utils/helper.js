@@ -70,3 +70,12 @@ export const getNordicColor = (country) => {
       return { bgc: '#006eb6', txt: '#e2f0ff' };
   }
 };
+
+//Sorting the subcategory data based on the country
+export function createNewSubCategoryArray(data, country) {
+  return data.map((category) => {
+    const newCategory = { title: category.title, totalJobs: category.totalJobs[country] };
+    return newCategory;
+  });
+}
+

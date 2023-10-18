@@ -9,12 +9,16 @@ import { addLocation } from "../../store/features/commonState";
 import { ChevronRight, ChevronLeft } from "react-feather";
 import ApplyNowArrow from "./CallToAction";
 import FileUploadPdf from "../common/FileUploaderPdf";
+import { useSelector } from "react-redux";
+import { createNewSubCategoryArray } from "../../utils/helper";
 
 const Carousel = () => {
   const [curr, setCurr] = useState(0);
+  const [categories, setCategories] = useState([]);
   const [iconSize, setIconSize] = useState(60);
   const [strokeWidth, setStrokeWidth] = useState(0.5);
   const dispatch = useDispatch();
+  const { location } = useSelector((state) => state.common);
 
   const prev = () => {
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
@@ -28,6 +32,12 @@ const Carousel = () => {
     dispatch(addLocation(alt));
   };
 
+  useEffect(() => {
+    const newCategories = createNewSubCategoryArray(subCategoryData, location);
+    setCategories(newCategories);
+  }, [location]);
+
+  
   useEffect(() => {
     let newSize, newStrokeWidth;
 
@@ -46,10 +56,12 @@ const Carousel = () => {
     setStrokeWidth(newStrokeWidth);
   }, []);
 
+  
   const customstylesSmall = {
     padding: ".8rem 2rem",
     borderRadius: "30px",
     color: "#fff",
+    border: "2px solid #fff",
   };
 
   return (
@@ -129,7 +141,7 @@ const Carousel = () => {
         </div>
       </div>
       <SubCategoryStats
-        categories={subCategoryData}
+        categories={categories}
         country={slides[curr].alt}
       />
       <FileUploadPdf

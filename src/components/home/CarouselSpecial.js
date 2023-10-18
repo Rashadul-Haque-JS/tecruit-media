@@ -11,7 +11,7 @@ const CarouselSpecial = () => {
                 Find the best <span className="text-tecruitPrimary">IT</span>{" "}
                 jobs &amp; <span className="block">internships <span className="hidden sm:inline-block">arround the</span> <span className="text-tecruitPrimary hidden sm:block">Nordic <span className="text-tecruitSecondary">countries</span></span></span>{" "} 
               </h2>
-              <p className="text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl 4xl:text-5xl mt-2 leading-5 sm:hidden">
+              <p className="text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl 4xl:text-5xl mt-2 leading-4 font-thin sm:hidden" style={{lineHeight:'1.25'}}>
                 Tecruit is the best place to find and list remote jobs
                 <span className="block sm:inline md:inline">
                   available in the most innovative companies around
