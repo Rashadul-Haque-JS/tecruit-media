@@ -72,10 +72,27 @@ export const getNordicColor = (country) => {
 };
 
 //Sorting the subcategory data based on the country
-export function createNewSubCategoryArray(data, country) {
-  return data.map((category) => {
-    const newCategory = { title: category.title, totalJobs: category.totalJobs[country] };
-    return newCategory;
-  });
+export const createNewSubCategoryArray=(data, country)=>{
+  return data.map(item => {
+    const totalJobs = item.totalJobs;
+    const totalNordic =
+      totalJobs['Sweden'] +
+      totalJobs['Denmark'] +
+      totalJobs['Norway'] +
+      totalJobs['Finland'];
+
+    return {
+      title: item.title,
+      totalJobs: {
+        ...totalJobs,
+        Nordic: totalNordic
+      }
+    };
+  }).map(category => ({
+    title: category.title,
+    totalJobs: category.totalJobs[country]
+  }));
 }
+
+
 

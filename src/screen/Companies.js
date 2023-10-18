@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const CompanyList = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -14,6 +15,8 @@ const CompanyList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [isRotated, setIsRotated] = useState(false);
+  const { location } = useSelector((state) => state.common);
+  
 
   // Define options for the view dropdown
   const viewOptions = [
@@ -60,6 +63,15 @@ const CompanyList = () => {
       }, 1000);
     }
   }, [isRotated]);
+
+  useEffect(() => {
+    if (location) {
+      setSelectedCountry({ value: location, label: location });
+    }
+    if(location === 'Nordic'){
+      setSelectedCountry(null);
+    }
+  }, [location]);
 
   return (
     <div className="sm:px-0 pb-10 min-h-screen">
@@ -112,8 +124,8 @@ const CompanyList = () => {
               } ${
                 !selectedCountry && !searchQuery && pageSize === 10
                   ? "text-tecruitPrimary"
-                  : "text-tecruitSpecial"
-              } w-6 h-8`}
+                  : "text-green-600"
+              } w-6 h-6`}
               style={{
                 transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 1s ease", fontWeight: "lighter",

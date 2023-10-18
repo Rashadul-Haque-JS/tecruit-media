@@ -23,7 +23,7 @@ const companies = [
     {
         name: 'Advania',
         website: 'https://www.advania.se/karriar',
-        country: 'Sweden',
+        country: 'Finland',
       },
       {
         name: 'Semcon',
@@ -402,9 +402,19 @@ const companies = [
         country: "Sweden",
       },
       {
-        name: "Detechtive",
-        website: "https://www.detechtiv.se/",
-        country: "Denmark" //Swedish company , but for test purposes Denmark is used
+        name: "Simcorp",
+        website: "https://www.simcorp.com/en/career",
+        country: "Denmark" 
+      },
+      {
+        name: "Cognitus",
+        website: "https://www.cognitusconsulting.com/careers/",
+        country: "Denmark" 
+      },
+      {
+        name: "Trifork",
+        website: "https://trifork.com/join/",
+        country: "Denmark" 
       },
       {
         name: "TMC",
@@ -415,6 +425,27 @@ const companies = [
         name: "One Agency",
         website: "https://www.oneagency.se/",
         country: "Sweden",
+      },
+      {
+        name: "Webstep",
+        website: "https://www.webstep.com/careers/",
+        country: "Norway",
+      },
+      {
+        name: "Devs Data",
+        website: "https://devsdata.com/careers/",
+        country: "Norway",
+      },
+      
+      {
+        name: "Sievo",
+        website: "https://sievo.com/careers",
+        country: "Finland",
+      },
+      {
+        name: "Varjo",
+        website: "https://varjo.com/jobs/",
+        country: "Finland",
       },
       
   ];
