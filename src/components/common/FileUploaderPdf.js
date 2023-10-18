@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cvTable } from '../../database.config';
+import { useSelector } from 'react-redux';
 
 const FileUploadAndPdf = ({ children, screen }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const { location } = useSelector((state) => state.common);
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
@@ -51,17 +53,20 @@ const FileUploadAndPdf = ({ children, screen }) => {
     try {
       const id = await cvTable.add({ name, data: pdfData });
       console.log(`PDF with ID ${id} stored successfully in IndexedDB`);
-      navigate('/jobs-match');
+      navigate(`/${location}/jobs-match`);
+      window.location.reload();
     } catch (error) {
       console.error('Failed to store PDF in IndexedDB:', error);
     }
   };
 
   const visibilities = () => {
-    if (screen === 'sm') {
+    if (screen === 'sm-home') {
       return 'hidden sm:flex justify-center items-center absolute left-0 right-0 bottom-[348px] z-20';
-    } else {
+    } else if(screen === 'all-home') {
       return 'flex sm:hidden';
+    }else{
+      return 'flex';
     }
   };
 

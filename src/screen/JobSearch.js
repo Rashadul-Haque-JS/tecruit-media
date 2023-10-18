@@ -6,6 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { selectStyles, formatDate } from "../utils/helper.js";
 import JobDescription from "../components/JobDescConvert.js";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   countries,
   cities,
@@ -43,6 +44,7 @@ const JobSearch = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const nordicLocation = useSelector((state) => state.common.location).toLowerCase();
 
  
   useEffect(() => {
@@ -118,7 +120,8 @@ const JobSearch = () => {
     setSelectedWorkTime(null);
     setCurrentView(isMobile ? null : jobs[0]);
     setSearchTerm("");
-    navigate("/jobs");
+    navigate(`/${nordicLocation}/jobs`);
+    handleLocationLock(nordicLocation);
   };
 
   const updateParamsFilter = () => {
@@ -202,6 +205,22 @@ const JobSearch = () => {
   useEffect(() => {
     setIsMobile(window.innerWidth <= 767 ? true : false);
   }, []);
+
+  const handleLocationLock = (land) => {
+    if(land!== 'nordic'){
+      const updatedLocation = {
+        label: land,
+        value: land,
+      };
+      setSelectedCountry(updatedLocation);
+    }else{
+      setSelectedCountry(null);
+    }
+  }
+
+  useEffect(() => {
+    handleLocationLock(nordicLocation);
+  },[nordicLocation])
 
   return (
     <div className="relative">
@@ -322,11 +341,13 @@ const JobSearch = () => {
                 placeholder="Search by country"
                 className="w-fit sm:w-full"
                 styles={selectStyles}
+                isDisabled={selectedCountry && nordicLocation !=='nordic' && selectedCountry.value !== 'nordic'}
+
               />
               {selectedCountry && (
                 <Select
                   options={cities
-                    .find((c) => c.countryId === selectedCountry.countryId)
+                    .find((c) => c.name === selectedCountry.value)
                     ?.mainCities.map((city) => ({
                       value: city.value,
                       label: city.label,
@@ -611,3 +632,4 @@ const JobSearch = () => {
 };
 
 export default JobSearch;
+

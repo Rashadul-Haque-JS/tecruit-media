@@ -7,7 +7,7 @@ import subCategoryData from "../../data/mock/subCategory";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/features/commonState";
 import { ChevronRight, ChevronLeft } from "react-feather";
-import ApplyNowArrow from "./CallToAction";
+import ApplyNowArrow from "../common/CallToAction";
 import FileUploadPdf from "../common/FileUploaderPdf";
 import { useSelector } from "react-redux";
 import { createNewSubCategoryArray } from "../../utils/helper";
@@ -145,7 +145,7 @@ const Carousel = () => {
         country={slides[curr].alt}
       />
       <FileUploadPdf
-        screen="sm"
+        screen="sm-home"
         children={<ApplyNowArrow customstyles={customstylesSmall} />}
       />
 

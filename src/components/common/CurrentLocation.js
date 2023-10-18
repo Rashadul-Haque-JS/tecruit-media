@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/features/commonState";
@@ -18,15 +16,16 @@ const CurrentLocation = () => {
     <div className="justify-center items-center gap-2 absolute right-3 top-16 z-40" 
     style={{display: pathname === "/" ? "none" : "flex"}}
     >
-       <FontAwesomeIcon
-            icon={faEye}
-            className="w-16px text-tecruitSpecial cursor-pointer"
-            onClick={handleLocationChange}
-          />
+      <img
+        src="/watching.svg"
+        alt="watching"
+        className="w-[22px] text-white cursor-pointer"
+        onClick={handleLocationChange}
+      />
       <img
         src={`/${modiFiedLocation}.svg`}
         alt={location}
-        className="w-[16px]"
+        className="w-[20px]"
       />
     </div>
   );

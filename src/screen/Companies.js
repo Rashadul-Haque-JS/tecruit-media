@@ -52,8 +52,9 @@ const CompanyList = () => {
 
   const clearFilters = () => {
     setSelectedCountry(null);
-    setSearchQuery("");
+    setSearchQuery(""); 
     setPageSize(10);
+    handleCountryLock(location);
   };
 
   useEffect(() => {
@@ -64,13 +65,17 @@ const CompanyList = () => {
     }
   }, [isRotated]);
 
-  useEffect(() => {
-    if (location) {
-      setSelectedCountry({ value: location, label: location });
+  const handleCountryLock = (land) => {
+    if (land) {
+      setSelectedCountry({ value: land, label: land });
     }
-    if(location === 'Nordic'){
+    if(land === 'Nordic'){
       setSelectedCountry(null);
     }
+  }
+
+  useEffect(() => {
+    handleCountryLock(location);
   }, [location]);
 
   return (
@@ -100,6 +105,8 @@ const CompanyList = () => {
               onChange={setSelectedCountry}
               placeholder="Filter by Country"
               styles={selectStyles}
+              isDisabled={selectedCountry && location !=='Nordic' && selectedCountry.value !== 'nordic'}
+
             />
 
             {/* View options */}

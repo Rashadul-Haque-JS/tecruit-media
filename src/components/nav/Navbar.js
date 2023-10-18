@@ -7,13 +7,14 @@ import {
   faXmark,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { linksOne,linksTwo } from "../../data/mock/jobs";
+import { getLinksOne,getLinksTwo } from "../../routes/routes";
 import tecruitLogo  from "../../assets/media/tecruit-logo.png";
 import {useSelector, useDispatch } from "react-redux";
 import { toggleStateDrawer} from "../../store/features/commonState";
 
 const Navbar = () => {
   const openDropDownDrawer = useSelector((state) => state.common.isDrawerOpen);
+  const location = useSelector((state) => state.common.location).toLowerCase();
   const dispatch = useDispatch();
   const toggleDrawer = () => {
     dispatch(toggleStateDrawer());
@@ -32,9 +33,9 @@ const Navbar = () => {
           <img src={tecruitLogo} alt="Tecruit logo" className="w-fit h-8 2xl:h-12"/>
         </Link>
         <div className="flex justify-between items-center gap-1 2xl:text-xl sm:hidden md:hidden">
-          <Link to="/post-job">Companies</Link>
-          <NavMenu title="Applicants" links={linksOne} />
-          <NavMenu title="Resources" links={linksTwo} />
+          <Link to={`/${location}/post-job`}>Companies</Link>
+          <NavMenu title="Applicants" links={getLinksOne(location)} />
+          <NavMenu title="Resources" links={getLinksTwo(location)} />
         </div>
       </div>
       <div className="flex justify-center items-center gap-4 2xl:text-xl">
@@ -75,9 +76,9 @@ const Navbar = () => {
             transition: "transform 0.3s ease",
           }}
         >
-          <Link to="/post-job" className="sm:text-center " onClick={toggleDrawer}>Companies</Link>
-          <NavMenu title="Applicants" links={linksOne} />
-          <NavMenu title="Resources" links={linksTwo} />
+          <Link to={`/${location}/post-job`} className="sm:text-center " onClick={toggleDrawer}>Companies</Link>
+          <NavMenu title="Applicants" links={getLinksOne(location)} />
+          <NavMenu title="Resources" links={getLinksTwo(location)} />
         </div>
       )}
     </div>

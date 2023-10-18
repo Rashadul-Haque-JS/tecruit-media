@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { cvTable } from "../database.config";
+import FileUploadPdf from "../components/common/FileUploaderPdf";
+import UploadButton from "../components/buttons/UploadButton";
+import VerticalDotsMenu from "../components/common/VerticleDotsMenu";
+
 
 const JobsMatchWithCV = () => {
   const [pdfData, setPdfData] = useState(null);
@@ -40,11 +44,12 @@ const JobsMatchWithCV = () => {
     }
   }, [loader]);
 
-  const removeCVFromIndexedDB = async (cvName) => {
+  const handleDelete = async (cvName) => {
     try {
       const pdfCV = await cvTable.get({ name: cvName });
       if (pdfCV) {
         await cvTable.delete(pdfCV.id); // Delete the CV using its ID
+        window.location.reload();
         console.log(`CV "${cvName}" removed from IndexedDB.`);
       } else {
         console.log(`CV "${cvName}" not found in IndexedDB.`);
@@ -55,7 +60,7 @@ const JobsMatchWithCV = () => {
   };
 
   return (
-    <div>
+    <div id="top">
       <h1 className="text-2xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center py-8 bg-tecruitPrimary text-tecruitSecondary">
         Job Match
       </h1>
@@ -68,30 +73,48 @@ const JobsMatchWithCV = () => {
 
       <div className="w-full h-screen flex sm:flex-col-reverse justify-between items-center gap-4 px-2 py-8">
         <div className="sm:w-full md:w-full lg:w-full min-w-1/2 border px-8 h-full relative">
-          <button
-            className="absolute w-fit right-2 top-2 text-xl"
-            onClick={() => removeCVFromIndexedDB(pdfName)}
-          >
-            ...
-          </button>
-          <h2 className="text-2xl py-8">Start Scanning for Matches</h2>
-          <p className="text-lg pb-4">
+          <VerticalDotsMenu
+            options={[
+              {
+                label: "Delete",
+                isDisabled: pdfData ? false : true,
+                action: () => handleDelete(pdfName),
+              },
+            ]}
+          />
+          <h2 className="text-xl font-semibold pt-8 pb-4">
+            Start Scanning for Matches
+          </h2>
+          <p className="pb-4">
             lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
             quos. lorem ipsum dolor sit amet consectetur adipisicing elit.
             Quisquam, quos.
           </p>
-          <button
-            className="bg-tecruitPrimary text-tecruitSecondary px-4 py-2 rounded-md"
-            onClick={() => setLoader(true)}
-          >
-            Scan Now
-          </button>
+          <p className="pb-4">
+            lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+            quos. lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Quisquam, quos.
+          </p>
+          <p className="pb-4">
+            lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+            quos. lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Quisquam, quos.
+          </p>
 
-          <span className="py-12 text-xs block">
-            This project is currently in its development phase. During this
-            stage, it's important to note that your PDF CV and files are not
-            being saved on any external servers or devices
-          </span>
+          <div className="flex justify-start items-center gap-6 py-3">
+            <button
+              className="bg-tecruitPrimary text-tecruitSecondary px-4 py-2 rounded-md"
+              onClick={() => setLoader(true)}
+            >
+              <a href="#top">Scan Now</a>
+            </button>
+            {!pdfData && (
+              <FileUploadPdf screen="all" children={<UploadButton label="Upload"/>} />
+            )}
+            {pdfData && (
+              <FileUploadPdf screen="all" children={<UploadButton label="Replace"/>} />
+            )}
+          </div>
         </div>
         {pdfData ? (
           <iframe
@@ -100,7 +123,9 @@ const JobsMatchWithCV = () => {
             className="pdf-iframe"
           ></iframe>
         ) : (
-          <p className="w-full text-center">Loading PDF...</p>
+          <div className="flex justify-center items-center text-md font-medium tracking-wider w-full h-full border">
+            <p className="text-center text-gray-500 ">No CV Found ...</p>
+          </div>
         )}
       </div>
       <section className="pt-8 pb-32 bg-slate-600">

@@ -1,3 +1,4 @@
+
 export const jobList = [
     {
       jobTitle: 'Software Engineer',
@@ -147,68 +148,4 @@ export const jobList = [
    
   ];
   
- export const linksOne = [
-    {
-      id: 1,
-      path: "/jobs",
-      icon: (
-        <i className="fa fa-home" aria-hidden="true">
-          🏡
-        </i>
-      ),
-      text: "Jobs List",
-    },
-    {
-      id: 2,
-      path: "/cv-templates",
-      icon: (
-        <i className="fa fa-info" aria-hidden="true">
-          ℹ️
-        </i>
-      ),
-      text: "Create ATS CV",
-    },
-    {
-      id: 3,
-      path: "/cv-scanner",
-      icon: (
-        <i className="fa fa-info" aria-hidden="true">
-          ℹ️
-        </i>
-      ),
-      text: "Optimise CV",
-    },
-    {
-      id: 4,
-      path: "/jobs-match",
-      icon: (
-        <i className="fa fa-info" aria-hidden="true">
-          ℹ️
-        </i>
-      ),
-      text: "Match Jobs",
-    },
-  ];
-
- export const linksTwo = [
-    {
-      id: 1,
-      path: "/courses",
-      icon: (
-        <i className="fa fa-home" aria-hidden="true">
-          🏡
-        </i>
-      ),
-      text: "Courses",
-    },
-    {
-      id: 2,
-      path: "/it-companies",
-      icon: (
-        <i className="fa fa-info" aria-hidden="true">
-          ℹ️
-        </i>
-      ),
-      text: "IT Companies",
-    },
-  ];
+ 

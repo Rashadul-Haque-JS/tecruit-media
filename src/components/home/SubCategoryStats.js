@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getNordicColor } from "../../utils/helper";
 import FileUploadAndPdf from "../common/FileUploaderPdf";
-import ApplyNowArrow from "./CallToAction";
+import ApplyNowArrow from "../common/CallToAction";
 
 const CategoryStatsSlider = ({ categories, country }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -67,7 +67,7 @@ const CategoryStatsSlider = ({ categories, country }) => {
           )}
         </div>
         <FileUploadAndPdf
-          screen="others"
+          screen="all-home"
           children={<ApplyNowArrow customstyles={customstyles} />}
         />
       </div>
