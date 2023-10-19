@@ -7,6 +7,7 @@ const defaultLocation = storedLocation ? storedLocation : 'Nordic';
 const initialState = {
   location: defaultLocation,
   isDrawerOpen: false,
+  isLogin:false
 };
 
 const commonSlice = createSlice({
@@ -21,9 +22,12 @@ const commonSlice = createSlice({
     toggleStateDrawer: (state) => {
       state.isDrawerOpen = !state.isDrawerOpen;
     },
+    toggleStateLogin: (state) => {
+      state.isLogin = !state.isLogin;
+    },
   },
 });
 
-export const { addLocation, toggleStateDrawer } = commonSlice.actions;
+export const { addLocation, toggleStateDrawer, toggleStateLogin } = commonSlice.actions;
 
 export default commonSlice.reducer;

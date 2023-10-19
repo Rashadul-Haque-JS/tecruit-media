@@ -5,6 +5,7 @@ import { countries, cities, jobList } from "../../data/mock/jobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { selectStylesHome } from "../../utils/helper";
+import { useSelector } from "react-redux";
 
 const SearchComponent = () => {
   const [queryData, setQueryData] = useState({
@@ -15,6 +16,7 @@ const SearchComponent = () => {
 
   const [info, setInfo] = useState(false);
   const navigate = useNavigate();
+  const { location } = useSelector((state) => state.common);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,7 +44,7 @@ const SearchComponent = () => {
     )}&country=${encodeURIComponent(
       queryData.country
     )}&city=${encodeURIComponent(queryData.city)}`;
-    navigate(`/jobs${queryString}`);
+    navigate(`/${location}/jobs${queryString}`);
   };
 
   return (

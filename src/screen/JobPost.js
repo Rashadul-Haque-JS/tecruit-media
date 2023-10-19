@@ -3,6 +3,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import skyDreamImg from "../assets/media/sky-dream.jpg";
 import Select from "react-select";
 import { postNewJob } from "../api/api";
+import { Link } from "react-router-dom";
 import {
   workTime,
   position,
@@ -14,10 +15,12 @@ import {
 import { selectStyles, getCurrentDate } from "../utils/helper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from "react-redux";
 
 const CreateJob = () => {
   const [formData, setFormData] = useState({
     jobTitle: "",
+    category: "",
     company: "Top Tech",
     country: "",
     city: "",
@@ -35,6 +38,7 @@ const CreateJob = () => {
   const [message, setMessage] = useState("");
   const [jobTypeInfo, setJobTypeInfo] = useState("");
   const [selectedDate, setSelectedDate] = useState();
+  const { isLogin } = useSelector((state) => state.common);
 
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
@@ -127,7 +131,7 @@ const CreateJob = () => {
           </span>
         )}
       </h1>
-      <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 px-8 sm:px-2">
+      <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 lg:gap-3 px-8 lg:px-4 sm:px-2">
         <div className="w-1/2 sm:w-full md:w-full flex-shrink-0 my-4">
           <img
             src={skyDreamImg}
@@ -135,7 +139,7 @@ const CreateJob = () => {
             className="object-cover w-full h-full sm:h-auto md:auto rounded-md"
           />
         </div>
-        <div className="w-1/2 sm:w-full md:w-full my-4 p-12 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg">
+        <div className="w-1/2 sm:w-full md:w-full my-4 p-12 lg:px-6 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg relative">
           <h1 className="text-2xl text-tecruitSpecial font-semibold mb-4">Create Job Posting</h1>
           <form onSubmit={handleSubmit} className="py-6">
             <div className="mb-4">
@@ -162,6 +166,25 @@ const CreateJob = () => {
                 className="block text-sm font-bold mb-2 px-3"
               >
                 Position{requiredSpan()}
+              </label>
+              <Select
+                options={position}
+                value={position.find((p) => p.value === formData.position)} // Select the matching option
+                onChange={(selectedOption) =>
+                  handleSelectChange(selectedOption, "position")
+                }
+                placeholder="Select a position"
+                className="w-full"
+                styles={selectStyles}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="category"
+                className="block text-sm font-bold mb-2 px-3"
+              >
+                Category{requiredSpan()}
               </label>
               <Select
                 options={position}
@@ -382,10 +405,9 @@ const CreateJob = () => {
                 }
               />
             </div>
-
             <button
               type="submit"
-              className="bg-tecruitPrimary text-tecruitSecondary hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              className="bg-tecruitPrimary text-tecruitSecondary hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
             >
               Publish Job
             </button>
@@ -393,8 +415,19 @@ const CreateJob = () => {
           <p className="py-4 text-xs text-tecruitSpecial">
             All the fields marked with (*) are required
           </p>
+          {!isLogin && (
+            <div className="flex justify-end items-start pt-10 pl-3 pr-12 sm:pt-16 sm:pr-6 md:pt-14 md:pr-12 lg:pt-14 lg:pl-0 lg:pr-6 bg-transparent absolute w-full h-full inset-0">
+              <div className="flex flex-col justify-center items-start gap-1 bg-tecruitSecondary text-xs w-fit py-3 px-4 sm:py-1 rounded-sm z-20 shadow-inner">
+                <p className="py-1 sm:py-0 w-fit ">Login Required to post a job</p>
+                <Link to="/auth" className="bg-tecruitSpecial text-tecruitSecondary px-2 py-1 sm:py-1 rounded-sm">
+                  Login
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
+
     </div>
   );
 };

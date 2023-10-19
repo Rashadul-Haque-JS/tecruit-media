@@ -27,7 +27,7 @@ const LoginCard = ({setSignup}) => {
   };
 
   return (
-    <div className="w-96 sm:w-full shadow-shade mt-6 px-8 py-6 sm:px-4 sm:mx-0 bg-tecruitSecondary">
+    <div className="md:w-[400px] lg:w-[400px] xl:w-[400px] w-1/4 sm:w-full shadow-shade mt-6 px-8 py-6 sm:px-4 sm:mx-0 bg-tecruitSecondary rounded-sm">
       <form onSubmit={handleSubmit}>
         <div className="bg-tecruitPrimary mb-4 grid h-28 place-items-center text-tecruitSecondary rounded shadow-shade">
           <h3 className="text-3xl">Sign In</h3>

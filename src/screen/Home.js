@@ -15,7 +15,7 @@ const Home = () => {
         <Carousel />
       </div>
       <div className="p-2 sm:px-0 flex justify-center items-center bg-tecruitSecondary">
-        <div className="sm:px-4 w-full mt-8 sm:mt-8 sm:mx-0 md:mx-0 mx-10">
+        <div className="sm:px-4 w-full mt-2 sm:mx-0 md:mx-0 mx-10">
           <SubHeadline
             title="Featured Jobs"
             color="#000"

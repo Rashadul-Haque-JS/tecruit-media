@@ -2,32 +2,32 @@
 import { denmark, sweden,norway,finland,heroImg  } from "../../assets";
 const heroImages = [
   {
-    id:1,
+    id:0,
     src: `${heroImg}`,
     alt: "Nordic",
     
   },
   {
-    id:2,
+    id:1,
     src: `${sweden}`,
     alt: "Sweden",
     
   },
   {
-    id:3,
+    id:2,
     src: `${denmark}`,
     alt: "Denmark",
     
   },
   
   {
-    id:4,
+    id:3,
     src: `${norway}`,
     alt: "Norway",
    
   },
   {
-    id:5,
+    id:4,
     src: `${finland}`,
     alt: "Finland",
    

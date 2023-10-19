@@ -26,7 +26,7 @@ module.exports = {
         tecruitRedish: "#D61E27",
       },
       fontSize: {
-        '2.5xl': '1.5rem',
+        '2.5xl': '1.7rem',
         '4.5xl': '2.5rem', 
         
       },

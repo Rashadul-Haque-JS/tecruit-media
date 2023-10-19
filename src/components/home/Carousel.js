@@ -56,6 +56,12 @@ const Carousel = () => {
     setStrokeWidth(newStrokeWidth);
   }, []);
 
+  useEffect(() => {
+    if(location !== 'Nordic'){
+      const currentSlide = slides.find((slide) => slide.alt === location)
+      setCurr(currentSlide.id)
+    }
+  },[location])
   
   const customstylesSmall = {
     padding: ".8rem 1.5rem",

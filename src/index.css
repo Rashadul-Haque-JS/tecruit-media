@@ -115,6 +115,14 @@ body {
   }
 }
 
+@media screen and (min-width: 1536px) {
+  .category-stats-slider {
+   top: 60%;
+   left: 55%;
+  }
+}
+
+
 
 .pdf-iframe {
   width: 100%;
