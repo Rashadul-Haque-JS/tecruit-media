@@ -58,7 +58,7 @@ const Carousel = () => {
 
   
   const customstylesSmall = {
-    padding: ".8rem 2rem",
+    padding: ".8rem 1.5rem",
     borderRadius: "30px",
     color: "#fff",
     border: "2px solid #fff",

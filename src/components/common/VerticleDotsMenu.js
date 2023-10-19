@@ -17,13 +17,13 @@ const VerticalDotsMenu = ({ options }) => {
         &#8942;
       </button>
       {isMenuOpen && (
-        <div className="absolute right-0 top-1 w-24 p-3 text-xs bg-tecruitSpecial border rounded shadow-md z-10" onMouseEnter={openMenu} onMouseLeave={closeMenu} onTouchStart={openMenu} onTouchEnd={closeMenu}>
+        <div className="absolute right-0 top-1 w-24 p-3 text-xs  border rounded shadow-md z-10" onMouseEnter={openMenu} onMouseLeave={closeMenu} onTouchStart={openMenu} onTouchEnd={closeMenu}>
           <ul className='flex flex-col justify-center items-center gap-3'>
             {options.map((option, index) => (
               <li
                 key={index}
                 onClick={!option.isDisabled ? option.action : undefined}
-                className={`w-full py-1 text-center text-tecruitSecondary cursor-pointer hover:bg-gray-700 ${option.isDisabled ? 'cursor-not-allowed' : ''}`}
+                className={`w-full py-1 text-center cursor-pointer bg-tecruitSecondary hover:bg-gray-200 ${option.isDisabled ? 'cursor-not-allowed' : 'pointer'}`}
               >
                 {option.label}
               </li>

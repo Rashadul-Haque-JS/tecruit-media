@@ -8,6 +8,7 @@ import {
   faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
+import { locationLock } from "../utils/helper";
 
 const CompanyList = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -105,7 +106,7 @@ const CompanyList = () => {
               onChange={setSelectedCountry}
               placeholder="Filter by Country"
               styles={selectStyles}
-              isDisabled={selectedCountry && location !=='Nordic' && selectedCountry.value !== 'nordic'}
+              isDisabled={locationLock(location, selectedCountry)}
 
             />
 

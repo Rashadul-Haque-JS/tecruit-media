@@ -18,6 +18,7 @@ import {
 } from "../data/mock/jobs.js";
 //import { getAllJob } from "../api/api.js";
 import PreLoader from "../components/PreLoader.js";
+import { locationLock } from "../utils/helper.js";
 
 const JobSearch = () => {
   const [jobs, setJobs] = useState(jobList);
@@ -341,7 +342,7 @@ const JobSearch = () => {
                 placeholder="Search by country"
                 className="w-fit sm:w-full"
                 styles={selectStyles}
-                isDisabled={selectedCountry && nordicLocation !=='nordic' && selectedCountry.value !== 'nordic'}
+                isDisabled={locationLock(nordicLocation,selectedCountry)}
 
               />
               {selectedCountry && (

@@ -67,7 +67,7 @@ export const getNordicColor = (country) => {
     case 'Finland':
       return { bgc: '#002F6C', txt: '#fff' };
     default:
-      return { bgc: '#006eb6', txt: '#e2f0ff' };
+      return { bgc: '#006EB7', txt: '#fff' };
   }
 };
 
@@ -95,4 +95,8 @@ export const createNewSubCategoryArray=(data, country)=>{
 }
 
 
-
+export const locationLock=(location, selection)=>{
+location = location.toLowerCase();
+const isLocation = selection && location !=='nordic' && selection.value !== 'nordic'
+return isLocation
+}
