@@ -58,7 +58,7 @@ const CategoryStatsSlider = ({ categories, country }) => {
       >
         <div className="flex flex-col justify-center items-center w-1/3">
           <h1
-            className="text-5xl xl:text-4.5xl lg:text-4.5xl  sm:text-3xl md:text-3xl truncate text-center text-black min-w-full font-extralight"
+            className="text-5xl xl:text-4.5xl lg:text-4.5xl sm:text-3xl md:text-3xl truncate text-center text-black min-w-full font-extralight"
           >
             {currentCategory?.title}
           </h1>

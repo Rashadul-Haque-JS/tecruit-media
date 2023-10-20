@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import skyDreamImg from "../assets/media/sky-dream.jpg";
 import Select from "react-select";
 import { postNewJob } from "../api/api";
 import { Link } from "react-router-dom";
@@ -16,6 +15,7 @@ import { selectStyles, getCurrentDate } from "../utils/helper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
+import ProgramCard from "../components/common/ProgramCard";
 
 const CreateJob = () => {
   const [formData, setFormData] = useState({
@@ -119,7 +119,7 @@ const CreateJob = () => {
   }, [message]);
 
   return (
-    <div>
+    <div className="pb-20">
       <h1 className="text-2xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center py-8 bg-tecruitPrimary text-tecruitSecondary">
         Job Post{" "}
         {message && (
@@ -133,11 +133,31 @@ const CreateJob = () => {
       </h1>
       <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 lg:gap-3 px-8 lg:px-4 sm:px-2">
         <div className="w-1/2 sm:w-full md:w-full flex-shrink-0 my-4">
-          <img
-            src={skyDreamImg}
-            alt="Jobs"
-            className="object-cover w-full h-full sm:h-auto md:auto rounded-md"
+        <ProgramCard
+          img="/tools.jpg"
+          headline="Recruitment automation tools"
+          text=" Lorem ipsum do lor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+          label="Try it now"
+          link="/recruitment-automation"
+          
           />
+           <ProgramCard
+          img="/woman.jpg"
+          headline="Meet the best candidates"
+          text=" Lorem ipsum do lor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+          label="Meet point"
+          link="/candidates"
+          
+          />
+          <ProgramCard
+            img="/planning-job.jpg"
+            headline="Effective recruitments with Tecruit"
+            text="Tecruit is a platform that helps you to find the best candidate. We have a wide range of candidates from different countries and different backgrounds. We are here to help you to find the best candidate for your company."
+            label="Find Out More"
+            link="/planning-recruitment"
+          />
+         
+         
         </div>
         <div className="w-1/2 sm:w-full md:w-full my-4 p-12 lg:px-6 sm:p-6 bg-tecruitSecondary rounded-lg shadow-lg relative">
           <h1 className="text-2xl text-tecruitSpecial font-semibold mb-4">Create Job Posting</h1>
