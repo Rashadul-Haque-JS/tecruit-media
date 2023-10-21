@@ -7,7 +7,7 @@ const CarouselSpecial = () => {
         <div className="px-8 sm:px-4 4xl:px-16 4xl:py-4 ">
           <div className="w-1/2 sm:w-full">
             <div className="sm:pt-4 sm:pb-6 pt-5 pb-3 lg:py-12 text-tecruitSecondary">
-              <h2 className="text-2.5xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl 4xl:text-6xl font-bold leading-tigh sm:leading-8 capitalize">
+              <h2 className="text-2.5xl md:text-3xl lg:text-4xl xl:text-3xl 2xl:text-5xl 3xl:text-6xl 4xl:text-6xl font-bold leading-tigh sm:leading-8 capitalize">
                 Find the best <span className="text-tecruitPrimary">IT</span>{" "}
                 jobs &amp; <span className="block">internships <span className="hidden sm:inline-block">arround the</span> <span className="text-tecruitPrimary hidden sm:block">Nordic <span className="text-tecruitSecondary">countries</span></span></span>{" "} 
               </h2>

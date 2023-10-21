@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginComponent from "../components/auth/Login";
 import SignupComponent from "../components/auth/Signup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 const AuthView = () => {
   const [signup, setSignup] = useState(false);
+  const {authToken} =useSelector((state) => state.common);
+
+  useEffect(() => {
+    if(authToken){
+      window.location.href = '/'
+    }
+  }, [authToken])
 
   return (
     <div className="flex flex-col justify-start items-center  pb-24 mx-2 min-h-screen auth-bg">

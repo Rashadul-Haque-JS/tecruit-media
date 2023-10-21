@@ -63,9 +63,9 @@ const CategoryStatsSlider = ({ categories, country }) => {
             {currentCategory?.title}
           </h1>
           <p className="block mt-2 mb-1 text-sm 2xl:text-md 3xl:text-md 4xl:text-md text-tecruitPrimary">Jobs In</p>
-          {country === "Norway" && (
+          {country === "norway" && (
             <p
-              className="text-lg 2xl:text-xl 3xl:text-xl 4xl:text-xl  px-4 py-2 font-bold rounded-sm shadow-none"
+              className="text-lg 2xl:text-xl 3xl:text-xl 4xl:text-xl  px-4 py-2 font-bold rounded-sm shadow-none capitalize"
               style={{ backgroundColor: bgc }}
             >
               <span className="text-white">{country.slice(0, 3)}</span>
@@ -73,9 +73,9 @@ const CategoryStatsSlider = ({ categories, country }) => {
             </p>
           )}
 
-          {country !== "Norway" && (
+          {country !== "norway" && (
             <p
-              className="text-lg px-4 py-2 font-bold rounded-sm shadow-none"
+              className="text-lg px-4 py-2 font-bold rounded-sm shadow-none capitalize"
               style={{ backgroundColor: bgc, color: txt }}
             >
               {country}

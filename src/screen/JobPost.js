@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Select from "react-select";
-import { postNewJob } from "../api/api";
 import { Link } from "react-router-dom";
 import {
   workTime,
@@ -16,11 +15,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 import ProgramCard from "../components/common/ProgramCard";
+import { postNewJob } from "../api/api";
+import subCategories from "../data/static/subCategories";
 
 const CreateJob = () => {
   const [formData, setFormData] = useState({
     jobTitle: "",
-    category: "",
+    category: "data/IT",
+    subCategory: "",
     company: "Top Tech",
     country: "",
     city: "",
@@ -38,8 +40,7 @@ const CreateJob = () => {
   const [message, setMessage] = useState("");
   const [jobTypeInfo, setJobTypeInfo] = useState("");
   const [selectedDate, setSelectedDate] = useState();
-  const { isLogin } = useSelector((state) => state.common);
-
+  const { authType } = useSelector((state) => state.common);
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
 
@@ -134,7 +135,7 @@ const CreateJob = () => {
       <div className="bg-gray-100 min-h-screen flex sm:flex-wrap-reverse md:flex-wrap-reverse justify-center gap-8 lg:gap-3 px-8 lg:px-4 sm:px-2">
         <div className="w-1/2 sm:w-full md:w-full flex-shrink-0 my-4">
         <ProgramCard
-          img="/tools.jpg"
+          img="/media/tools.jpg"
           headline="Recruitment automation tools"
           text=" Lorem ipsum do lor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
           label="Try it now"
@@ -142,7 +143,7 @@ const CreateJob = () => {
           
           />
            <ProgramCard
-          img="/woman.jpg"
+          img="/media/woman.jpg"
           headline="Meet the best candidates"
           text=" Lorem ipsum do lor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
           label="Meet point"
@@ -150,8 +151,8 @@ const CreateJob = () => {
           
           />
           <ProgramCard
-            img="/planning-job.jpg"
-            headline="Effective recruitments with Tecruit"
+            img="/media/planning-job.jpg"
+            headline="Effective Planning with Tecruit"
             text="Tecruit is a platform that helps you to find the best candidate. We have a wide range of candidates from different countries and different backgrounds. We are here to help you to find the best candidate for your company."
             label="Find Out More"
             link="/planning-recruitment"
@@ -201,18 +202,18 @@ const CreateJob = () => {
             </div>
             <div className="mb-4">
               <label
-                htmlFor="category"
+                htmlFor="subCategory"
                 className="block text-sm font-bold mb-2 px-3"
               >
-                Category{requiredSpan()}
+                Sub Category{requiredSpan()}
               </label>
               <Select
-                options={position}
-                value={position.find((p) => p.value === formData.position)} // Select the matching option
+                options={subCategories}
+                value={subCategories.find((sc) => sc.value === formData.subCategory)} 
                 onChange={(selectedOption) =>
-                  handleSelectChange(selectedOption, "position")
+                  handleSelectChange(selectedOption, "subCategory")
                 }
-                placeholder="Select a position"
+                placeholder="Select sub-category"
                 className="w-full"
                 styles={selectStyles}
                 required
@@ -435,10 +436,10 @@ const CreateJob = () => {
           <p className="py-4 text-xs text-tecruitSpecial">
             All the fields marked with (*) are required
           </p>
-          {!isLogin && (
+          {authType !== 'company' && (
             <div className="flex justify-end items-start pt-10 pl-3 pr-12 sm:pt-16 sm:pr-6 md:pt-14 md:pr-12 lg:pt-14 lg:pl-0 lg:pr-6 bg-transparent absolute w-full h-full inset-0">
               <div className="flex flex-col justify-center items-start gap-1 bg-tecruitSecondary text-xs w-fit py-3 px-4 sm:py-1 rounded-sm z-20 shadow-inner">
-                <p className="py-1 sm:py-0 w-fit ">Login Required to post a job</p>
+                <p className="py-1 sm:py-0 w-fit ">Company login required</p>
                 <Link to="/auth" className="bg-tecruitSpecial text-tecruitSecondary px-2 py-1 sm:py-1 rounded-sm">
                   Login
                 </Link>

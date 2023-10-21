@@ -3,10 +3,6 @@ import Select from "react-select"; // Import the react-select component
 import companies from "../data/mock/companies";
 import CompanyCard from "../components/companies/CompanyCard";
 import { selectStyles } from "../utils/helper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowsRotate,
-} from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { locationLock } from "../utils/helper";
 
@@ -29,7 +25,7 @@ const CompanyList = () => {
   // Filter companies by selected country and search query
   const filteredCompanies = companies.filter((company) => {
     const byCountry =
-      !selectedCountry || company.country === selectedCountry.value;
+      !selectedCountry || company.country.toLowerCase() === selectedCountry.value;
     const byName = company.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
@@ -67,12 +63,12 @@ const CompanyList = () => {
   }, [isRotated]);
 
   const handleCountryLock = (land) => {
-    if (land) {
+    if (land && land !== 'nordic') {
       setSelectedCountry({ value: land, label: land });
-    }
-    if(land === 'Nordic'){
+    }else{
       setSelectedCountry(null);
     }
+    
   }
 
   useEffect(() => {
@@ -97,10 +93,10 @@ const CompanyList = () => {
           <div className="flex justify-center items-center gap-3">
             <Select
               options={[
-                { value: "Sweden", label: "Sweden" },
-                { value: "Denmark", label: "Denmark" },
-                { value: "Norway", label: "Norway" },
-                { value: "Finland", label: "Finland" },
+                { value: "sweden", label: "Sweden" },
+                { value: "denmark", label: "Denmark" },
+                { value: "norway", label: "Norway" },
+                { value: "finland", label: "Finland" },
               ]}
               value={selectedCountry}
               onChange={setSelectedCountry}
@@ -118,8 +114,8 @@ const CompanyList = () => {
               placeholder="View Options"
               styles={selectStyles}
             />
-            <FontAwesomeIcon
-              icon={faArrowsRotate}
+            <img
+            src="/media/refresh.svg"
               onClick={() => {
                 if (!selectedCountry && !searchQuery && pageSize === 10) {
                   return;
@@ -137,7 +133,9 @@ const CompanyList = () => {
               style={{
                 transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 1s ease", fontWeight: "lighter",
+                
               }}
+              alt="Refresh"
             />
           </div>
         </div>

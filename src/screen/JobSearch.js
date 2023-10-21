@@ -14,14 +14,14 @@ import {
   published_date,
   position,
   workTime,
-  jobList,
 } from "../data/mock/jobs.js";
 //import { getAllJob } from "../api/api.js";
 import PreLoader from "../components/PreLoader.js";
 import { locationLock } from "../utils/helper.js";
+import { getJobsList } from "../api/api.js";
 
 const JobSearch = () => {
-  const [jobs, setJobs] = useState(jobList);
+  const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [selectedWorkTime, setSelectedWorkTime] = useState(null);
@@ -45,8 +45,27 @@ const JobSearch = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const nordicLocation = useSelector((state) => state.common.location).toLowerCase();
+  const nordicLocation = useSelector((state) => state.common.location);
 
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await getJobsList();
+        setJobs(response.data.jobs);
+      } catch (error) {
+        if (error.response) {
+          console.error('Server responded with an error:', error.response.data);
+        } else if (error.request) {
+          console.error('No response received. There might be a network issue.');
+        } else {
+          console.error('Error in setting up the request:', error.message);
+        }
+      }
+    };
+    fetchJobs();
+  }, []);
+  
+  
  
   useEffect(() => {
     setLoading(jobs.length > 0 ? false : true);
@@ -424,7 +443,7 @@ const JobSearch = () => {
                   className="border p-4 my-2 rounded-lg"
                   style={{
                     backgroundColor:
-                      currentView?._id === job._id ? "#E5E7EB" : "",
+                      currentView?._id === job._id ? "#f3f4f6" : "",
                   }}
                 >
                   <li key={job._id}>

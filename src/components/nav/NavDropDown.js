@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { toggleStateDrawer } from "../../store/features/commonState";
 
@@ -44,6 +44,7 @@ const NavMenu = ({ title, links }) => {
               </Link>
             ))}
           </div>
+
         </div>
       )}
     </div>

@@ -133,7 +133,7 @@ const JobsMatchWithCV = () => {
           CV : AI Optimisation{" "}
         </h2>
         <div className="flex justify-center flex-grow ">
-          <img src="/ai-world.png" alt="trending" className="h-20%" />
+          <img src="/media/ai-world.png" alt="trending" className="h-20%" />
         </div>
       </section>
     </div>

@@ -71,6 +71,7 @@ export const jobList = [
     {
       jobTitle: 'Fullstack Developer',
       category: 'data/IT',
+      subCategory: 'developer',
       company: 'FinanceX Inc.',
       country: 'norway',
       city: 'oslo',

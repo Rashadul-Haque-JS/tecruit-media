@@ -22,14 +22,14 @@ const Carousel = () => {
 
   const prev = () => {
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
-    const alt = slides[curr === 0 ? slides.length - 1 : curr - 1].alt;
-    dispatch(addLocation(alt));
+    const alt = slides[curr === 0 ? slides.length - 1 : curr - 1].alt.toLowerCase();
+    dispatch(addLocation(alt.toLowerCase()));
   };
 
   const next = () => {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
-    const alt = slides[curr === slides.length - 1 ? 0 : curr + 1].alt;
-    dispatch(addLocation(alt));
+    const alt = slides[curr === slides.length - 1 ? 0 : curr + 1].alt.toLowerCase();
+    dispatch(addLocation(alt.toLowerCase()));
   };
 
   useEffect(() => {
@@ -57,8 +57,9 @@ const Carousel = () => {
   }, []);
 
   useEffect(() => {
-    if(location !== 'Nordic'){
-      const currentSlide = slides.find((slide) => slide.alt === location)
+    console.log(location);
+    if(location !== 'nordic'){
+      const currentSlide = slides.find((slide) => slide.alt.toLowerCase() === location)
       setCurr(currentSlide.id)
     }
   },[location])
@@ -148,7 +149,7 @@ const Carousel = () => {
       </div>
       <SubCategoryStats
         categories={categories}
-        country={slides[curr].alt}
+        country={slides[curr].alt.toLowerCase()}
       />
       <FileUploadPdf
         screen="sm-home"

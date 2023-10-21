@@ -1,17 +1,36 @@
-import axios from 'axios'
-// added comments
-axios.defaults.baseURL = 'http://localhost:9990/api/v1';
-// axios.defaults.baseURL = process.env.REACT_APP_BASE_SERVER_URL + 'api/v1';
+import axios from "axios";
 
-// // auth
-// export const saveToken = (token) => {
-//     console.log(token)
-//     return axios.defaults.headers.common["Authorization"] = token;
-// }
+// Set the base URL for Axios
+axios.defaults.baseURL = "http://localhost:3001";
 
+export const saveHeaderToken = (token) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  console.log(axios.defaults.headers.common["Authorization"], 'done');
+};
+
+export const removeToken = () => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${''}`;
+};
+
+export const signup = async (object) => {
+  return await axios.post("/users/signup", object);
+};
+
+export const login = async (object) => {
+  return await axios.post("/users/login", object);
+};
+export const getAuthUser = async () => {
+  return await axios.get("/users");
+};
+export const updateUser = async (object) => {
+  return await axios.put(`/users`, object);
+};
+export const deleteUser = async () => {
+  return await axios.delete(`/users`);
+};
 export const postNewJob = async (object) => {
-    return await axios.post("/post-new-job", object);
-}
-export const getAllJob = async () => {
-    return await axios.get("/jobs");
-}
+  return await axios.post("/jobs", object);
+};
+export const getJobsList = async () => {
+  return await axios.get("/jobs");
+};

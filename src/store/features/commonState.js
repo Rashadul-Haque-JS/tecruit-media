@@ -3,11 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 // Check local storage for a saved location, if none use the default 'Nordic'
 const storedLocation = localStorage.getItem('location');
 const defaultLocation = storedLocation ? storedLocation : 'Nordic';
+const token = localStorage.getItem('token');
+const defaultToken = token ? token : '';
 
 const initialState = {
-  location: defaultLocation,
+  location: defaultLocation.toLowerCase(),
   isDrawerOpen: false,
-  isLogin:false
+  authToken: defaultToken,
+  authType: '',
 };
 
 const commonSlice = createSlice({
@@ -22,12 +25,17 @@ const commonSlice = createSlice({
     toggleStateDrawer: (state) => {
       state.isDrawerOpen = !state.isDrawerOpen;
     },
-    toggleStateLogin: (state) => {
-      state.isLogin = !state.isLogin;
+   
+    addAuthToken: (state, action) => {
+      state.authToken = action.payload;
+      localStorage.setItem('token', action.payload);
+    },
+    addAuthType: (state, action) => {
+      state.authType = action.payload;
     },
   },
 });
 
-export const { addLocation, toggleStateDrawer, toggleStateLogin } = commonSlice.actions;
+export const { addLocation, toggleStateDrawer, addAuthToken, addAuthType } = commonSlice.actions;
 
 export default commonSlice.reducer;

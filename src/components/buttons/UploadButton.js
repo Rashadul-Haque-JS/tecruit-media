@@ -9,7 +9,7 @@ const UploadButton = ({label}) => {
     >
       <FontAwesomeIcon
         icon={faArrowUpFromBracket}
-        className="text-sm animate-pulse border px-2 py-1"
+        className={`text-sm ${label?.includes('CV')?'animate-pulse':'animate-none'} p-1`}
       />
       <span className="text-sm">{label}</span>
     </div>

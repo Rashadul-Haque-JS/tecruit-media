@@ -1,9 +1,9 @@
 const subCategoryData = [
-  { title: 'Developer', totalJobs: { 'Sweden': 100, 'Denmark': 90, 'Norway': 60, 'Finland': 75 } },
-  { title: 'System', totalJobs: { 'Sweden': 45, 'Denmark': 30, 'Norway': 22, 'Finland': 40 } },
-  { title: 'Networking', totalJobs: { 'Sweden': 25, 'Denmark': 20, 'Norway': 18, 'Finland': 3 } },
-  { title: 'Cloud', totalJobs: { 'Sweden': 80, 'Denmark': 60, 'Norway': 45, 'Finland': 70 } },
-  { title: 'Technician', totalJobs: { 'Sweden': 55, 'Denmark': 40, 'Norway': 30, 'Finland': 50 } },
+  { title: 'Developer', totalJobs: { 'sweden': 100, 'denmark': 90, 'norway': 60, 'finland': 75 } },
+  { title: 'System', totalJobs: { 'sweden': 45, 'denmark': 30, 'norway': 22, 'finland': 40 } },
+  { title: 'Networking', totalJobs: { 'sweden': 25, 'denmark': 20, 'norway': 18, 'finland': 3 } },
+  { title: 'Cloud', totalJobs: { 'sweden': 80, 'denmark': 60, 'norway': 45, 'finland': 70 } },
+  { title: 'Technician', totalJobs: { 'sweden': 55, 'denmark': 40, 'norway': 30, 'finland': 50 } },
 ];
 
 export default subCategoryData;

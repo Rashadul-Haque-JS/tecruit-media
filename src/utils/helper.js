@@ -58,13 +58,13 @@ export const formatDate = (isoDateString) => {
 
 export const getNordicColor = (country) => {
   switch (country) {
-    case 'Sweden':
+    case 'sweden':
       return { bgc: '#005293', txt: '#fecb00' };
-    case 'Denmark':
+    case 'denmark':
       return { bgc: '#C60C30', txt: '#fff' }; 
-    case 'Norway':
+    case 'norway':
       return { bgc: '#BA0C2F', txt: '#003087' };
-    case 'Finland':
+    case 'finland':
       return { bgc: '#002F6C', txt: '#fff' };
     default:
       return { bgc: '#006EB7', txt: '#fff' };
@@ -76,16 +76,16 @@ export const createNewSubCategoryArray=(data, country)=>{
   return data.map(item => {
     const totalJobs = item.totalJobs;
     const totalNordic =
-      totalJobs['Sweden'] +
-      totalJobs['Denmark'] +
-      totalJobs['Norway'] +
-      totalJobs['Finland'];
+      totalJobs['sweden'] +
+      totalJobs['denmark'] +
+      totalJobs['norway'] +
+      totalJobs['finland'];
 
     return {
       title: item.title,
       totalJobs: {
         ...totalJobs,
-        Nordic: totalNordic
+        nordic: totalNordic
       }
     };
   }).map(category => ({
@@ -96,7 +96,8 @@ export const createNewSubCategoryArray=(data, country)=>{
 
 
 export const locationLock=(location, selection)=>{
-location = location.toLowerCase();
 const isLocation = selection && location !=='nordic' && selection.value !== 'nordic'
 return isLocation
 }
+
+

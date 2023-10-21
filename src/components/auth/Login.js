@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'; //noted
+import { addAuthToken } from '../../store/features/commonState'; //noted
+import { login} from '../../api/api';
+import { useNavigate } from 'react-router-dom';
+
 
 const LoginCard = ({setSignup}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+
+  const dispatch = useDispatch(); 
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -17,14 +25,23 @@ const LoginCard = ({setSignup}) => {
     setRememberMe(event.target.checked);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here, e.g., login request
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Remember Me:', rememberMe);
+    try {
+      const response = await login({ email, password });
+      dispatch(addAuthToken(response.data.token));
+      navigate('/');
+    } catch (error) {
+      console.error('An error occurred:', error);
+      
+    }
+    
+    setEmail('');
+    setPassword('');
+    setRememberMe(false);
   };
+
 
   return (
     <div className="md:w-[400px] lg:w-[400px] xl:w-[400px] w-1/4 sm:w-full shadow-shade mt-6 px-8 py-6 sm:px-4 sm:mx-0 bg-tecruitSecondary rounded-sm">
@@ -87,3 +104,5 @@ const LoginCard = ({setSignup}) => {
 };
 
 export default LoginCard;
+
+
