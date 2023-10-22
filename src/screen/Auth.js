@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import LoginComponent from "../components/auth/Login";
-import SignupComponent from "../components/auth/Signup";
+import SignupIndex from "../components/auth/signup/SignupIndex";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const AuthView = () => {
   const [signup, setSignup] = useState(false);
-  const {authToken} =useSelector((state) => state.common);
+  const {authToken,authType} =useSelector((state) => state.common);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(authToken){
-      window.location.href = '/'
+    if(authToken && authType){
+      navigate('/')
     }
-  }, [authToken])
+  }, [authToken,authType,navigate])
 
   return (
     <div className="flex flex-col justify-start items-center  pb-24 mx-2 min-h-screen auth-bg">
@@ -20,7 +22,7 @@ const AuthView = () => {
       <FontAwesomeIcon icon={faHandshake} className="text-center text-6xl text-tecruitPrimary" />
       </div>
       {!signup && <LoginComponent setSignup={setSignup} />}
-      {signup && <SignupComponent setSignup={setSignup} />}
+      {signup && <SignupIndex setSignup={setSignup} />}
     </div>
   );
 };

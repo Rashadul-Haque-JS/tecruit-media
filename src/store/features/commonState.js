@@ -5,12 +5,14 @@ const storedLocation = localStorage.getItem('location');
 const defaultLocation = storedLocation ? storedLocation : 'Nordic';
 const token = localStorage.getItem('token');
 const defaultToken = token ? token : '';
+const type = localStorage.getItem('type');
+const defaultType = type ? type : '';
 
 const initialState = {
   location: defaultLocation.toLowerCase(),
   isDrawerOpen: false,
   authToken: defaultToken,
-  authType: '',
+  authType: defaultType,
 };
 
 const commonSlice = createSlice({
@@ -32,6 +34,7 @@ const commonSlice = createSlice({
     },
     addAuthType: (state, action) => {
       state.authType = action.payload;
+      localStorage.setItem('type', action.payload);
     },
   },
 });

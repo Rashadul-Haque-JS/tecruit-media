@@ -11,14 +11,22 @@ import { getLinksOne, getLinksTwo } from "../../routes/routes";
 import tecruitLogo from "../../assets/media/tecruit-logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleStateDrawer } from "../../store/features/commonState";
-import { saveHeaderToken, getAuthUser, removeToken } from "../../api/api";
+import {
+  saveHeaderToken,
+  getAuthapplicant,
+  removeToken,
+  getAuthCompany,
+} from "../../api/api";
 import { addAuthToken, addAuthType } from "../../store/features/commonState";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const openDropDownDrawer = useSelector((state) => state.common.isDrawerOpen);
-  const { location, authToken } = useSelector((state) => state.common);
+  const { location, authToken, authType} = useSelector(
+    (state) => state.common
+  );
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toggleDrawer = () => {
@@ -26,30 +34,40 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    try {
-      if (authToken) {
-        saveHeaderToken(authToken);
-        const getUser = async () => {
-          try {
-            const response = await getAuthUser();
-            const username = response.data.email?.split("@")[0].slice(0, 2);
-            setUser(username);
-            dispatch(addAuthType(response.data.type));
-          } catch (error) {
-            // Handle network error
-            if (error.message === "Network Error") {
-              console.log("Network error: The application is offline.");
-            } else {
-              console.log("Other API request error:", error);
-            }
-          }
-        };
-        getUser();
+    const fetchData = async () => {
+      try {
+        let response;
+        if (authType === "applicant") {
+          response = await getAuthapplicant();
+        } else {
+          response = await getAuthCompany();
+        }
+        const username = response.data.email?.split("@")[0].slice(0, 2);
+        setUser(username);
+        dispatch(addAuthType(response.data.type));
+      } catch (error) {
+        if (error.response) {
+          console.log("API request error:", error.response.data);
+          // Handle specific API response errors here
+          // For example, you can set appropriate error state or show a user-friendly error message
+        } else if (error.request) {
+          console.log("API request error: No response received");
+          // Handle network issues here
+          // You can display a network error message to the user
+        } else {
+          console.error("Other API request error:", error.message);
+          // Handle other errors here
+          // Log any other unexpected errors
+        }
       }
-    } catch (error) {
-      console.log(error);
+    };
+  
+    if (authToken) {
+      saveHeaderToken(authToken);
+      fetchData();
     }
-  }, [authToken, dispatch]);
+  }, [authToken, authType, dispatch]);
+  
 
   const handleLogout = () => {
     dispatch(addAuthToken(""));

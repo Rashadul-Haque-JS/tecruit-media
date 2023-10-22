@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { cvTable } from "../database.config";
 import FileUploadPdf from "../components/common/FileUploaderPdf";
-import UploadButton from "../components/buttons/UploadButton";
+import UploadButton from "../components/common/buttons/UploadButton";
 import VerticalDotsMenu from "../components/common/VerticleDotsMenu";
 
 
@@ -45,10 +45,12 @@ const JobsMatchWithCV = () => {
   }, [loader]);
 
   const handleDelete = async (cvName) => {
+    console.log('c00l');
     try {
       const pdfCV = await cvTable.get({ name: cvName });
       if (pdfCV) {
-        await cvTable.delete(pdfCV.id); // Delete the CV using its ID
+        await cvTable.delete(pdfCV.id);
+        localStorage.removeItem('pdfName') // Delete the CV using its ID
         window.location.reload();
         console.log(`CV "${cvName}" removed from IndexedDB.`);
       } else {
@@ -77,7 +79,7 @@ const JobsMatchWithCV = () => {
             options={[
               {
                 label: "Delete",
-                isDisabled: pdfData ? false : true,
+                isDisabled: pdfData ? false: true,
                 action: () => handleDelete(pdfName),
               },
             ]}

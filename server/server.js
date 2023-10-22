@@ -1,21 +1,29 @@
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const morgan = require("morgan");
 const server = express();
-server.use(bodyParser.json());
 server.use(cors());
+server.use(morgan("dev"));
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 
-// Import your controller functions
-const { login,signup,getUser,deleteUser,updateUser } = require ('./controllers/authControllers.js');
+const {findApplicantOrCompany,handleDuplicateSignup} = require('./middlewares/authMiddleware.js');
+const {login} = require('./controllers/auth/loginContorller.js');
+const { applicantSignup,getApplicant,updateApplicant,deleteApplicant } = require ('./controllers/auth/authApplicantsControllers.js');
+const { companySignup,getCompany,updateCompany,deleteCompany } = require ('./controllers/auth/authCopmanyControllers.js');
 const { createJob,getJobs } = require ('./controllers/jobsControllers.js');
 
-// Define routes for user authentication and CRUD operations
-server.post('/users/signup', signup);
-server.post('/users/login', login);
-server.get('/users', getUser);
-server.put('/users', updateUser);
-server.delete('/users', deleteUser);
+// Define routes for applicant authentication and CRUD operations
+server.post('/login', findApplicantOrCompany, login);
+server.post('/applicants/signup',handleDuplicateSignup, applicantSignup);
+server.get('/applicants', getApplicant);
+server.put('/applicants', updateApplicant);
+server.delete('/applicants', deleteApplicant);
+server.post('/companies/signup',handleDuplicateSignup, companySignup);
+server.get('/companies', getCompany);
+server.put('/companies', updateCompany);
+server.delete('/companies', deleteCompany);
 
 // Define routes for jobs
 server.get('/jobs', getJobs);

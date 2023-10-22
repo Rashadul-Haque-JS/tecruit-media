@@ -1,4 +1,4 @@
-const db = require('../lowdbHandler.js');
+const {db} = require('../lowdbHandler.js');
 // Create a new job listing
 const createJob = async (req, res) => {
   try {

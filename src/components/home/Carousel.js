@@ -57,7 +57,6 @@ const Carousel = () => {
   }, []);
 
   useEffect(() => {
-    console.log(location);
     if(location !== 'nordic'){
       const currentSlide = slides.find((slide) => slide.alt.toLowerCase() === location)
       setCurr(currentSlide.id)

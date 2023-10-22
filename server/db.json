@@ -1,15 +1,9 @@
 {
-  "users": [
+  "applicants": [
     {
       "email": "mrhaque179@gmail.com",
-      "password": "$2a$10$wcZWh96j6ioqvq7U15UPWetccHnpYQTcp6YkVh0UO5/oRY3PyHhze",
-      "id": 1697917582555,
-      "type": "company"
-    },
-    {
-      "email": "rashad@gmail.com",
-      "password": "$2a$10$omJRs9CTds6yuQXzPmEgp.gJXbpxp77k2BicYDvL3oLpPXexKR.p6",
-      "id": 1697918420132,
+      "password": "$2a$10$7eyaFUB/XlMc21iSq8z2tuyfxOm2y7CUjcooFFXzdChsRZoN/Rx4C",
+      "id": 1697948262902,
       "type": "applicant"
     }
   ],
@@ -133,5 +127,19 @@
       "application_url": "https://financexinc.com/careers/financial-analyst",
       "_id": 19
     }
-  ]
+  ],
+  "companies": [
+    {
+      "name": "expense escape",
+      "email": "eescape@yahoo.com",
+      "street": "Hasselgatan 16",
+      "post": "123",
+      "city": "gothenburg",
+      "country": "sweden",
+      "type": "company",
+      "password": "$2a$10$UJTFxsIixJKItyjfQ6XG9uiI9KKRN5ji6kVHw3aJ.kNNGQOl10zfa",
+      "id": 1697990852619
+    }
+  ],
+  "users": []
 }
