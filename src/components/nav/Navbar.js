@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
+import jwt_decode from 'jwt-decode';
 import NavMenu from "./NavDropDown";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,16 +49,10 @@ const Navbar = () => {
       } catch (error) {
         if (error.response) {
           console.log("API request error:", error.response.data);
-          // Handle specific API response errors here
-          // For example, you can set appropriate error state or show a user-friendly error message
         } else if (error.request) {
           console.log("API request error: No response received");
-          // Handle network issues here
-          // You can display a network error message to the user
         } else {
           console.error("Other API request error:", error.message);
-          // Handle other errors here
-          // Log any other unexpected errors
         }
       }
     };
@@ -77,6 +72,24 @@ const Navbar = () => {
     navigate("/auth");
   };
 
+  const handleAutoLogout = useCallback(() => {
+    dispatch(addAuthToken(""));
+    dispatch(addAuthType(""));
+    dispatch(toggleStateDrawer());
+    removeToken();
+    navigate("/auth")
+  }, [dispatch,navigate]);
+
+  useEffect(() => {
+    if (authToken) {
+      const decodedToken = jwt_decode(authToken);
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        handleAutoLogout();
+      }
+    }
+  }, [authToken, handleAutoLogout, dispatch]);
+  
   return (
     <div
       className="relative flex justify-between items-center gap-2 py-5 sm:py-3 md:py-3 lg:py-3 xl:py-2 px-6 sm:pl-0 md:pr-4 md:pl-0 sm:pr-4 text-tecruitPrimary bg-[#fff] z-50"
@@ -108,8 +121,8 @@ const Navbar = () => {
             >
               Login
             </Link>
-            <Link className=" px-2 py-1 sm:hidden rounded border-gray-700 ">
-              Join Us
+            <Link to="/tecruit" className=" px-2 py-1 sm:hidden rounded border-gray-700 ">
+              Know Us
             </Link>
           </>
         )}

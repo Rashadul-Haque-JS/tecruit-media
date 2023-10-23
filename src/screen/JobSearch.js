@@ -456,7 +456,7 @@ const JobSearch = () => {
                       <span className="capitalize">{job.country}</span>
                     </p>
                     <p className="text-gray-500">
-                      <span className="pr-1">{job.category}</span>■
+                      <span className="pr-1">{job.subCategory}</span>■
                       {job.type?.map((t) => (
                         <span className="px-1" key={uuidv4()}>
                           {t}
@@ -515,7 +515,7 @@ const JobSearch = () => {
               </p>
               <p className="text-gray-500 pb-1">
                 <span className="pr-1 capitalize">
-                  {currentView.category} Job
+                  {currentView.subCategory} Job
                 </span>
                 ■
                 {currentView.type?.map((t) => (
@@ -593,7 +593,7 @@ const JobSearch = () => {
               </p>
               <p className="text-gray-500 pb-1">
                 <span className="pr-1 capitalize">
-                  {currentView.category} Job
+                  {currentView.subCategory} Job
                 </span>
                 ■
                 {currentView.type?.map((t) => (

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Set the base URL for Axios
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "http://localhost:9990/api";
 
 export const saveHeaderToken = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -16,7 +16,7 @@ export const login = async (object) => {
 };
 
 export const signupApplicant = async (object) => {
-  return await axios.post("/applicants/signup", object);
+  return await axios.post("/applicants", object);
 };
 
 export const getAuthapplicant = async () => {
@@ -37,7 +37,7 @@ export const getJobsList = async () => {
 
 //Company
 export const signupCompany = async (object) => {
-  return await axios.post("/companies/signup", object);
+  return await axios.post("/companies", object);
 };
 export const getAuthCompany = async () => {
   return await axios.get("/companies");

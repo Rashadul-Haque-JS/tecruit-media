@@ -28,6 +28,10 @@ const SignupCard = ({setError}) => {
       setValidation("Password mismatch");
       return;
     }
+    if (formState.password.length <6) {
+      setError("Password at least 6 characters");
+      return;
+    }
     try {
       const response = await signupApplicant(formState);
       dispatch(addAuthToken(response.data.token));
@@ -38,7 +42,6 @@ const SignupCard = ({setError}) => {
       setError(error.response.data.message);
       console.error("An error occurred:", error);
     }
-    // Reset the form fields after submission
   };
 
   useEffect(() => {

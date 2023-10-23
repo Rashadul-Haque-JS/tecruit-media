@@ -7,6 +7,8 @@ import CompanyList from '../screen/Companies';
 import AuthView from '../screen/Auth';
 import JobsMatchWithCV from '../screen/JobsMatchedWithCV';
 import NotFoundPage from "../screen/PageNotFound";
+import AboutTecruit from '../screen/Tecruit';
+import ContactPage from '../screen/Contact';
 function Router() {
   return (
     <div>
@@ -17,6 +19,8 @@ function Router() {
         <Route path="/:location/post-job" element={<PostJob />} />
         <Route path="/:location/it-companies" element={<CompanyList />} />
         <Route path="/:location/jobs-match" element={<JobsMatchWithCV />} />
+        <Route path="/tecruit" element={<AboutTecruit />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

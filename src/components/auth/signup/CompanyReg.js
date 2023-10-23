@@ -7,7 +7,7 @@ import { countries } from "../../../data/mock/jobs";
 import { cities } from "../../../data/mock/jobs";
 
 const initialData = {
-  name: "",
+  companyName: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -45,6 +45,11 @@ const CompanyRegitration = ({setError}) => {
       setValidation("Password mismatch");
       return;
     }
+
+    if (formData.password.length <6) {
+      setError("Password at least 6 characters");
+      return;
+    }
     try {
       const response = await signupCompany(formData);
       dispatch(addAuthToken(response.data.token));
@@ -70,18 +75,18 @@ const CompanyRegitration = ({setError}) => {
     <form onSubmit={handleSubmit}>
       <div className="relative py-3">
         <label
-          htmlFor="name"
+          htmlFor="companyName"
           className=" text-lg text-tecruitSecondary sm:text-gray-800"
         >
           Company Name *
         </label>
         <input
           type="text"
-          id="name"
-          name="name"
+          id="companyName"
+          name="companyName"
           className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none"
           onChange={handleChange}
-          value={formData.name}
+          value={formData.companyName}
           required
         />
       </div>

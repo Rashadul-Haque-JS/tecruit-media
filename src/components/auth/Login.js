@@ -27,7 +27,6 @@ const LoginCard = ({ setSignup }) => {
     event.preventDefault();
     try {
       const response = await login({ email, password });
-      console.log(" response", response.data);
       dispatch(addAuthToken(response.data.token));
       dispatch(addAuthType(response.data.type));
       setEmail("");
