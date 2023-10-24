@@ -3,12 +3,17 @@ import { cvTable } from "../database.config";
 import FileUploadPdf from "../components/common/FileUploaderPdf";
 import UploadButton from "../components/common/buttons/UploadButton";
 import VerticalDotsMenu from "../components/common/VerticleDotsMenu";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const JobsMatchWithCV = () => {
   const [pdfData, setPdfData] = useState(null);
   const pdfName = localStorage.getItem("pdfName");
   const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(null);
+
+  const { location } = useSelector((state) => state.common);
+  const navigate = useNavigate();
 
   const fetchPdfFromDatabase = async (pdfName) => {
     try {
@@ -20,12 +25,15 @@ const JobsMatchWithCV = () => {
             )
           : null;
         setPdfData(pdfUrl);
-        console.log(`File "${pdfName}" retrieved from IndexedDB.`);
+        console.log(`File "${pdfName}" retrieved `);
+        setError(null);
       } else {
-        console.log(`File "${pdfName}" not found in IndexedDB.`);
+        console.log(`File "${pdfName}" not found`);
+        setError("File not found");
       }
     } catch (error) {
-      console.error("Error getting the file from IndexedDB:", error);
+      console.error("Error getting the file:", error);
+      setError("Error getting the file");
     }
   };
 
@@ -37,27 +45,37 @@ const JobsMatchWithCV = () => {
   }, [pdfName]);
 
   useEffect(() => {
-    if (loader) {
+    if (loader && pdfData) {
       setTimeout(() => {
         setLoader(false);
+        navigate(`/${location}/jobs`);
       }, 5000);
     }
-  }, [loader]);
+  }, [loader, navigate, location, pdfData]);
 
   const handleDelete = async (cvName) => {
-    console.log('c00l');
+    console.log("c00l");
     try {
       const pdfCV = await cvTable.get({ name: cvName });
       if (pdfCV) {
         await cvTable.delete(pdfCV.id);
-        localStorage.removeItem('pdfName') // Delete the CV using its ID
+        localStorage.removeItem("pdfName"); // Delete the CV using its ID
+        setError(null);
         window.location.reload();
-        console.log(`CV "${cvName}" removed from IndexedDB.`);
+        console.log(`CV "${cvName}" removed from source.`);
       } else {
-        console.log(`CV "${cvName}" not found in IndexedDB.`);
+        console.log(`CV "${cvName}" not found in source.`);
+        setError("CV not found in source");
       }
     } catch (error) {
-      console.error("Error removing CV from IndexedDB:", error);
+      console.error("Error removing CV from source:", error);
+      setError("Error removing CV from source");
+    }
+  };
+
+  const handleScan = () => {
+    if (pdfData) {
+      setLoader(true);
     }
   };
 
@@ -72,6 +90,13 @@ const JobsMatchWithCV = () => {
           <div className="bg-tecruitSpecial absolute inset-0 opacity-25 w-full h-full"></div>
         </>
       )}
+      {error && (
+        <>
+          <p className="text-center p-4 w-full py-4 text-tecruitRedish">
+            {error}
+          </p>
+        </>
+      )}
 
       <div className="w-full h-screen flex sm:flex-col-reverse justify-between items-center gap-4 px-2 py-8">
         <div className="sm:w-full md:w-full lg:w-full min-w-1/2 border px-8 h-full relative">
@@ -79,7 +104,7 @@ const JobsMatchWithCV = () => {
             options={[
               {
                 label: "Delete",
-                isDisabled: pdfData ? false: true,
+                isDisabled: pdfData ? false : true,
                 action: () => handleDelete(pdfName),
               },
             ]}
@@ -106,15 +131,21 @@ const JobsMatchWithCV = () => {
           <div className="flex justify-start items-center gap-6 py-3">
             <button
               className="bg-tecruitPrimary text-tecruitSecondary px-4 py-2 rounded-md"
-              onClick={() => setLoader(true)}
+              onClick={handleScan}
             >
-              <a href="#top">Scan Now</a>
+              <a href={pdfData ? "#top" : "#"}>Scan Now</a>
             </button>
             {!pdfData && (
-              <FileUploadPdf screen="all" children={<UploadButton label="Upload"/>} />
+              <FileUploadPdf
+                screen="all"
+                children={<UploadButton label="Upload" />}
+              />
             )}
             {pdfData && (
-              <FileUploadPdf screen="all" children={<UploadButton label="Replace"/>} />
+              <FileUploadPdf
+                screen="all"
+                children={<UploadButton label="Replace" />}
+              />
             )}
           </div>
         </div>

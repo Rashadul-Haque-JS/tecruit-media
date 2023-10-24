@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // Set the base URL for Axios
-axios.defaults.baseURL = "http://localhost:9990/api";
+const baseURL = process.env.REACT_APP_API_BASE_URL || "https://tecruit-api.onrender.com/api";
+axios.defaults.baseURL = baseURL;
 
 export const saveHeaderToken = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

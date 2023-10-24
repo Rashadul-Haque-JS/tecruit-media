@@ -139,7 +139,7 @@ body {
   background-color: #fff !important;
 }
 
-.about-bg {
+.bg-logo {
   background-image: url('./assets/media/tecabout.png');
   background-size: cover;
   background-repeat: no-repeat;

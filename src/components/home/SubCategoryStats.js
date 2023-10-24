@@ -53,12 +53,12 @@ const CategoryStatsSlider = ({ categories, country }) => {
 
       </div>
       <div
-        className={`sm:flex-grow md:flex-grow lg:flex-grow xl:flex-grow w-2/3 sm:w-[94vw] h-full md:h-[80%] 2xl:h-[110%] 3xl:h-[110%] 4xl:h-[110%] flex sm:justify-center justify-evenly items-center py-2 sm:py-4 bg-tecruitSecondary sm:rounded-sm rounded-lg`}
+        className={`sm:flex-grow md:flex-grow lg:flex-grow xl:flex-grow w-2/3 sm:w-[94vw] h-full md:h-[80%] 2xl:h-[110%] 3xl:h-[110%] 4xl:h-[110%] flex sm:justify-center justify-evenly items-center py-2 sm:py-4 bg-tecruitSecondary sm:bg-tecruitSpecial sm:rounded-sm rounded-lg`}
         style={{ color: txt }}
       >
         <div className="flex flex-col justify-center items-center w-1/3">
           <h1
-            className="text-5xl xl:text-4.5xl lg:text-4.5xl sm:text-3xl md:text-3xl truncate text-center text-black min-w-full font-extralight"
+            className="text-5xl xl:text-4.5xl lg:text-4.5xl sm:text-3xl md:text-3xl truncate text-center text-black sm:text-tecruitSecondary min-w-full font-extralight"
           >
             {currentCategory?.title}
           </h1>

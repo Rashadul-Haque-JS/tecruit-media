@@ -84,7 +84,7 @@ const CompanyProfile = () => {
                 </div>
               )}
             </div>
-            <div className="bg-white px-8 py-12 rounded-lg shadow-md w-full max-w-lg">
+            <div className="bg-white px-8 py-16 rounded-lg shadow-md sm:shadow-none w-full max-w-lg">
               <div className="mb-4 text-xl font-bold">
                 <strong>Name:</strong>  <strong>{company?.companyName}</strong>
               </div>
@@ -115,7 +115,7 @@ const CompanyProfile = () => {
             </div>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-16 border-t sm:border-t-2 py-8">
             <h2 className="text-2xl font-semibold p-4">Ads by Company</h2>
             {ads?.length > 0 && (
                 <table className="w-full border-collapse border border-gray-300">

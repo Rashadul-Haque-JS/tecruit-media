@@ -51,7 +51,7 @@ const Footer = () => {
               <h3 className="text-xl font-semibold">Advertising</h3>
               <ul className="mt-2 space-y-2">
                 <li>
-                  <a href="/companies">Job Advertising</a>
+                  <a href="/job-ads">Job Advertising</a>
                 </li>
                 <li>
                   <a href="/sponsors">Display & Sponsored</a>

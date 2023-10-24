@@ -101,3 +101,8 @@ return isLocation
 }
 
 
+export const calculateGrandTotalForLocation = (data)=>{
+  return data.reduce((acc, subcategory) => acc + subcategory.totalJobs, 0);
+
+}
+

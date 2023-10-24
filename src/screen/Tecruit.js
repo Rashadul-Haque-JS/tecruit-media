@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutTecruit = () => {
   return (
-    <div className="about-bg text-[#333] min-h-screen">
+    <div className="bg-logo text-[#333] min-h-screen">
       <h2 className="text-2xl 2xl:text-4xl 3xl:text-4xl 4xl:text-5xl font-semibold mb-2 text-center py-8 text-tecruitSecondary bg-tecruitPrimary">
          What is Tecruit?
         </h2>
