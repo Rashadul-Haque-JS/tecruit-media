@@ -290,7 +290,7 @@ const JobSearch = () => {
               className="h-full w-full outline-none text-sm text-gray-700 pr-2 shadow-inner px-4 sm:px-6 rounded-full border border-tecruitPrimary apps-input"
               type="text"
               id="search"
-              placeholder="Search By Job Title ..."
+              placeholder="Search By Job Title, ... Job Category ..."
               onChange={handleSearch}
             />
           </div>

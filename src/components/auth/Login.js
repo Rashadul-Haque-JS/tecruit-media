@@ -27,13 +27,13 @@ const LoginCard = ({ setSignup }) => {
     event.preventDefault();
     try {
       const response = await login({ email, password });
-      dispatch(addAuthToken(response.data.token));
-      dispatch(addAuthType(response.data.type));
+      dispatch(addAuthToken(response?.data.token));
+      dispatch(addAuthType(response?.data.type));
       setEmail("");
       setPassword("");
       setRememberMe(false);
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response?.data.message);
     }
   };
 

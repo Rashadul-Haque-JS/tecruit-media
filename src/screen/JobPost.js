@@ -384,7 +384,7 @@ const CreateJob = () => {
                 Description{requiredSpan()}
               </label>
               <Editor
-                apiKey="YOUR_API_KEY"
+                apiKey={process.env.REACT_APP_TINY_API_KEY}
                 value={formData.description}
                 init={{
                   height: 300,

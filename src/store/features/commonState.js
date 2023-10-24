@@ -13,6 +13,7 @@ const initialState = {
   isDrawerOpen: false,
   authToken: defaultToken,
   authType: defaultType,
+  authEmail: '',
 };
 
 const commonSlice = createSlice({
@@ -36,9 +37,12 @@ const commonSlice = createSlice({
       state.authType = action.payload;
       localStorage.setItem('type', action.payload);
     },
+    addAuthEmail: (state, action) => {
+      state.authEmail = action.payload;
+    },
   },
 });
 
-export const { addLocation, toggleStateDrawer, addAuthToken, addAuthType } = commonSlice.actions;
+export const { addLocation, toggleStateDrawer, addAuthToken, addAuthType,addAuthEmail } = commonSlice.actions;
 
 export default commonSlice.reducer;

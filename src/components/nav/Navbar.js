@@ -12,17 +12,19 @@ import { getLinksOne, getLinksTwo } from "../../routes/routes";
 import tecruitLogo from "../../assets/media/tecruit-logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleStateDrawer } from "../../store/features/commonState";
+import { addCompany } from "../../store/features/company";
 import {
   saveHeaderToken,
   getAuthapplicant,
   removeToken,
   getAuthCompany,
 } from "../../api/api";
-import { addAuthToken, addAuthType } from "../../store/features/commonState";
+import { addAuthToken, addAuthType,addAuthEmail } from "../../store/features/commonState";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
+  const [company, setCompany] = useState(null);
   const openDropDownDrawer = useSelector((state) => state.common.isDrawerOpen);
   const { location, authToken, authType} = useSelector(
     (state) => state.common
@@ -44,8 +46,12 @@ const Navbar = () => {
           response = await getAuthCompany();
         }
         const username = response.data.email?.split("@")[0].slice(0, 2);
+        const companyName = response.data.companyName.split(" ")[0].slice(0, 2);
         setUser(username);
+        setCompany(companyName);
         dispatch(addAuthType(response.data.type));
+        dispatch(addAuthEmail(response.data.email));
+        dispatch(addCompany(response.data));
       } catch (error) {
         if (error.response) {
           console.log("API request error:", error.response.data);
@@ -64,7 +70,7 @@ const Navbar = () => {
   }, [authToken, authType, dispatch]);
   
 
-  const handleLogout = () => {
+ const handleLogout = () => {
     dispatch(addAuthToken(""));
     dispatch(addAuthType(""));
     dispatch(toggleStateDrawer());
@@ -128,12 +134,22 @@ const Navbar = () => {
         )}
         {authToken && (
           <>
-            <Link
+            {authType === "applicant" && (
+              <Link
               to="/profile"
               className="border-r-2 px-4 py-1 sm:hidden border-gray-300 uppercase cursor-pointer "
             >
               {user}
             </Link>
+            )}
+            {authType === "company" && (
+              <Link
+              to="/profile"
+              className="border-r-2 px-4 py-1 sm:hidden border-gray-300 uppercase cursor-pointer "
+            >
+              {company}
+            </Link>
+            )}
             <button onClick={handleLogout} className=" sm:hidden">
               Logout
             </button>
@@ -151,13 +167,23 @@ const Navbar = () => {
               />
             </Link>
           )}
-          {authToken && (
+          {authToken && authType === "applicant" && (
             <Link
               to="/profile"
               className="px-4 flex justify-center items-center border-gray-300 uppercase"
             >
               <span className="md:hidden border border-tecruitPrimary rounded px-1 text-center">
                 {user}
+              </span>
+            </Link>
+          )}
+          {authToken && authType === "company" && (
+            <Link
+              to="/profile"
+              className="px-4 flex justify-center items-center border-gray-300 uppercase"
+            >
+              <span className="md:hidden border border-tecruitPrimary rounded px-1 text-center">
+                {company}
               </span>
             </Link>
           )}

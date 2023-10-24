@@ -48,3 +48,6 @@ export const updateCompany = async (object) => {
 export const deleteCompany = async () => {
   return await axios.delete(`/companies`);
 };
+export const getJobByCraetor = async () => {
+  return await axios.get(`/companies/jobs`);
+};
