@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addAuthToken,
@@ -27,7 +27,7 @@ const CompanyProfile = () => {
   const fetchCompanyAds = async () => {
     try {
       const response = await getJobByCraetor();
-      setAds(response?.data.jobList); 
+      setAds(response?.data); 
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -117,7 +117,7 @@ const CompanyProfile = () => {
 
           <div className="mt-8">
             <h2 className="text-2xl font-semibold p-4">Ads by Company</h2>
-            {ads.length > 0 && (
+            {ads?.length > 0 && (
                 <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr>
@@ -129,23 +129,23 @@ const CompanyProfile = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {ads.map((ad) => (
+                  {ads?.map((ad) => (
                     <tr key={ad.id}>
                       <td className="border border-gray-300 p-2">{ad.jobTitle}</td>
-                      <td className="border border-gray-300 p-2">{ad._id}</td>
                       <td className="border border-gray-300 p-2">{ad.published_on}</td>
+                      <td className="border border-gray-300 p-2">{ad._id}</td>
                       <td className="border border-gray-300 p-2">
-                        <button >Edit</button>
+                        <Link to={`/${company.companyName}/jobs/edit/${ad._id}`} className="text-blue-400" >Edit</Link>
                       </td>
                       <td className="border border-gray-300 p-2">
-                        <button >Delete</button>
+                        <button className="text-tecruitRedish" >Delete</button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             )}
-            {ads.length === 0 && (
+            {ads?.length === 0 && (
                 <p className="text-center py-10 ">No ads published yet.</p>
             )}
           </div>
