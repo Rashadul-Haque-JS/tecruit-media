@@ -2,13 +2,14 @@
 
 import { precacheAndRoute } from 'workbox-precaching';
 
-// Use the Workbox library to cache assets
+// Precache assets with Workbox
 precacheAndRoute(self.__WB_MANIFEST);
 
 self.addEventListener('install', event => {
-  // Force the waiting service worker to become the active service worker
+  // This will force the waiting service worker to become the active service worker
   self.skipWaiting();
 
+  // Precaching urls during the install event
   event.waitUntil(
     caches.open('Tecriut').then(cache => 
       cache.addAll([
@@ -23,7 +24,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
   // Take control of all available clients
-  event.waitUntil(clients.claim());
+  clients.claim();
 
   // Clean up old cache versions
   event.waitUntil(
@@ -40,12 +41,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      if (response) {
-        // If found in cache, return the response
-        return response;
-      }
-      // Otherwise, fetch from the network
-      return fetch(event.request);
+      return response || fetch(event.request); // Return from cache, otherwise fetch from network
     })
   );
 });
@@ -56,8 +52,4 @@ self.addEventListener('message', (event) => {
   }
 });
 
-// Communicate with the client-side (optional)
-// This can be useful for refreshing the user's page as soon as a new service worker takes control
-self.addEventListener('controllerchange', () => {
-  window.location.reload();
-});
+
