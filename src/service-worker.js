@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 import { precacheAndRoute } from 'workbox-precaching';
 
 // Precache assets with Workbox
@@ -23,9 +21,6 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-  // Take control of all available clients
-  clients.claim();
-
   // Clean up old cache versions
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -36,6 +31,7 @@ self.addEventListener('activate', event => {
       );
     })
   );
+  // Note: clients.claim() is removed here, so the new service worker won't take control of the current pages.
 });
 
 self.addEventListener('fetch', event => {
@@ -51,5 +47,3 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
-
-
