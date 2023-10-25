@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import LoginComponent from "../components/auth/Login";
-import SignupIndex from "../components/auth/signup/SignupIndex";
+import LoginComponent from "../../components/auth/Login";
+import SignupIndex from "../../components/auth/signup/SignupIndex";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";

@@ -9,21 +9,21 @@ import {
   countries,
   cities,
   applicationOptions,
-} from "../data/mock/jobs";
-import { selectStyles, getCurrentDate } from "../utils/helper";
+} from "../../data/mock/jobs";
+import { selectStyles, getCurrentDate } from "../../utils/helper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
-import ProgramCard from "../components/common/ProgramCard";
-import { postNewJob } from "../api/api";
-import subCategories from "../data/static/subCategories";
+import ProgramCard from "../../components/common/ProgramCard";
+import { postNewJob } from "../../api/api";
+import subCategories from "../../data/static/subCategories";
 
 const CreateJob = () => {
   const [formData, setFormData] = useState({
     jobTitle: "",
     category: "data/IT",
     subCategory: "",
-    company: "Top Tech",
+    company: "",
     country: "",
     city: "",
     description: "",
@@ -38,8 +38,10 @@ const CreateJob = () => {
   });
 
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [jobTypeInfo, setJobTypeInfo] = useState("");
   const [selectedDate, setSelectedDate] = useState();
+
   const { authType } = useSelector((state) => state.common);
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
@@ -91,7 +93,7 @@ const CreateJob = () => {
       setMessage(res.data.message);
     } catch (err) {
       console.log(err);
-      setMessage(err.response.data.message);
+      setError(err.response.data.message);
     }
   };
 
@@ -112,12 +114,13 @@ const CreateJob = () => {
   }, [formData.type, jobTypeInfo]);
 
   useEffect(() => {
-    if (message) {
+    if (message || error) {
       setTimeout(() => {
         setMessage("");
+        setError("");
       }, 5000);
     }
-  }, [message]);
+  }, [message, error]);
 
   return (
     <div className="pb-20">
@@ -389,12 +392,6 @@ const CreateJob = () => {
                 init={{
                   height: 300,
                   menubar: true,
-                  plugins: [
-                    "advlist autolink lists link image",
-                    "charmap print preview anchor",
-                    "searchreplace visualblocks code",
-                    "insertdatetime media table paste code help wordcount",
-                  ],
                   toolbar:
                     "undo redo | formatselect | " +
                     "bold italic backcolor | alignleft aligncenter " +
@@ -426,6 +423,28 @@ const CreateJob = () => {
                 }
               />
             </div>
+            {message && (
+                  <span
+                    className="capitalize block text-md font-normal py-2 text-tecruitPrimary"
+                    style={{
+                      display: "block",
+                      transition: "transform 3s ease-out",
+                    }}
+                  >
+                    {message}
+                  </span>
+                )}
+            {error && (
+                  <span
+                    className="capitalize block text-md font-normal py-2 text-tecruitRedish"
+                    style={{
+                      display: "block",
+                      transition: "transform 3s ease-out",
+                    }}
+                  >
+                    {error}
+                  </span>
+                )}
             <button
               type="submit"
               className="bg-tecruitPrimary text-tecruitSecondary hover:bg-gray-700 py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"

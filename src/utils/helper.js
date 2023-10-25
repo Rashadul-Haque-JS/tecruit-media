@@ -106,3 +106,12 @@ export const calculateGrandTotalForLocation = (data)=>{
 
 }
 
+export const getFormatedDate = (text)=>{
+  if (text && text.includes('T')) {
+    return text.split('T')[0]
+  }else{
+    return ''
+  }
+
+}
+

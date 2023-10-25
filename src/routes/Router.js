@@ -1,15 +1,16 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Home from '../screen/Home';
-import JobSearch from '../screen/JobSearch';
-import PostJob from '../screen/JobPost';
-import CompanyList from '../screen/Companies';
-import AuthView from '../screen/Auth';
-import JobsMatchWithCV from '../screen/JobsMatchedWithCV';
+import JobSearch from '../screen/jobs/JobSearch';
+import PostJob from '../screen/jobs/JobPost';
+import CompanyList from '../screen/ITCompanies';
+import AuthView from '../screen/auth/Auth';
+import JobsMatchWithCV from '../screen/jobs/JobsMatchedWithCV';
 import NotFoundPage from "../screen/PageNotFound";
-import AboutTecruit from '../screen/Tecruit';
+import AboutTecruit from '../screen/about';
 import ContactPage from '../screen/Contact';
-import UserProfile from '../screen/UserProfile';
+import UserProfile from '../screen/auth/UserProfile';
+import EditJob from '../screen/jobs/JobEdit';
 
 const Router=()=>{
   return (
@@ -21,6 +22,7 @@ const Router=()=>{
         <Route path="/:location/post-job" element={<PostJob />} />
         <Route path="/:location/it-companies" element={<CompanyList />} />
         <Route path="/:location/jobs-match" element={<JobsMatchWithCV />} />
+        <Route path="/:location/:company/jobs/:id/edit" element={<EditJob />} />
         <Route path="/tecruit" element={<AboutTecruit />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/contact" element={<ContactPage />} />

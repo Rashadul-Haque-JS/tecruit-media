@@ -3,8 +3,8 @@ import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { selectStyles, formatDate } from "../utils/helper.js";
-import JobDescription from "../components/JobDescConvert.js";
+import { selectStyles, formatDate } from "../../utils/helper.js";
+import JobDescription from "../../components/JobDescConvert.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -14,11 +14,11 @@ import {
   published_date,
   position,
   workTime,
-} from "../data/mock/jobs.js";
+} from "../../data/mock/jobs.js";
 //import { getAllJob } from "../api/api.js";
-import PreLoader from "../components/PreLoader.js";
-import { locationLock } from "../utils/helper.js";
-import { getJobsList } from "../api/api.js";
+import PreLoader from "../../components/PreLoader.js";
+import { locationLock } from "../../utils/helper.js";
+import { getJobsList } from "../../api/api.js";
 
 const JobSearch = () => {
   const [jobs, setJobs] = useState([]);

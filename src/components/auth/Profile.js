@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
-import { addAuthToken, addAuthType} from "../store/features/commonState";
-import { deleteApplicant, deleteCompany,removeToken } from "../api/api";
+import { addAuthToken, addAuthType} from "../../store/features/commonState";
+import { deleteApplicant, deleteCompany,removeToken } from "../../api/api";
 
 const Profile = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);

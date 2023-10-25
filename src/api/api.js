@@ -52,3 +52,12 @@ export const deleteCompany = async () => {
 export const getJobByCraetor = async () => {
   return await axios.get(`/companies/jobs`);
 };
+export const getJobById = async (id) => {
+  return await axios.get(`/companies/jobs/${id}`);
+};
+export const updateJobAds = async (id,object) => {
+  return await axios.put(`/companies/jobs/${id}`, object);
+};
+export const deleteJob = async (id) => {
+  return await axios.delete("/companies/jobs/delete", { data: { id } });
+};

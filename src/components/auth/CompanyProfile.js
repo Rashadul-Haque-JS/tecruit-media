@@ -1,33 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  addAuthToken,
-  addAuthType,
-
-} from "../store/features/commonState";
-import { deleteApplicant, deleteCompany,removeToken,getJobByCraetor} from "../api/api";
+  faPenToSquare,
+  faTrashCan,
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import { addAuthToken, addAuthType } from "../../store/features/commonState";
+import {
+  deleteApplicant,
+  deleteCompany,
+  removeToken,
+  getJobByCraetor,
+  deleteJob,
+} from "../../api/api";
 
 const CompanyProfile = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [ads, setAds] = useState([]); // State to store the list of company ads
-  const email = useSelector((state) => state.common.authEmail);
-  const type = useSelector((state) => state.common.authType);
-  const {company} = useSelector((state) => state.company);
+  const [ads, setAds] = useState([]);
+  const [error, setError] = useState("");
+  const { authEmail, authType, location } = useSelector(
+    (state) => state.common
+  );
+  const { company } = useSelector((state) => state.company);
   const picture = ""; // Placeholder for company's picture
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const logoLetter = company?.companyName?.split(" ")[0].slice(0, 1);
+
   useEffect(() => {
-    if (email) {
+    if (authEmail) {
       fetchCompanyAds();
     }
-  }, [email]);
+  }, [authEmail]);
 
   const fetchCompanyAds = async () => {
     try {
       const response = await getJobByCraetor();
-      setAds(response?.data); 
+      setAds(response?.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -39,7 +50,7 @@ const CompanyProfile = () => {
 
   const confirmDeleteAccount = async () => {
     try {
-      if (type === "applicant") {
+      if (authType === "applicant") {
         await deleteApplicant();
       } else {
         await deleteCompany();
@@ -54,13 +65,32 @@ const CompanyProfile = () => {
     }
   };
 
+  const handleDeleteJobAds = async (id) => {
+    try {
+      await deleteJob(id);
+      const updatedAds = ads.filter((ad) => ad.jobId !== id);
+      setAds(updatedAds);
+    } catch (error) {
+      setError(error.response.data.message);
+      console.error("Error deleting job:", error);
+    }
+  };
+
   const closeModal = () => {
     setShowDeleteModal(false);
   };
 
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+    }
+  }, [error]);
+
   return (
     <div className="w-full min-h-screen relative">
-      {email ? (
+      {authEmail ? (
         <div
           className="text-center pt-8 pb-20"
           style={{ opacity: showDeleteModal ? 0.5 : 1 }}
@@ -69,24 +99,24 @@ const CompanyProfile = () => {
             <div className="flex justify-center items-center">
               {picture && (
                 <img
-                  src={picture} // Set the company's picture source
+                  src={picture}
                   alt="Companyprofile"
                   className="rounded-md"
                 />
               )}
               {!picture && (
-                <div
-                  className="w-[300px] h-[300px] rounded-md border p-4 flex justify-center items-center shadow-md sm:shadow-none"
-                >
-                 <div className="w-full h-full rounded-full bg-tecruitSpecial flex justify-center items-center">
-                    <h1 className="company-logo text-9xl sm:text-8xl font-extrabold text-center">{logoLetter}</h1>
-                </div>
+                <div className="w-[300px] h-[300px] rounded-md border p-4 flex justify-center items-center shadow-md sm:shadow-none">
+                  <div className="w-full h-full rounded-full bg-tecruitSpecial flex justify-center items-center">
+                    <h1 className="company-logo text-9xl sm:text-8xl font-extrabold text-center">
+                      {logoLetter}
+                    </h1>
+                  </div>
                 </div>
               )}
             </div>
-            <div className="bg-white px-8 py-16 rounded-lg shadow-md sm:shadow-none w-full max-w-lg">
+            <div className="bg-white px-8 py-8 rounded-lg shadow-md sm:shadow-none w-full max-w-lg">
               <div className="mb-4 text-xl font-bold">
-                <strong>Name:</strong>  <strong>{company?.companyName}</strong>
+                <strong>Name:</strong> <strong>{company?.companyName}</strong>
               </div>
               <div className="mb-4">
                 <strong>Email:</strong> {company?.email}
@@ -97,7 +127,7 @@ const CompanyProfile = () => {
               <div className="mb-6 capitalize">
                 <span>{company?.city}</span>, <span>{company?.country}</span>
               </div>
-             
+
               <div className="w-full bg-tecruitSpecial hover:bg-tecruitPrimary text-white rounded-lg py-2 font-semibold">
                 <button
                   onClick={() => navigate("/Companyprofile/edit")}
@@ -106,6 +136,7 @@ const CompanyProfile = () => {
                   Edit CompanyProfile
                 </button>
               </div>
+
               <button
                 onClick={handleDeleteAccount}
                 className="w-full mt-4 bg-tecruitRedish text-white rounded-lg py-2 font-semibold hover:bg-red-600 transition duration-300"
@@ -117,8 +148,19 @@ const CompanyProfile = () => {
 
           <div className="mt-16 border-t sm:border-t-2 py-8">
             <h2 className="text-2xl font-semibold p-4">Ads by Company</h2>
+            <div className="flex justify-center items-center w-full mb-6">
+              <Link
+                to={`/${location}/post-job`}
+                className="block w-fit text-black rounded-md border px-8 py-2 text-md"
+              >
+                Post new job <FontAwesomeIcon className="ml-2" icon={faArrowUpRightFromSquare} />
+              </Link>
+            </div>
+            {error && (
+              <p className="text-center text-tecruitRedish py-2">{error}</p>
+            )}
             {ads?.length > 0 && (
-                <table className="w-full border-collapse border border-gray-300">
+              <table className="w-full border-collapse border border-gray-300">
                 <thead>
                   <tr>
                     <th className="border border-gray-300 p-2">Job Title</th>
@@ -131,14 +173,28 @@ const CompanyProfile = () => {
                 <tbody>
                   {ads?.map((ad) => (
                     <tr key={ad.id}>
-                      <td className="border border-gray-300 p-2">{ad.jobTitle}</td>
-                      <td className="border border-gray-300 p-2">{ad.published_on}</td>
-                      <td className="border border-gray-300 p-2">{ad._id}</td>
                       <td className="border border-gray-300 p-2">
-                        <Link to={`/${company.companyName}/jobs/edit/${ad._id}`} className="text-blue-400" >Edit</Link>
+                        {ad.jobTitle}
                       </td>
                       <td className="border border-gray-300 p-2">
-                        <button className="text-tecruitRedish" >Delete</button>
+                        {ad.published_on}
+                      </td>
+                      <td className="border border-gray-300 p-2">{ad.jobId}</td>
+                      <td className="border border-gray-300 p-2">
+                        <Link
+                          to={`/${location}/${company.companyName}/jobs/${ad.jobId}/edit`}
+                          className="text-tecruitSpecial"
+                        >
+                          <FontAwesomeIcon icon={faPenToSquare} />
+                        </Link>
+                      </td>
+                      <td className="border border-gray-300 p-2">
+                        <button
+                          className="text-tecruitRedish"
+                          onClick={() => handleDeleteJobAds(ad.jobId)}
+                        >
+                          <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -146,7 +202,7 @@ const CompanyProfile = () => {
               </table>
             )}
             {ads?.length === 0 && (
-                <p className="text-center py-10 ">No ads published yet.</p>
+              <p className="text-center py-10 ">No ads published yet.</p>
             )}
           </div>
         </div>
@@ -158,9 +214,12 @@ const CompanyProfile = () => {
       {showDeleteModal && (
         <div className="modal fixed inset-1/3 sm:inset-4 md:inset-6 shadow-lg p-8 bg-gray-400 text-white rounded">
           <div className="modal-content">
-            <h3 className="text-xl font-semibold text-black py-5">Confirm Deletion</h3>
+            <h3 className="text-xl font-semibold text-black py-5">
+              Confirm Deletion
+            </h3>
             <p>
-              Are you sure you want to delete your account? This action cannot be undone.
+              Are you sure you want to delete your account? This action cannot
+              be undone.
             </p>
             <div className="modal-buttons py-5">
               <button

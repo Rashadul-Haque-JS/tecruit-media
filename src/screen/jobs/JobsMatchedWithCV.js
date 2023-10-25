@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { cvTable } from "../database.config";
-import FileUploadPdf from "../components/common/FileUploaderPdf";
-import UploadButton from "../components/common/buttons/UploadButton";
-import VerticalDotsMenu from "../components/common/VerticleDotsMenu";
+import { cvTable } from "../../database.config";
+import FileUploadPdf from "../../components/common/FileUploaderPdf";
+import UploadButton from "../../components/common/buttons/UploadButton";
+import VerticalDotsMenu from "../../components/common/VerticleDotsMenu";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 

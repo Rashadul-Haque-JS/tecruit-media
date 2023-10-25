@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
-import ApplicantProfile from "../components/Profile";
-import CompanyProfile from "../components/CompanyProfile";
+import ApplicantProfile from "../../components/auth/Profile";
+import CompanyProfile from "../../components/auth/CompanyProfile";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
