@@ -1,7 +1,10 @@
 import axios from "axios";
 
-// Set the base URL for Axios
-const baseURL = "https://tecruit-api.onrender.com/api";
+const devBaseURL = "http://localhost:9990/api";
+const prodBaseURL = "https://tecruit-api.onrender.com/api";
+// Check if we are in development or production
+const baseURL = process.env.NODE_ENV === 'development' ? devBaseURL : prodBaseURL;
+
 axios.defaults.baseURL = baseURL;
 
 export const saveHeaderToken = (token) => {
@@ -60,4 +63,7 @@ export const updateJobAds = async (id,object) => {
 };
 export const deleteJob = async (id) => {
   return await axios.delete("/companies/jobs/delete", { data: { id } });
+};
+export const addSubscriber = async (email) => {
+  return await axios.post("/subscribers", {  email } );
 };
