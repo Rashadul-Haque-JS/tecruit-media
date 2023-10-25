@@ -1,13 +1,17 @@
 /* eslint-disable no-restricted-globals */
-
 import { precacheAndRoute } from 'workbox-precaching';
 
+// Precache assets with Workbox
 precacheAndRoute(self.__WB_MANIFEST);
 
 self.addEventListener('install', event => {
+  // This will force the waiting service worker to become the active service worker
+  self.skipWaiting();
+
+  // Precaching urls during the install event
   event.waitUntil(
-    caches.open('Tecriut')
-      .then(cache => cache.addAll([
+    caches.open('Tecriut').then(cache => 
+      cache.addAll([
         '/',
         '/index.html',
         '/static/css/main.chunk.css',
@@ -17,15 +21,29 @@ self.addEventListener('install', event => {
   );
 });
 
+self.addEventListener('activate', event => {
+  // Clean up old cache versions
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(cacheName => cacheName !== 'Tecriut') // Only remove caches not matching current cache
+          .map(cacheName => caches.delete(cacheName)) // Delete them
+      );
+    })
+  );
+});
+
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response; // Cache hit - return the response
-        }
-        // Handle the case when the request is not found in the cache
-        return fetch(event.request);
-      })
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request); // Return from cache, otherwise fetch from network
+    })
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });

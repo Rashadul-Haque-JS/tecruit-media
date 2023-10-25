@@ -7,7 +7,7 @@ const smartCardData = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     buttonText: "Read More",
-    link: "http://tech-beach.com",
+    link: "/tecruit-ui-ux",
     icon:faPaperPlane,
     flipIcon: "horizontal",
   },
@@ -17,7 +17,7 @@ const smartCardData = [
     description:
       "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     buttonText: "Discover More",
-    link: "http://tecruit-beach.com",
+    link: "/tecruit-feature",
     icon: faBolt,
     flipIcon: false,
   },
@@ -27,7 +27,7 @@ const smartCardData = [
     description:
       "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     buttonText: "Claim Offer",
-    link: "http://it-beach.com",
+    link: "/tecruit-offer",
     icon: faTags,
     flipIcon: false,
   },
