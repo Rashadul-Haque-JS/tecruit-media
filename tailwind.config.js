@@ -22,8 +22,13 @@ module.exports = {
       colors: {
         tecruitPrimary: "#279b37",
         tecruitSecondary: "#ffffff",
-        tecruitSpecial: "#1F2937",
+        tecruitSpecial: "#083859",
         tecruitRedish: "#D61E27",
+      },
+      fontSize: {
+        '2.5xl': '1.7rem',
+        '4.5xl': '2.5rem', 
+        
       },
     },
   },

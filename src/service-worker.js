@@ -1,4 +1,3 @@
-
 /* eslint-disable no-restricted-globals */
 
 import { precacheAndRoute } from 'workbox-precaching';
@@ -13,14 +12,20 @@ self.addEventListener('install', event => {
         '/index.html',
         '/static/css/main.chunk.css',
         '/static/js/main.chunk.js',
-        
-      ]))
+      ])
+    )
   );
 });
 
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => response || fetch(event.request))
+      .then(response => {
+        if (response) {
+          return response; // Cache hit - return the response
+        }
+        // Handle the case when the request is not found in the cache
+        return fetch(event.request);
+      })
   );
 });

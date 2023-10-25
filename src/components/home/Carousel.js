@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slides from "../../data/static/heroImages";
 import SearchComponent from "./SearchComponent";
 import CarouselSpecial from "./CarouselSpecial";
@@ -7,23 +7,67 @@ import subCategoryData from "../../data/mock/subCategory";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/features/commonState";
 import { ChevronRight, ChevronLeft } from "react-feather";
-import ApplyNowArrow from "./CallToAction";
+import ApplyNowArrow from "../common/CallToAction";
 import FileUploadPdf from "../common/FileUploaderPdf";
+import { useSelector } from "react-redux";
+import { createNewSubCategoryArray } from "../../utils/helper";
 
 const Carousel = () => {
   const [curr, setCurr] = useState(0);
+  const [categories, setCategories] = useState([]);
+  const [iconSize, setIconSize] = useState(60);
+  const [strokeWidth, setStrokeWidth] = useState(0.5);
   const dispatch = useDispatch();
+  const { location } = useSelector((state) => state.common);
 
   const prev = () => {
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
-    const alt = slides[curr === 0 ? slides.length - 1 : curr - 1].alt;
-    dispatch(addLocation(alt));
+    const alt = slides[curr === 0 ? slides.length - 1 : curr - 1].alt.toLowerCase();
+    dispatch(addLocation(alt.toLowerCase()));
   };
 
   const next = () => {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
-    const alt = slides[curr === slides.length - 1 ? 0 : curr + 1].alt;
-    dispatch(addLocation(alt));
+    const alt = slides[curr === slides.length - 1 ? 0 : curr + 1].alt.toLowerCase();
+    dispatch(addLocation(alt.toLowerCase()));
+  };
+
+  useEffect(() => {
+    const newCategories = createNewSubCategoryArray(subCategoryData, location);
+    setCategories(newCategories);
+  }, [location]);
+
+  
+  useEffect(() => {
+    let newSize, newStrokeWidth;
+
+    if (window.innerWidth < 767) {
+      newSize = 60;
+      newStrokeWidth = 0.5;
+    } else if (window.innerWidth < 1023) {
+      newSize = 30;
+      newStrokeWidth = 3;
+    } else {
+      newSize = 80;
+      newStrokeWidth = 0.5;
+    }
+
+    setIconSize(newSize);
+    setStrokeWidth(newStrokeWidth);
+  }, []);
+
+  useEffect(() => {
+    if(location !== 'nordic'){
+      const currentSlide = slides.find((slide) => slide.alt.toLowerCase() === location)
+      setCurr(currentSlide.id)
+    }
+  },[location])
+  
+  const customstylesSmall = {
+    padding: ".8rem 1.5rem",
+    borderRadius: "30px",
+    color: "#fff",
+    border: "2px solid #fff",
   };
 
   return (
@@ -42,10 +86,10 @@ const Carousel = () => {
           />
         ))}
         <CarouselSpecial />
-        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-2 z-10">
+        <div className="absolute inset-0 sm:w-full sm:left-0 sm:right-0 sm:top-[6%] sm:bottom-[20%] flex items-center justify-between px-0 sm:z-10">
           <button
             onClick={prev}
-            className="pr-1 rounded shadow bg-gray-900 text-gray-300"
+            className="px-0 bg-none text-tecruitPrimary sm:text-base text-xl"
             disabled={curr === 0}
             style={{
               transition: "transform 0.3s ease",
@@ -53,8 +97,9 @@ const Carousel = () => {
             }}
           >
             <ChevronLeft
-              size={20}
-              className="text-tecruitPrimary inline-block"
+              size={iconSize}
+              strokeWidth={strokeWidth}
+              className="text-tecruitPrimary inline-block "
             />
             <span>
               {curr !== 0 && (
@@ -66,7 +111,7 @@ const Carousel = () => {
           </button>
           <button
             onClick={next}
-            className="pl-1 rounded shadow bg-gray-900 text-gray-300"
+            className="px-0 bg-none text-tecruitPrimary sm:text-base text-xl"
             disabled={curr === slides.length - 1}
             style={{
               transition: "transform 0.3s ease",
@@ -80,7 +125,8 @@ const Carousel = () => {
                 </span>
               )}
               <ChevronRight
-                size={20}
+                size={iconSize}
+                strokeWidth={strokeWidth}
                 className="text-tecruitPrimary inline-block"
               />
             </span>
@@ -101,11 +147,14 @@ const Carousel = () => {
         </div>
       </div>
       <SubCategoryStats
-        categories={subCategoryData}
-        country={slides[curr].alt}
+        categories={categories}
+        country={slides[curr].alt.toLowerCase()}
       />
-      <FileUploadPdf screen="sm" children={<ApplyNowArrow customstyles={null}/>}/>
-        
+      <FileUploadPdf
+        screen="sm-home"
+        children={<ApplyNowArrow customstyles={customstylesSmall} />}
+      />
+
       <div className="flex justify-center items-center absolute right-0 left-0 bottom-0 w-full z-10">
         <SearchComponent />
       </div>

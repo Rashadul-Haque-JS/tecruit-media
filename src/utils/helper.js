@@ -58,15 +58,60 @@ export const formatDate = (isoDateString) => {
 
 export const getNordicColor = (country) => {
   switch (country) {
-    case 'Sweden':
+    case 'sweden':
       return { bgc: '#005293', txt: '#fecb00' };
-    case 'Denmark':
+    case 'denmark':
       return { bgc: '#C60C30', txt: '#fff' }; 
-    case 'Norway':
+    case 'norway':
       return { bgc: '#BA0C2F', txt: '#003087' };
-    case 'Finland':
+    case 'finland':
       return { bgc: '#002F6C', txt: '#fff' };
     default:
-      return { bgc: '#006eb6', txt: '#e2f0ff' };
+      return { bgc: '#006EB7', txt: '#fff' };
   }
 };
+
+//Sorting the subcategory data based on the country
+export const createNewSubCategoryArray=(data, country)=>{
+  return data.map(item => {
+    const totalJobs = item.totalJobs;
+    const totalNordic =
+      totalJobs['sweden'] +
+      totalJobs['denmark'] +
+      totalJobs['norway'] +
+      totalJobs['finland'];
+
+    return {
+      title: item.title,
+      totalJobs: {
+        ...totalJobs,
+        nordic: totalNordic
+      }
+    };
+  }).map(category => ({
+    title: category.title,
+    totalJobs: category.totalJobs[country]
+  }));
+}
+
+
+export const locationLock=(location, selection)=>{
+const isLocation = selection && location !=='nordic' && selection.value !== 'nordic'
+return isLocation
+}
+
+
+export const calculateGrandTotalForLocation = (data)=>{
+  return data.reduce((acc, subcategory) => acc + subcategory.totalJobs, 0);
+
+}
+
+export const getFormatedDate = (text)=>{
+  if (text && text.includes('T')) {
+    return text.split('T')[0]
+  }else{
+    return ''
+  }
+
+}
+

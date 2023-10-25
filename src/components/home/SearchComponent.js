@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { countries, cities, jobList } from "../../data/mock/jobs";
+import { countries, cities} from "../../data/mock/jobs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { selectStylesHome } from "../../utils/helper";
+import { useSelector } from "react-redux";
+import subCategoryData from "../../data/mock/subCategory";
+import { createNewSubCategoryArray } from "../../utils/helper";
+import { calculateGrandTotalForLocation } from "../../utils/helper";
 
 const SearchComponent = () => {
   const [queryData, setQueryData] = useState({
@@ -12,9 +16,10 @@ const SearchComponent = () => {
     country: null,
     city: null,
   });
-
+ const [totalJobsByLocation, setTotalJobsByLocation] = useState(0); 
   const [info, setInfo] = useState(false);
   const navigate = useNavigate();
+  const { location } = useSelector((state) => state.common);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,14 +47,20 @@ const SearchComponent = () => {
     )}&country=${encodeURIComponent(
       queryData.country
     )}&city=${encodeURIComponent(queryData.city)}`;
-    navigate(`/jobs${queryString}`);
+    navigate(`/${location}/jobs${queryString}`);
   };
+
+  useEffect(() => {
+    const newCategories = createNewSubCategoryArray(subCategoryData, location);
+    const grandTotal = calculateGrandTotalForLocation(newCategories);
+    setTotalJobsByLocation(grandTotal);
+  }, [location]);
 
   return (
     <div className="flex flex-col justify-center items-center w-full px-4 pt-6 pb-20 sm:pt-1 sm:pb-4 md:py-2 shadow-shade relative home-search-bg">
-      <p className="text-sm text-green-500 sm:pb-2 md:pt-2 pb-0 pt-0 w-fit">
-        <span className="font-bold text-md text-gray-300">{jobList?.length}</span> jobs
-        available right now
+      <p className="text-sm text-green-500 sm:pb-2 md:pt-2 pb-0 pt-0 w-fit capitalize">
+        <span className="font-bold text-md text-gray-300">{totalJobsByLocation}</span> jobs
+        available in <span className="font-bold text-md text-gray-300">{location}</span>
       </p>
       <div className="flex justify-center items-center flex-wrap w-5/6 sm:w-full lg:gap-0 xl:gap-1">
         <input

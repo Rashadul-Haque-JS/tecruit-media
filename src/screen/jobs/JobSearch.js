@@ -3,9 +3,10 @@ import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { selectStyles, formatDate } from "../utils/helper.js";
-import JobDescription from "../components/JobDescConvert.js";
+import { selectStyles, formatDate } from "../../utils/helper.js";
+import JobDescription from "../../components/JobDescConvert.js";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   countries,
   cities,
@@ -13,13 +14,14 @@ import {
   published_date,
   position,
   workTime,
-  jobList,
-} from "../data/mock/jobs.js";
+} from "../../data/mock/jobs.js";
 //import { getAllJob } from "../api/api.js";
-import PreLoader from "../components/PreLoader.js";
+import PreLoader from "../../components/PreLoader.js";
+import { locationLock } from "../../utils/helper.js";
+import { getJobsList } from "../../api/api.js";
 
 const JobSearch = () => {
-  const [jobs, setJobs] = useState(jobList);
+  const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPosition, setSelectedPosition] = useState(null);
   const [selectedWorkTime, setSelectedWorkTime] = useState(null);
@@ -43,7 +45,27 @@ const JobSearch = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const nordicLocation = useSelector((state) => state.common.location);
 
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await getJobsList();
+        setJobs(response.data.jobs);
+      } catch (error) {
+        if (error.response) {
+          console.error('Server responded with an error:', error.response.data);
+        } else if (error.request) {
+          console.error('No response received. There might be a network issue.');
+        } else {
+          console.error('Error in setting up the request:', error.message);
+        }
+      }
+    };
+    fetchJobs();
+  }, []);
+  
+  
  
   useEffect(() => {
     setLoading(jobs.length > 0 ? false : true);
@@ -118,7 +140,8 @@ const JobSearch = () => {
     setSelectedWorkTime(null);
     setCurrentView(isMobile ? null : jobs[0]);
     setSearchTerm("");
-    navigate("/jobs");
+    navigate(`/${nordicLocation}/jobs`);
+    handleLocationLock(nordicLocation);
   };
 
   const updateParamsFilter = () => {
@@ -203,6 +226,22 @@ const JobSearch = () => {
     setIsMobile(window.innerWidth <= 767 ? true : false);
   }, []);
 
+  const handleLocationLock = (land) => {
+    if(land!== 'nordic'){
+      const updatedLocation = {
+        label: land,
+        value: land,
+      };
+      setSelectedCountry(updatedLocation);
+    }else{
+      setSelectedCountry(null);
+    }
+  }
+
+  useEffect(() => {
+    handleLocationLock(nordicLocation);
+  },[nordicLocation])
+
   return (
     <div className="relative">
       <div className="w-full text-tecruitSecondary bg-tecruitPrimary">
@@ -251,7 +290,7 @@ const JobSearch = () => {
               className="h-full w-full outline-none text-sm text-gray-700 pr-2 shadow-inner px-4 sm:px-6 rounded-full border border-tecruitPrimary apps-input"
               type="text"
               id="search"
-              placeholder="Search By Job Title ..."
+              placeholder="Search By Job Title, ... Job Category ..."
               onChange={handleSearch}
             />
           </div>
@@ -322,11 +361,13 @@ const JobSearch = () => {
                 placeholder="Search by country"
                 className="w-fit sm:w-full"
                 styles={selectStyles}
+                isDisabled={locationLock(nordicLocation,selectedCountry)}
+
               />
               {selectedCountry && (
                 <Select
                   options={cities
-                    .find((c) => c.countryId === selectedCountry.countryId)
+                    .find((c) => c.name === selectedCountry.value)
                     ?.mainCities.map((city) => ({
                       value: city.value,
                       label: city.label,
@@ -402,7 +443,7 @@ const JobSearch = () => {
                   className="border p-4 my-2 rounded-lg"
                   style={{
                     backgroundColor:
-                      currentView?._id === job._id ? "#E5E7EB" : "",
+                      currentView?._id === job._id ? "#f3f4f6" : "",
                   }}
                 >
                   <li key={job._id}>
@@ -415,7 +456,7 @@ const JobSearch = () => {
                       <span className="capitalize">{job.country}</span>
                     </p>
                     <p className="text-gray-500">
-                      <span className="pr-1">{job.category}</span>■
+                      <span className="pr-1">{job.subCategory}</span>■
                       {job.type?.map((t) => (
                         <span className="px-1" key={uuidv4()}>
                           {t}
@@ -474,7 +515,7 @@ const JobSearch = () => {
               </p>
               <p className="text-gray-500 pb-1">
                 <span className="pr-1 capitalize">
-                  {currentView.category} Job
+                  {currentView.subCategory} Job
                 </span>
                 ■
                 {currentView.type?.map((t) => (
@@ -552,7 +593,7 @@ const JobSearch = () => {
               </p>
               <p className="text-gray-500 pb-1">
                 <span className="pr-1 capitalize">
-                  {currentView.category} Job
+                  {currentView.subCategory} Job
                 </span>
                 ■
                 {currentView.type?.map((t) => (
@@ -611,3 +652,4 @@ const JobSearch = () => {
 };
 
 export default JobSearch;
+

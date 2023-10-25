@@ -3,10 +3,8 @@ import Select from "react-select"; // Import the react-select component
 import companies from "../data/mock/companies";
 import CompanyCard from "../components/companies/CompanyCard";
 import { selectStyles } from "../utils/helper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowsRotate,
-} from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { locationLock } from "../utils/helper";
 
 const CompanyList = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -14,6 +12,8 @@ const CompanyList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [isRotated, setIsRotated] = useState(false);
+  const { location } = useSelector((state) => state.common);
+  
 
   // Define options for the view dropdown
   const viewOptions = [
@@ -25,7 +25,7 @@ const CompanyList = () => {
   // Filter companies by selected country and search query
   const filteredCompanies = companies.filter((company) => {
     const byCountry =
-      !selectedCountry || company.country === selectedCountry.value;
+      !selectedCountry || company.country.toLowerCase() === selectedCountry.value;
     const byName = company.name
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
@@ -49,8 +49,9 @@ const CompanyList = () => {
 
   const clearFilters = () => {
     setSelectedCountry(null);
-    setSearchQuery("");
+    setSearchQuery(""); 
     setPageSize(10);
+    handleCountryLock(location);
   };
 
   useEffect(() => {
@@ -60,6 +61,19 @@ const CompanyList = () => {
       }, 1000);
     }
   }, [isRotated]);
+
+  const handleCountryLock = (land) => {
+    if (land && land !== 'nordic') {
+      setSelectedCountry({ value: land, label: land });
+    }else{
+      setSelectedCountry(null);
+    }
+    
+  }
+
+  useEffect(() => {
+    handleCountryLock(location);
+  }, [location]);
 
   return (
     <div className="sm:px-0 pb-10 min-h-screen">
@@ -79,15 +93,17 @@ const CompanyList = () => {
           <div className="flex justify-center items-center gap-3">
             <Select
               options={[
-                { value: "Sweden", label: "Sweden" },
-                { value: "Denmark", label: "Denmark" },
-                { value: "Norway", label: "Norway" },
-                { value: "Finland", label: "Finland" },
+                { value: "sweden", label: "Sweden" },
+                { value: "denmark", label: "Denmark" },
+                { value: "norway", label: "Norway" },
+                { value: "finland", label: "Finland" },
               ]}
               value={selectedCountry}
               onChange={setSelectedCountry}
               placeholder="Filter by Country"
               styles={selectStyles}
+              isDisabled={locationLock(location, selectedCountry)}
+
             />
 
             {/* View options */}
@@ -98,8 +114,8 @@ const CompanyList = () => {
               placeholder="View Options"
               styles={selectStyles}
             />
-            <FontAwesomeIcon
-              icon={faArrowsRotate}
+            <img
+            src="/media/refresh.svg"
               onClick={() => {
                 if (!selectedCountry && !searchQuery && pageSize === 10) {
                   return;
@@ -111,13 +127,15 @@ const CompanyList = () => {
                 isRotated ? "rotate-180" : ""
               } ${
                 !selectedCountry && !searchQuery && pageSize === 10
-                  ? "text-gray-400"
-                  : "text-gray-600"
-              } w-6 h-8`}
+                  ? "text-tecruitPrimary"
+                  : "text-green-600"
+              } w-6 h-6`}
               style={{
                 transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 1s ease",
+                transition: "transform 1s ease", fontWeight: "lighter",
+                
               }}
+              alt="Refresh"
             />
           </div>
         </div>

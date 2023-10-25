@@ -7,6 +7,8 @@ import LearningsCard from "../components/home/Learnings";
 import mockTechArticles from "../data/mock/articles";
 import TechArticleCard from "../components/home/TechArticleCard";
 import SubHeadline from "../components/home/SubHeader";
+import AppStateCard from "../components/home/AppStateCard";
+import appStats from "../data/mock/appStats";
 
 const Home = () => {
   return (
@@ -14,8 +16,25 @@ const Home = () => {
       <div className="pb-10 sm:w-full sm:px-0 h-full flex justify-center items-center bg-cover bg-center relative w-full ">
         <Carousel />
       </div>
+      <div className="bg-tecruitSecondary w-full py-4"> 
+        <SubHeadline
+          title="App Stats"
+          color="#000"
+          bgColor="tecruitSecondary"
+        />
+        <div className="grid grid-cols-3 sm:grid-cols-1 gap-6 sm:py-4 py-12 bg-gray-100">
+          {appStats.map((stat) => (
+            <AppStateCard
+              key={stat.id}
+              number={stat.number}
+              text={stat.text}
+            />
+          ))}
+        </div>
+      
+      </div>
       <div className="p-2 sm:px-0 flex justify-center items-center bg-tecruitSecondary">
-        <div className="sm:px-4 w-full mt-8 sm:mt-8 sm:mx-0 md:mx-0 mx-10">
+        <div className="sm:px-4 w-full mt-2 sm:mx-0 md:mx-0 mx-10">
           <SubHeadline
             title="Featured Jobs"
             color="#000"
