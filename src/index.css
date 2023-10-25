@@ -77,9 +77,6 @@ body {
 }
 
 
-
-/* Home search div */
-
 .home-search-bg {
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -125,8 +122,6 @@ body {
    left: 55%;
   }
 }
-
-
 
 .pdf-iframe {
   width: 100%;

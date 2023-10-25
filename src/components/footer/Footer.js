@@ -74,7 +74,7 @@ const Footer = () => {
               <h3 className="text-xl font-semibold">Member Support</h3>
               <ul className="mt-2 space-y-2">
                 <li>
-                  <a href="/profile">My Account</a>
+                  <a href="/profile">My Profile</a>
                 </li>
                 <li>
                   <a href="/forgot-password">Forgot My Password</a>
