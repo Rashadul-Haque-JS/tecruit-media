@@ -14,6 +14,7 @@ const initialState = {
   authToken: defaultToken,
   authType: defaultType,
   authEmail: '',
+  cookieAccepted: false,
 };
 
 const commonSlice = createSlice({
@@ -40,9 +41,12 @@ const commonSlice = createSlice({
     addAuthEmail: (state, action) => {
       state.authEmail = action.payload;
     },
+    addCookieState: (state, action) => {
+      state.cookieAccepted = action.payload;
+    },
   },
 });
 
-export const { addLocation, toggleStateDrawer, addAuthToken, addAuthType,addAuthEmail } = commonSlice.actions;
+export const { addLocation, toggleStateDrawer, addAuthToken, addAuthType,addAuthEmail,addCookieState } = commonSlice.actions;
 
 export default commonSlice.reducer;
