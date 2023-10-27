@@ -181,7 +181,7 @@ const CreateJob = () => {
                 onChange={handleInputChange}
                 required
                 placeholder="Insert job title"
-                className=" appearance-none border border-tecruitPrimary  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="apps-input appearance-none border border-tecruitPrimary  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <div className="mb-4">
