@@ -6,7 +6,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open('Tecriut').then(cache => 
+    caches.open('Tecriut').then(cache =>
       cache.addAll([
         '/',
         '/index.html',
@@ -22,13 +22,12 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames
-          .map((cacheName) => {
-            if (cacheName !== 'Tecriut') {
-              console.log('Deleting old cache...');
-              return caches.delete(cacheName);
-            }
-          }) 
+        cacheNames.forEach((cacheName) => {
+          if (cacheName !== 'Tecriut') {
+            console.log('Deleting old cache...');
+            caches.delete(cacheName);
+          }
+        })
       );
     })
   );
@@ -40,7 +39,7 @@ self.addEventListener('fetch', event => {
       if (response) {
         return response;
       }
-      return fetch(event.request);; 
+      return fetch(event.request);
     })
   );
 });
