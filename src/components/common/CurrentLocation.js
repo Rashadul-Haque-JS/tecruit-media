@@ -16,7 +16,7 @@ const CurrentLocation = () => {
     dispatch(addLocation("nordic"));
   };
   return (
-    <div className=" flex justify-center items-center gap-3 absolute right-4 2xl:top-28 3xl:top-28 4xl:top-28 2xl:right-6 3xl:right-6 4xl:right-6 top-16 z-40 w-fit" 
+    <div className=" flex justify-center items-center gap-3 absolute right-4 top-[4.5rem] sm:top-[4rem] 2xl:top-28 3xl:top-28 4xl:top-28 2xl:right-6 3xl:right-6 4xl:right-6  z-40 w-fit" 
     >
       {location === "nordic" && (
         <FontAwesomeIcon icon={faLockOpen} className="text-tecruitSecondary text-md sm:text-sm cursor-pointer" style={{display: pathname === "/" ? "none" : "block"}}

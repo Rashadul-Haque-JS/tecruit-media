@@ -98,7 +98,7 @@ const Navbar = () => {
   
   return (
     <div
-      className="relative flex justify-between items-center gap-2 py-5 sm:py-3 md:py-3 lg:py-3 xl:py-2 px-6 sm:pl-0 md:pr-4 md:pl-0 sm:pr-4 text-tecruitPrimary bg-[#fff] z-50"
+      className="relative flex justify-between items-center gap-2 py-5 sm:py-3 md:py-4 lg:py-4 xl:py-[0.7rem] px-6 sm:pl-0 md:pr-4 md:pl-0 sm:pr-4 text-tecruitPrimary bg-[#fff] z-50"
       style={{
         borderBottom: "none",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
