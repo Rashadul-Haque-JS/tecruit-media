@@ -107,13 +107,13 @@ function CookieBanner() {
             </p>
             <div className="flex justify-center items-center gap-6 py-6">
               <button
-                className="px-16 sm:px-14 py-2 bg-black text-tecruitSecondary rounded-full cursor-pointer"
+                className="px-16 py-2 sm:px-12 sm:py-[0.3rem] border border-black bg-black text-tecruitSecondary rounded-full cursor-pointer"
                 onClick={acceptCookies}
               >
                 Accept
               </button>
               <button
-                className="px-16 sm:px-14 py-2 border border-black rounded-full cursor-pointer"
+                className="px-16 py-2 sm:px-12 sm:py-[0.3rem] border border-black rounded-full cursor-pointer"
                 onClick={declineCookies}
               >
                 Decline
