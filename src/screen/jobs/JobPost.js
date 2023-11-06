@@ -149,7 +149,7 @@ const CreateJob = () => {
           img="/media/woman.jpg"
           headline="Meet the best candidates"
           text=" Lorem ipsum do lor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-          label="Meet point"
+          label="Connect"
           link="/candidates"
           
           />
